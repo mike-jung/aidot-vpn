@@ -1,0 +1,43 @@
+# AidotVpn MariaDB configuration overlay.
+#
+# This file is mounted into /etc/mysql/mariadb.conf.d/ inside the container.
+# It supplements the upstream defaults; do not duplicate settings already
+# passed via `command:` in docker-compose.yml.
+
+[mysqld]
+# Logging
+log_warnings                = 2
+slow_query_log              = 1
+slow_query_log_file         = /var/lib/mysql/slow.log
+long_query_time             = 1.0
+log_queries_not_using_indexes = 0
+
+# InnoDB
+# Buffer pool sizing depends on host memory; tune in production.
+# 256M is fine for dev. In production, set to ~70% of dedicated DB host RAM.
+innodb_buffer_pool_size     = 256M
+innodb_flush_log_at_trx_commit = 1
+innodb_log_file_size        = 64M
+innodb_flush_method         = O_DIRECT
+
+# Connection / timeouts
+max_connections             = 200
+connect_timeout             = 10
+wait_timeout                = 600
+interactive_timeout         = 600
+
+# UTF-8 everywhere
+character_set_server        = utf8mb4
+collation_server            = utf8mb4_unicode_ci
+skip-character-set-client-handshake
+
+# Time zone
+default_time_zone           = '+00:00'
+
+# SQL strict mode (our schema relies on this)
+sql_mode = STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+
+# Binary log: enabled by default in MariaDB 11; we keep it but trim
+# retention because dev does not need long history.
+expire_logs_days            = 3
+binlog_format               = ROW

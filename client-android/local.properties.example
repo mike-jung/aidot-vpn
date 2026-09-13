@@ -1,0 +1,9 @@
+# Copy to local.properties (which is gitignored) and adjust the SDK
+# location to match your machine. Android Studio offers to fill this
+# in automatically the first time you open the project.
+
+# Linux / macOS
+sdk.dir=/Users/yourname/Library/Android/sdk
+
+# Windows (use forward slashes or escaped backslashes):
+# sdk.dir=C\:\\Users\\yourname\\AppData\\Local\\Android\\Sdk

@@ -1,0 +1,2 @@
+# Preserve the reviewed snapshot's exact bytes and disable external Git filters.
+* -text -filter -ident -working-tree-encoding

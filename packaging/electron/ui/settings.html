@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AidotVPN Desktop</title><link rel="stylesheet" href="settings.css"></head>
+<body>
+  <main>
+    <header><img src="icon.svg" width="44" height="44" alt=""><div><h1>AidotVPN Desktop</h1><p data-i18n="subtitle">콘솔을 열고 서버 연결을 관리하세요.</p></div><select id="locale" aria-label="Language"><option value="ko">한국어</option><option value="en">English</option></select></header>
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+    <form id="settings">
+      <fieldset><legend data-i18n="connection">콘솔 실행 방식</legend>
+        <label class="choice"><input type="radio" name="mode" value="connect" checked><span><strong data-i18n="connect">기존 콘솔에 연결</strong><small data-i18n="connectHelp">설치된 Windows 서비스 또는 원격 서버의 콘솔을 엽니다.</small></span></label>
+        <label class="choice"><input type="radio" name="mode" value="bundled"><span><strong data-i18n="bundled">이 PC에서 콘솔 실행</strong><small data-i18n="bundledHelp">동봉한 실행 파일을 사용합니다. Node.js 설치가 필요하지 않습니다.</small></span></label>
+      </fieldset>
+      <section id="connectFields"><label for="consoleURL" data-i18n="consoleURL">콘솔 주소</label><input id="consoleURL" type="url" placeholder="https://vpn.example.com" autocomplete="off"><p class="hint" data-i18n="httpsHelp">원격 주소는 Windows에서 신뢰하는 인증서의 HTTPS 주소를 사용하세요.</p></section>
+      <section id="bundledFields" hidden>
+        <div class="columns"><div><label for="controllerURL" data-i18n="controllerURL">제어 서버 주소</label><input id="controllerURL" type="url" placeholder="http://127.0.0.1:10030" autocomplete="off"></div><div><label for="localPort" data-i18n="port">이 PC의 콘솔 포트</label><input id="localPort" type="number" min="1024" max="65535"></div></div>
+        <p class="hint" data-i18n="localHelp">콘솔은 127.0.0.1에서만 연결됩니다. VPN 게이트웨이는 별도 Linux 서버가 필요합니다.</p>
+        <label class="check"><input id="startController" type="checkbox"><span data-i18n="startController">제어 서버도 함께 실행</span></label>
+        <div id="controllerFields" hidden><label for="controllerEnv" data-i18n="envFile">제어 서버 설정 파일</label><div class="file"><input id="controllerEnv" type="text" readonly><button id="chooseEnv" type="button" data-i18n="browse">찾아보기</button></div><p class="hint" data-i18n="dbHelp">기존 MariaDB 접속 정보와 기기 CA를 설정한 controller.env를 선택하세요. 시작 시 DB 마이그레이션이 적용됩니다.</p><button id="template" type="button" class="link" data-i18n="template">설정 예제 폴더 열기</button></div>
+      </section>
+      <label class="check"><input id="autoStart" type="checkbox"><span data-i18n="autoStart">Windows 로그인 시 트레이에서 시작</span></label>
+      <div id="error" class="error" role="alert" hidden></div>
+      <footer><p data-i18n="closeHelp">창을 닫아도 실행을 유지합니다. 트레이의 ‘종료’로 이 앱이 실행한 서버와 함께 종료합니다.</p><div class="actions"><button id="logs" type="button" data-i18n="logs">로그 폴더</button><button id="save" type="submit" class="primary" data-i18n="save">연결 확인 후 콘솔 열기</button></div></footer>
+    </form>
+    <p id="version" class="version"></p>
+  </main><script src="settings.js"></script>
+</body></html>

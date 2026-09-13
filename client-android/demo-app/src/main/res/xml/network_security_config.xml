@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Cleartext HTTP for the tutorial's lab network.
+
+    Android has blocked cleartext by default since API 28, and the failure
+    is an opaque IOException that names nothing — the reader sees a
+    request that never leaves the phone with no indication that the
+    platform, not the network, refused it.
+
+    ## Why this is now a blanket permission for debug
+
+    The previous version listed private ranges as <domain> entries:
+
+        <domain includeSubdomains="true">172.16.0.0</domain>
+
+    <domain> matches a hostname suffix. It is not CIDR. So `172.16.0.0`
+    permitted the literal address `172.16.0.0` and nothing else —
+    `172.30.1.67`, the machine the reader actually runs `npm start` on,
+    was blocked. Emulator and localhost worked, every real handset did
+    not, and the symptom was a button that flickered and did nothing.
+
+    Android offers no way to express "any RFC1918 address" here. The
+    honest choice for a tutorial app is to permit cleartext outright and
+    say so, rather than ship a list that looks like a restriction and is
+    not one.
+
+    This is a demo app for a lab network. A product would use TLS and
+    delete this file.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>

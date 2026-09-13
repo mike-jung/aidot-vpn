@@ -1,0 +1,148 @@
+/*
+ * Console tokens — the cctv-gateway look.
+ *
+ * Metronic-family dark console: near-black navy with a radial glow,
+ * one azure accent, Manrope for text and IBM Plex Mono for anything
+ * that is an address or a key. Lifted from cctv-gateway's console.css
+ * with the brand accent kept as-is, because the two consoles sit side
+ * by side in the same hospital and should read as one product line.
+ *
+ * Bootstrap stays underneath for grid and forms; these variables
+ * override its colours so every existing view picks the theme up
+ * without a rewrite.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #0a0f1c;
+  --bg-elev: #111827;
+  --panel: #131b2e;
+  --panel-2: #172038;
+  --line: #1f2a44;
+  --line-2: #2a3654;
+  --text: #e6ebf5;
+  --text-2: #9aa7c2;
+  --text-3: #6b7896;
+  --accent: #1b84ff;
+  --accent-2: #4da3ff;
+  --accent-soft: rgba(27, 132, 255, .14);
+  --good: #22c55e;
+  --good-soft: rgba(34, 197, 94, .14);
+  --warn: #f5b301;
+  --warn-soft: rgba(245, 179, 1, .14);
+  --bad: #f8285a;
+  --bad-soft: rgba(248, 40, 90, .14);
+  --info: #7239ea;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  --font: 'Manrope', 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', 'D2Coding', 'Consolas', monospace;
+
+  /* Bootstrap bridge — so .card, .table, .form-control, .btn follow. */
+  --bs-body-bg: var(--bg);
+  --bs-body-color: var(--text);
+  --bs-body-font-family: var(--font);
+  --bs-border-color: var(--line);
+  --bs-secondary-color: var(--text-2);
+  --bs-tertiary-color: var(--text-3);
+  --bs-card-bg: var(--panel);
+  --bs-card-border-color: var(--line);
+  --bs-card-cap-bg: var(--panel-2);
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--text);
+  --bs-table-border-color: var(--line);
+  --bs-table-striped-bg: rgba(255, 255, 255, .02);
+  --bs-table-hover-bg: rgba(27, 132, 255, .06);
+  --bs-primary: var(--accent);
+  --bs-primary-rgb: 27, 132, 255;
+  --bs-link-color: var(--accent-2);
+  --bs-link-hover-color: #7dbaff;
+  --bs-code-color: var(--accent-2);
+}
+
+html, body {
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(27, 132, 255, .12), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(114, 57, 234, .10), transparent 55%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  min-height: 100vh;
+}
+
+code, .font-monospace, .mono { font-family: var(--mono) !important; }
+
+/* ----------------------------------------------------------- surfaces */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .03) inset, var(--shadow);
+}
+.card-header {
+  background: var(--panel-2);
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  font-weight: 700;
+}
+.table > :not(caption) > * > * { background: transparent; color: var(--text); border-color: var(--line); }
+.table thead th, .table-light { background: var(--panel-2) !important; color: var(--text-2) !important; font-weight: 600; font-size: .8rem; letter-spacing: .02em; text-transform: uppercase; }
+.list-group-item { background: var(--panel); color: var(--text); border-color: var(--line); }
+.list-group-item.active { background: var(--accent-soft); color: var(--accent-2); border-color: var(--accent); }
+
+/* -------------------------------------------------------------- forms */
+.form-control, .form-select {
+  background: var(--bg-elev);
+  border: 1px solid var(--line-2);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+}
+.form-control::placeholder { color: var(--text-3); }
+.form-control:focus, .form-select:focus {
+  background: var(--bg-elev);
+  border-color: var(--accent);
+  color: var(--text);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.form-check-input { background-color: var(--bg-elev); border-color: var(--line-2); }
+.form-check-input:checked { background-color: var(--accent); border-color: var(--accent); }
+.form-text { color: var(--text-3); }
+.form-label { color: var(--text-2); }
+
+/* ------------------------------------------------------------ buttons */
+.btn { border-radius: var(--radius-sm); font-weight: 600; }
+.btn-primary { background: var(--accent); border-color: var(--accent); }
+.btn-primary:hover { background: var(--accent-2); border-color: var(--accent-2); }
+.btn-outline-secondary { color: var(--text-2); border-color: var(--line-2); }
+.btn-outline-secondary:hover { background: var(--panel-2); color: var(--text); border-color: var(--line-2); }
+.btn-outline-danger { color: var(--bad); border-color: rgba(248, 40, 90, .4); }
+.btn-outline-danger:hover { background: var(--bad); border-color: var(--bad); }
+.btn-link { color: var(--accent-2); }
+
+/* ------------------------------------------------------------- badges */
+.badge { font-weight: 600; border-radius: 6px; padding: .35em .6em; }
+.bg-success-subtle { background: var(--good-soft) !important; }
+.text-success-emphasis { color: var(--good) !important; }
+.bg-danger-subtle { background: var(--bad-soft) !important; }
+.text-danger-emphasis { color: var(--bad) !important; }
+.bg-warning-subtle { background: var(--warn-soft) !important; }
+.text-warning-emphasis { color: var(--warn) !important; }
+.bg-info-subtle { background: rgba(114, 57, 234, .14) !important; }
+.text-info-emphasis { color: #a78bfa !important; }
+.bg-secondary-subtle { background: rgba(154, 167, 194, .12) !important; }
+.text-secondary-emphasis { color: var(--text-2) !important; }
+.text-muted { color: var(--text-3) !important; }
+.text-success { color: var(--good) !important; }
+.text-danger { color: var(--bad) !important; }
+.text-warning { color: var(--warn) !important; }
+
+/* ------------------------------------------------------------- alerts */
+.alert { border-radius: var(--radius-sm); border-width: 1px; }
+.alert-danger { background: var(--bad-soft); border-color: rgba(248, 40, 90, .35); color: #ff9db3; }
+.alert-warning { background: var(--warn-soft); border-color: rgba(245, 179, 1, .35); color: #ffd666; }
+.alert-info { background: var(--accent-soft); border-color: rgba(27, 132, 255, .35); color: #9dcbff; }
+.alert-success { background: var(--good-soft); border-color: rgba(34, 197, 94, .35); color: #86efac; }
+
+hr { border-color: var(--line); opacity: 1; }
+h1, h2, h3, h4, h5, h6 { color: var(--text); font-weight: 700; letter-spacing: -.01em; }

@@ -1,0 +1,45 @@
+-- =============================================================================
+-- Migration 0011 — route scope (0.12.0)
+--
+-- Makes explicit a choice that was previously implicit and unavailable:
+-- what happens to traffic the policy does NOT permit.
+--
+-- Two axes govern a tunnel, and conflating them has caused confusion:
+--
+--   Axis 1 — WHICH APPS enter the tunnel.
+--            devices.app_filter_mode (migration 0008), implemented with
+--            VpnService.Builder.addAllowedApplication / addDisallowed-
+--            Application. UID-based, decided by Android.
+--
+--   Axis 2 — WHAT HAPPENS TO NON-PERMITTED TRAFFIC.  ← this migration
+--            policies.route_scope, implemented as the client's
+--            WireGuard AllowedIPs.
+--
+-- route_scope values:
+--
+--   'policy'  Split tunnel. AllowedIPs = the policy's CIDRs. Traffic to
+--             anywhere else never enters the tunnel and uses the normal
+--             network. The device keeps working internet access.
+--             This is the default and what 0.10.0 shipped.
+--
+--   'full'    Lockdown. AllowedIPs = 0.0.0.0/0 + ::/0, so ALL traffic
+--             (from the apps selected by axis 1) enters the tunnel — and
+--             the gateway's default-drop chain then discards everything
+--             outside the policy. Net effect: those apps can reach the
+--             permitted servers and NOTHING else, not even the public
+--             internet.
+--
+-- Note what the gateway does NOT need to know: enforcement is byte-for-byte
+-- identical under both values, because it was already deny-by-default. The
+-- difference is only whether non-permitted traffic is dropped at the
+-- gateway or never sent at all. That the gateway needs no change here is a
+-- good sign the split between the two axes is drawn in the right place.
+--
+-- Why 'full' is not the default: it takes the device's general internet
+-- access away. That is correct for a locked-down clinical handset and
+-- wrong for a clinician's personal phone, so an admin has to choose it.
+-- =============================================================================
+
+ALTER TABLE policies
+  ADD COLUMN route_scope ENUM('policy', 'full') NOT NULL DEFAULT 'policy'
+    AFTER precedence;

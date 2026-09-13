@@ -1,0 +1,12 @@
+FROM alpine:3.19
+
+# Tools the reconcile loop uses:
+#   - curl  : HTTP GET against the controller's /admin/dev/peers
+#   - jq    : parse the JSON response
+#   - wireguard-tools : `wg set` / `wg show`
+RUN apk add --no-cache curl jq wireguard-tools bash
+
+COPY reconcile-peers.sh /reconcile-peers.sh
+RUN chmod +x /reconcile-peers.sh
+
+ENTRYPOINT ["/reconcile-peers.sh"]

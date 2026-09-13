@@ -1,0 +1,28 @@
+.aidot-cache/
+.local/
+.env
+.env.local
+.env.*.bak
+**/node_modules/
+**/.gradle/
+**/build/
+**/dist/
+**/local.properties
+**/console.env
+**/controller.env
+**/*.pem
+**/*.key
+**/*.pfx
+**/*.p12
+**/*.jks
+**/*.keystore
+dist/
+# wg-harness: vendored mirrors are fetched by tools/wg-harness/fetch.sh
+tools/wg-harness/wireguard-go/
+tools/wg-harness/x-*/
+
+# Distribution intermediates and generated installers
+packaging/.work/
+packaging/.checks/
+packaging/out/
+packaging/installers/

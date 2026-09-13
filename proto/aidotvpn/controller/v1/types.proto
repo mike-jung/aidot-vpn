@@ -1,0 +1,69 @@
+// AidotVpn shared types and enums. Keeping cross-cutting types here lets
+// service-specific files focus on their own RPCs without re-declaring
+// identifiers, error categories, or platform enumerations.
+syntax = "proto3";
+
+package aidotvpn.controller.v1;
+
+import "buf/validate/validate.proto";
+
+// Platform identifies the OS family of a device.
+enum Platform {
+  PLATFORM_UNSPECIFIED = 0;
+  PLATFORM_ANDROID     = 1;
+  PLATFORM_IOS         = 2;
+  PLATFORM_LINUX       = 3;
+  PLATFORM_MACOS       = 4;
+  PLATFORM_WINDOWS     = 5;
+  PLATFORM_OTHER       = 99;
+}
+
+// DeviceStatus mirrors the SQL enum on the devices table.
+enum DeviceStatus {
+  DEVICE_STATUS_UNSPECIFIED   = 0;
+  DEVICE_STATUS_PENDING_ATTEST = 1;
+  DEVICE_STATUS_ACTIVE        = 2;
+  DEVICE_STATUS_SUSPENDED     = 3;
+  DEVICE_STATUS_REVOKED       = 4;
+}
+
+// EndpointMode mirrors the SQL enum on node_endpoints.mode.
+enum EndpointMode {
+  ENDPOINT_MODE_UNSPECIFIED      = 0;
+  ENDPOINT_MODE_WG               = 1;
+  ENDPOINT_MODE_WG_JUNK          = 2;
+  ENDPOINT_MODE_AMNEZIAWG        = 3;
+  ENDPOINT_MODE_SHADOWSOCKS_TCP  = 4;
+  ENDPOINT_MODE_SHADOWSOCKS_WS   = 5;
+}
+
+// PSKSource describes how a PSK was derived. Used for audit visibility.
+enum PSKSource {
+  PSK_SOURCE_UNSPECIFIED = 0;
+  PSK_SOURCE_CLASSICAL   = 1;
+  PSK_SOURCE_PQC_HYBRID  = 2;
+  PSK_SOURCE_MANUAL      = 3;
+}
+
+// Endpoint advertises one way to reach a node. Clients receive a list and
+// pick the first one that connects.
+message Endpoint {
+  string id          = 1 [(buf.validate.field).string.uuid = true];
+  EndpointMode mode  = 2 [(buf.validate.field).enum.defined_only = true];
+  string public_host = 3 [(buf.validate.field).string.min_len = 1,
+                          (buf.validate.field).string.max_len = 253];
+  uint32 public_port = 4 [(buf.validate.field).uint32.gt = 0,
+                          (buf.validate.field).uint32.lte = 65535];
+  // Mode-specific opaque parameters as compact JSON. Clients that don't
+  // understand a mode skip endpoints they can't use.
+  string params_json = 5;
+}
+
+// Node advertises a WireGuard data-plane server.
+message Node {
+  string id          = 1 [(buf.validate.field).string.uuid = true];
+  string region      = 2 [(buf.validate.field).string.min_len = 1];
+  // Curve25519 public key, base64.
+  string public_key  = 3 [(buf.validate.field).string.len = 44];
+  repeated Endpoint endpoints = 4;
+}

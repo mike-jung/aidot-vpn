@@ -1,0 +1,113 @@
+// NodeService — RPC surface used by AidotVpn data-plane nodes (the
+// processes running alongside `wg` on the gateway hosts) to fetch their
+// authoritative peer list and report telemetry.
+//
+// Authentication:
+//
+//   Nodes authenticate with mTLS using a node-class client cert (cert
+//   subject's URI SAN is `urn:aidotvpn:node:<uuid>`, NOT
+//   `urn:aidotvpn:device:<uuid>`). The cert is provisioned out-of-band
+//   when an operator adds a new node to the fleet.
+//
+// Streaming vs polling:
+//
+//   Phase 3 ships polling (SyncPeers called on a timer, default 30s).
+//   Once the fleet grows we'll add a streaming variant
+//   (`WatchPeers returns (stream PeerEvent)`) so updates land within
+//   seconds; the polling RPC stays in place as a reconciliation safety
+//   net regardless.
+syntax = "proto3";
+
+package aidotvpn.controller.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+import "aidotvpn/controller/v1/types.proto";
+
+service NodeService {
+  // Bootstrap: node calls once at startup to confirm registration, learn
+  // its tenant and any data-plane configuration. Idempotent.
+  rpc RegisterNode(RegisterNodeRequest) returns (RegisterNodeResponse) {}
+
+  // Pull the authoritative peer list this node should be serving.
+  rpc SyncPeers(SyncPeersRequest) returns (SyncPeersResponse) {}
+
+  // Push session telemetry (last handshake, byte counts) for active peers.
+  // Controller persists these to the `sessions` table.
+  rpc ReportSessions(ReportSessionsRequest) returns (ReportSessionsResponse) {}
+}
+
+// PeerSpec describes one peer the data plane should be configured to accept.
+message PeerSpec {
+  // base64-encoded Curve25519 public key.
+  string public_key = 1 [(buf.validate.field).string.len = 44];
+  // base64-encoded PSK (32 bytes -> 44 chars).
+  string psk = 2 [(buf.validate.field).string.len = 44];
+  // Allowed IPs (CIDR strings). We send "10.78.0.42/32" rather than raw bytes
+  // because the data plane accepts CIDR notation natively.
+  repeated string allowed_ips = 3;
+  // Persistent keepalive seconds. 0 = disabled.
+  uint32 persistent_keepalive_seconds = 4;
+}
+
+message RegisterNodeRequest {
+  // Build version of the data-node binary. Used by the controller for
+  // observability — the controller never refuses connections based on
+  // version, but it can warn if a node falls more than N versions behind.
+  string agent_version = 1;
+  // Hostname as the node sees itself. Doubles as a sanity check against
+  // what was provisioned.
+  string hostname = 2 [(buf.validate.field).string.min_len = 1,
+                       (buf.validate.field).string.max_len = 253];
+  // Self-reported listening endpoints (one per mode).
+  repeated Endpoint endpoints = 3;
+}
+
+message RegisterNodeResponse {
+  // The node's UUID as the controller knows it. This MUST match the URI
+  // SAN in the mTLS client cert; if it doesn't, the controller rejects.
+  string node_id = 1 [(buf.validate.field).string.uuid = true];
+  // Polling cadence for SyncPeers, in seconds. Defaults to 30s; the
+  // controller can ask for tighter or looser cadence per operational need.
+  uint32 sync_interval_seconds = 2 [(buf.validate.field).uint32.gte = 5,
+                                    (buf.validate.field).uint32.lte = 600];
+}
+
+message SyncPeersRequest {
+  // The peer-list version the node currently has. The server can reply
+  // with NotModified semantics (empty peers + same version) when nothing
+  // has changed since.
+  string current_version = 1;
+}
+
+message SyncPeersResponse {
+  // Opaque version string. The node passes it back on the next SyncPeers
+  // call. Format is currently "<seq>-<sha256-hex>" but treat it as opaque.
+  string version = 1;
+  // The full peer list. Replacement, not delta. Diffing against current
+  // local state is the agent's job.
+  repeated PeerSpec peers = 2;
+  // True when the version matched current_version; peers will be empty.
+  bool not_modified = 3;
+}
+
+message SessionStat {
+  string peer_public_key = 1 [(buf.validate.field).string.len = 44];
+  google.protobuf.Timestamp last_handshake = 2;
+  int64 rx_bytes = 3;
+  int64 tx_bytes = 4;
+  // Endpoint mode this peer is currently using.
+  EndpointMode current_endpoint_mode = 5;
+}
+
+message ReportSessionsRequest {
+  repeated SessionStat sessions = 1;
+}
+
+message ReportSessionsResponse {
+  // How many sessions were accepted by the controller. May be less than
+  // submitted if some referenced unknown peers (which the agent should
+  // then evict from its peer list on the next SyncPeers).
+  uint32 accepted = 1;
+  uint32 rejected = 2;
+}

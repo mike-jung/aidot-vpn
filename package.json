@@ -1,0 +1,43 @@
+{
+  "name": "aidot-vpn",
+  "version": "1.20.2",
+  "private": true,
+  "description": "Mobile device enrollment, managed network access and VPN connectivity for Android fleets",
+  "scripts": {
+    "start": "node scripts/start.mjs",
+    "start:clean": "node scripts/start.mjs --clean",
+    "start:no-docker": "node scripts/start.mjs --no-docker",
+    "stop": "node scripts/start.mjs --stop",
+    "status": "node scripts/start.mjs --status",
+    "logs": "node scripts/start.mjs --logs",
+    "logs:docker": "node scripts/start.mjs --docker-logs",
+    "build": "npm --prefix console run build",
+    "build:console": "npm --prefix console run build",
+    "ports": "node scripts/start.mjs --ports",
+    "dist:windows": "node scripts/build-edition.mjs windows",
+    "dist:linux": "node scripts/build-edition.mjs linux",
+    "start:https": "node scripts/start-https.mjs",
+    "check:https": "node scripts/start-https.mjs --check",
+    "test:https": "node --test console/tests/listener.test.mjs scripts/tests/https-cert.test.mjs",
+    "dist:electron:windows": "node scripts/build-edition.mjs electron",
+    "dist:win": "node scripts/build-edition.mjs electron",
+    "build:electron": "node scripts/build-edition.mjs electron --dir",
+    "pack:electron": "node scripts/build-edition.mjs electron --dir",
+    "electron:dev": "node scripts/electron.mjs --dev",
+    "test:electron": "node --test packaging/electron/tests/security.test.cjs",
+    "test:electron:windows": "node packaging/electron/tests/windows-smoke.mjs",
+    "https:cert": "node scripts/https-cert.mjs",
+    "cert:https": "node scripts/https-cert.mjs",
+    "https:check": "node scripts/start-https.mjs --check"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "license": "Apache-2.0",
+  "aidotEdition": "public",
+  "author": "Aidot Link Co., Ltd. <mike.jung.global@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mike-jung/aidot-vpn.git"
+  }
+}

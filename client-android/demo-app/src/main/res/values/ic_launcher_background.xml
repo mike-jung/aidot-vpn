@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The navy behind the mark; the adaptive launcher shape is cut by the OS. -->
+    <color name="ic_launcher_background">#0F172A</color>
+</resources>

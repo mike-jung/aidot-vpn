@@ -1,0 +1,49 @@
+# The tunnel gateway.
+#
+# ## Two ways to run WireGuard
+#
+# `wg-quick` prefers the kernel module and falls back to the
+# `wireguard-go` userspace implementation when `ip link add ... type
+# wireguard` returns "Not supported". The fallback is automatic, but
+# only if the binary is present.
+#
+# It matters because the host kernel is not ours to choose. Docker
+# Desktop on Windows runs containers inside a WSL2 VM, and whether that
+# kernel carries the module depends on its version.
+#
+# ## Why the fallback is best-effort
+#
+# 1.7.2 added `wireguard-go` to this apk line without checking that
+# Alpine 3.19 has it. It does not — the package is in edge/community —
+# so every build failed:
+#
+#   ERROR: unable to select packages:
+#     wireguard-go (no such package)
+#
+# Breaking the gateway entirely to add a fallback for one class of host
+# is a bad trade. So it is installed if available and skipped if not,
+# and the entrypoint says which case applies rather than leaving it to
+# be discovered when a tunnel does not come up.
+FROM alpine:3.19
+
+RUN apk add --no-cache \
+      wireguard-tools \
+      iptables \
+      python3 \
+      iproute2 \
+      bash
+
+# Best-effort: present in edge/community, absent from some stable
+# releases. `|| true` so a missing package never fails the build.
+RUN apk add --no-cache wireguard-go 2>/dev/null \
+      || echo "wireguard-go unavailable in this Alpine release — kernel module required"
+
+COPY wg0.conf /etc/wireguard/wg0.conf
+RUN chmod 600 /etc/wireguard/wg0.conf
+
+COPY reachability-target.py /usr/local/bin/reachability-target.py
+COPY probe.py /usr/local/bin/probe.py
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

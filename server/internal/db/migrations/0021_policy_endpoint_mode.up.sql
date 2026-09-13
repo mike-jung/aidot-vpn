@@ -1,0 +1,25 @@
+-- How devices under this policy reach the gateway.
+--
+-- WireGuard is UDP on one port. Hotel wifi, airport wifi and some
+-- carriers block that outright — not to censor anything, just as a
+-- blanket rule. A nurse on shift inside the hospital never notices; the
+-- same nurse checking a chart from a hotel cannot connect at all.
+--
+-- The relay wraps the same WireGuard packets in WebSocket-over-TLS on
+-- 443, which every network allows because blocking it would block the
+-- web. Same encryption, same keys — only the outer envelope changes.
+--
+--   direct  UDP, fast, blocked on some networks
+--   auto    try direct, fall back to relay
+--   relay   always relay
+--
+-- Per policy rather than per device, because it follows how a group of
+-- handsets is used: ward phones that never leave the building want
+-- direct; phones carried home or to conferences want auto.
+--
+-- 'auto' is not the default. A deployment that has never needed the
+-- relay should not silently start using it — the relay is a second
+-- machine that can be down, and a fallback nobody chose is a dependency
+-- nobody knows they have.
+ALTER TABLE policies
+  ADD COLUMN endpoint_mode VARCHAR(8) NOT NULL DEFAULT 'direct' AFTER source_nat;

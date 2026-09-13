@@ -1,0 +1,115 @@
+# AidotVpn Android — Gradle Version Catalog (libs.versions.toml).
+#
+# Centralising versions lets us bump everything from one place. Modules
+# reference these via the `libs.*` accessor (e.g. libs.androidx.core.ktx).
+
+[versions]
+# AGP 8.13 rather than 9.x.
+#
+# The latest Android Studio supports both — its policy is any AGP from the
+# previous three years — and 8.13 reaches compileSdk 36, which is what
+# "matches the current SDK" actually requires.
+#
+# AGP 9 is a breaking migration, not a version bump: it removes the old
+# DSL types, makes Kotlin built-in, and moves `kotlinOptions` to
+# `compilerOptions`. Doing that blind, with no way to run Gradle here,
+# would trade a working build for an unverifiable one. See
+# docs/android-build-ko.md for the 9.x path when someone can run it.
+agp = "8.13.0"
+kotlin = "2.1.20"
+ksp = "2.1.20-2.0.0"
+
+# AndroidX
+core-ktx = "1.16.0"
+appcompat = "1.7.0"
+lifecycle = "2.9.0"
+activity-compose = "1.10.1"
+datastore = "1.1.4"
+security-crypto = "1.1.0-alpha06"
+
+# Compose
+compose-bom = "2025.04.01"
+# compose-compiler is intentionally absent.
+#
+# It used to pin the standalone Compose compiler extension, which Kotlin
+# 1.x needed via `composeOptions.kotlinCompilerExtensionVersion`. Kotlin
+# 2.x ships the Compose compiler with the language and configures it
+# through the `org.jetbrains.kotlin.plugin.compose` plugin, so the entry
+# had been dead since the Kotlin 2 upgrade — nothing referenced it, and a
+# stale pin here is the kind of thing that gets "helpfully" wired back in
+# and then conflicts with the plugin.
+
+# Networking + OIDC
+okhttp = "4.12.0"
+appauth = "0.11.1"
+
+# Background work
+work-runtime = "2.10.1"
+
+# WireGuard userspace tunnel for Android.
+# Mirror: https://central.sonatype.com/artifact/com.wireguard.android/tunnel
+wireguard-tunnel = "1.0.20250531"
+
+# Post-quantum crypto (ML-KEM-768, FIPS 203).
+#
+# Android has no ML-KEM of its own, so the client half of the hybrid PSK
+# needs BouncyCastle. Minimum 1.79: that is when the `pqc.crypto.mlkem`
+# package appeared. Earlier releases expose the same algorithm under
+# `pqc.crypto.crystals.kyber`, and versions before 1.78 implement the
+# ROUND-3 Kyber draft rather than final FIPS 203 — which would produce
+# ciphertexts the Go server cannot decapsulate, silently, as a wrong
+# shared secret rather than an error.
+bouncycastle = "1.83"
+
+# JSON
+kotlinx-serialization = "1.8.0"
+
+# Test
+junit = "4.13.2"
+junit-android = "1.2.1"
+espresso = "3.6.1"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+# LocalLifecycleOwner and repeatOnLifecycle for Compose. The demo app
+# refreshes the device's server-side status on resume, and that needs a
+# lifecycle owner the composition can see.
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
+androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
+androidx-security-crypto = { group = "androidx.security", name = "security-crypto", version.ref = "security-crypto" }
+
+# Compose BOM aligns versions of all UI artifacts.
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+compose-ui = { group = "androidx.compose.ui", name = "ui" }
+compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+
+appauth = { group = "net.openid", name = "appauth", version.ref = "appauth" }
+
+androidx-work-runtime = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "work-runtime" }
+
+wireguard-tunnel = { group = "com.wireguard.android", name = "tunnel", version.ref = "wireguard-tunnel" }
+bouncycastle = { group = "org.bouncycastle", name = "bcprov-jdk18on", version.ref = "bouncycastle" }
+
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit-android" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

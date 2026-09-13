@@ -1,0 +1,45 @@
+<resources>
+    <!--
+        Notification text for the VPN service.
+
+        Moved here from :app in 0.28.0. AidotVpnService referenced
+        com.aidotvpn.client.app.R, which meant :vpnlib only compiled when
+        :app happened to be in the build — the exact opposite of what a
+        library module is for. An embedding business app has no
+        com.aidotvpn.client.app package at all.
+    -->
+    <string name="aidotvpn_notif_channel">VPN 상태</string>
+    <string name="aidotvpn_notif_channel_desc">터널 연결 상태를 알려줍니다</string>
+
+    <string name="aidotvpn_notif_title">AidotVpn</string>
+    <string name="aidotvpn_notif_disconnected">연결 안 됨</string>
+    <string name="aidotvpn_notif_connecting">연결하는 중…</string>
+    <string name="aidotvpn_notif_handshaking">문지기 응답을 기다리는 중…</string>
+    <string name="aidotvpn_notif_connected">보호 중</string>
+    <string name="aidotvpn_notif_error">오류: %1$s</string>
+
+    <!-- Mode summary shown under the state. -->
+    <string name="aidotvpn_notif_scope_policy">허용된 곳만 터널 사용</string>
+    <string name="aidotvpn_notif_scope_full">잠금 — 허용된 곳 외 차단</string>
+    <string name="aidotvpn_notif_apps_all">모든 앱</string>
+    <string name="aidotvpn_notif_apps_include">지정한 앱만</string>
+    <string name="aidotvpn_notif_apps_exclude">지정한 앱 제외</string>
+
+    <string name="aidotvpn_notif_disconnect">끊기</string>
+
+    <!--
+        A second channel, for the one event worth interrupting someone.
+
+        The status notification is IMPORTANCE_LOW on purpose: it is on
+        for a whole shift, and a chime on every reconnect gets the whole
+        thing muted — after which nobody notices a real outage either.
+
+        A tunnel that drops on its own is different. The phone keeps
+        working and quietly stops reaching the EMR, and the operator
+        finds out when a chart will not load.
+    -->
+    <string name="aidotvpn_alert_channel">연결 끊김 알림</string>
+    <string name="aidotvpn_alert_channel_desc">터널이 예기치 않게 끊기면 알려줍니다</string>
+    <string name="aidotvpn_alert_dropped_title">VPN 연결이 끊겼습니다</string>
+    <string name="aidotvpn_alert_dropped_text">병원 서버에 닿지 않습니다. 앱을 열어 다시 연결하세요.</string>
+</resources>

@@ -1,0 +1,123 @@
+# AidotVPN standalone evaluation stack. See docs/getting-started.md.
+
+name: aidot-vpn
+
+services:
+  mariadb:
+    image: aidot-vpn/mariadb:local
+    build:
+      context: ./infra/mariadb
+    container_name: aidot-vpn-mariadb
+    restart: unless-stopped
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --innodb-default-row-format=dynamic
+      - --innodb-file-per-table=1
+      - --max-connections=200
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:?set MARIADB_ROOT_PASSWORD in .env}
+      MARIADB_DATABASE: ${AIDOTVPN_DB_NAME:-aidotvpn}
+      MARIADB_USER: ${AIDOTVPN_DB_USER:-aidotvpn}
+      MARIADB_PASSWORD: ${AIDOTVPN_DB_PASSWORD:?set AIDOTVPN_DB_PASSWORD in .env}
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    ports:
+      - "127.0.0.1:${MARIADB_HOST_PORT:-4336}:3306"
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - aidotvpn
+
+  wg-data-node:
+    image: aidot-vpn/wg-data-node:local
+    build:
+      context: ./infra/wireguard
+      dockerfile: Dockerfile.data-node
+    container_name: aidot-vpn-wg-data-node
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    devices:
+      - "/dev/net/tun:/dev/net/tun"
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv4.ip_forward=1
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "${WG_BIND_ADDR:-0.0.0.0}:${WG_DATAPLANE_PORT:-52840}:52840/udp"
+    networks:
+      - aidotvpn
+
+  ddns-updater:
+    image: favonia/cloudflare-ddns:latest
+    container_name: aidot-vpn-ddns
+    restart: unless-stopped
+    profiles: ["ddns"]
+    network_mode: host
+    environment:
+      CLOUDFLARE_API_TOKEN: "${DDNS_CLOUDFLARE_TOKEN}"
+      DOMAINS: "${DDNS_DOMAIN}"
+      PROXIED: "false"      # WireGuard UDP can't be proxied, must be DNS-only
+      IP6_PROVIDER: "none"  # IPv4 only by default; flip to "cloudflare" for v6
+      UPDATE_CRON: "@every ${DDNS_INTERVAL:-5m}"
+
+  gateway-agent:
+    profiles: ["gateway"]
+    image: aidot-vpn/gateway-agent:local
+    build:
+      context: ./server
+      dockerfile: Dockerfile.gateway-agent
+      args:
+        AGENT_VERSION: "${AIDOTVPN_VERSION:-dev}"
+    container_name: aidot-vpn-gateway-agent
+    restart: unless-stopped
+    depends_on:
+      wg-data-node:
+        condition: service_started
+    network_mode: "service:wg-data-node"
+    cap_add:
+      - NET_ADMIN
+    environment:
+      CONTROLLER_URL: "${GATEWAY_CONTROLLER_URL:-http://host.docker.internal:10030}"
+      NODE_TOKEN: "${GATEWAY_NODE_TOKEN:-}"
+      WG_DEVICE: "wg0"
+      SYNC_INTERVAL: "15s"
+      LOG_DENIED: "true"
+      RELAY_URL: "${RELAY_URL:-}"
+      WG_ENDPOINT: "127.0.0.1:52840"
+      HEALTH_ADDR: "127.0.0.1:${GATEWAY_HEALTH_PORT:-10140}"
+      LOG_FORMAT: "text"
+
+  wg-reconcile:
+    profiles: ["legacy-reconcile"]
+    image: aidot-vpn/wg-reconcile:local
+    build:
+      context: ./infra/wireguard
+      dockerfile: Dockerfile.reconcile
+    container_name: aidot-vpn-wg-reconcile
+    restart: unless-stopped
+    depends_on:
+      wg-data-node:
+        condition: service_started
+    network_mode: "service:wg-data-node"
+    cap_add:
+      - NET_ADMIN
+    environment:
+      CONTROLLER_URL: "http://host.docker.internal:10030"
+      INTERVAL: "15"
+
+volumes:
+  mariadb_data:
+    name: aidot-vpn_mariadb_data
+
+networks:
+  aidotvpn:
+    name: aidot-vpn
+    driver: bridge

@@ -1,0 +1,1715 @@
+{
+  "format": "aidotvpn-public-v2",
+  "edition": "public",
+  "version": "1.20.2",
+  "files": {
+    ".env.example": {
+      "sha256": "a49c29a2fde0b1145a5010fc767196185a84f3bf7d29816c64aae6e9276a54d0",
+      "bytes": 1502
+    },
+    ".gitattributes": {
+      "sha256": "3b167ff3df92203947afc948cb8bc91d5824b37c0f6eb84dc97ce51d4085dcf7",
+      "bytes": 127
+    },
+    ".github/workflows/ci.yml": {
+      "sha256": "67d7fdc3b75fe45f2d231677aed72c1b78c6fccaf092bf2ea7d5e8639864fd10",
+      "bytes": 642
+    },
+    ".gitignore": {
+      "sha256": "15e811672786b1297de3dccaa1aaa38b0b5b91d8bc9842b7f8adef56541f4dcc",
+      "bytes": 468
+    },
+    "client-android/build.gradle.kts": {
+      "sha256": "9245502ebd2f60d5475cfb56b89bb5d6b1449f0272c3e949e19342f050218801",
+      "bytes": 635
+    },
+    "client-android/core/build.gradle.kts": {
+      "sha256": "261cad711de6b292ccc23c42f2abdaf14399aa8c0d1bb0e2bbf05a3c62c300d7",
+      "bytes": 4491
+    },
+    "client-android/core/consumer-rules.pro": {
+      "sha256": "3a30f80db992ac10e5e9e18346bba2e1e483115e6901e866d966bc0ff3ac9f3e",
+      "bytes": 953
+    },
+    "client-android/core/proguard-rules.pro": {
+      "sha256": "e3971fe3968737bdbc916c334f1fb8905dddc22481c61c94613d2382cd1d18c9",
+      "bytes": 170
+    },
+    "client-android/core/src/main/AndroidManifest.xml": {
+      "sha256": "36b6a25d89c787ff41d602ba5d66bbc6b46fc4d3ab33e69579360fb27bb66e38",
+      "bytes": 340
+    },
+    "client-android/core/src/main/java/com/aidotvpn/client/core/ControllerClient.kt": {
+      "sha256": "045a8a821ebabd3c20067d06948a1d63088a6ba41d6616f1a914e9e06158aa2b",
+      "bytes": 10785
+    },
+    "client-android/core/src/main/java/com/aidotvpn/client/core/CoreStorage.kt": {
+      "sha256": "7faff10c6d46da55b46be728f1575ca47965d6cf4a56f0db34aeb0b6c5a67c4c",
+      "bytes": 6688
+    },
+    "client-android/core/src/main/java/com/aidotvpn/client/core/CsrBuilder.kt": {
+      "sha256": "93a7f59217d04b3e17dc4830f20a7314ea402d7839a272da53ece1a247c1acb8",
+      "bytes": 8399
+    },
+    "client-android/core/src/main/java/com/aidotvpn/client/core/DerEncoder.kt": {
+      "sha256": "befee958eeb44b093bdeeb9b66e36b760a696ff51252b95bded6a5cebb0a5dd5",
+      "bytes": 4386
+    },
+    "client-android/core/src/main/java/com/aidotvpn/client/core/EnrollmentRequestClient.kt": {
+      "sha256": "b79bd1d101340adc6b2ad70a503cd0da7fa7568edbe0814a0c3bdd5945c9e998",
+      "bytes": 14009
+    },
+    "client-android/core/src/main/java/com/aidotvpn/client/core/KeyUtils.kt": {
+      "sha256": "8a9d891b3ad43df00b8b5e9123e20ee31d69014a87308c355a38ced51d0897d8",
+      "bytes": 1857
+    },
+    "client-android/core/src/main/java/com/aidotvpn/client/core/Models.kt": {
+      "sha256": "7d0e8250b61477f8680f18da666b6b97e4ea4cd4820de44faa2cbdc8aa8aecd3",
+      "bytes": 12766
+    },
+    "client-android/core/src/main/java/com/aidotvpn/client/core/PqcKemClient.kt": {
+      "sha256": "fe82e424f68a72f952d1424579466d466ed1ebe3765bdc3023c344d55c9f726e",
+      "bytes": 6884
+    },
+    "client-android/core/src/main/java/com/aidotvpn/client/core/ProtectingSocketFactory.kt": {
+      "sha256": "8f20c6ff11bba3efcea600737ebda7e28a564387d1ec45bc65f610a63edb7653",
+      "bytes": 2544
+    },
+    "client-android/core/src/main/java/com/aidotvpn/client/core/RegistrationFlow.kt": {
+      "sha256": "f86ddaa288a573dfd069321a72df8f9749cb6d0eebe84404dee1fb017d6c493f",
+      "bytes": 15871
+    },
+    "client-android/core/src/main/java/com/aidotvpn/client/core/relay/RelayClient.kt": {
+      "sha256": "0d108e3fd2d64073abb9dba0dd7999fcc73a5f15a2f2d2691b067d40c1487cc1",
+      "bytes": 11415
+    },
+    "client-android/core/src/main/java/com/aidotvpn/client/core/SocketProtector.kt": {
+      "sha256": "986c36ab4f79512d398db771f760f8a4514355e665289ea842a80cb6eff4af20",
+      "bytes": 3482
+    },
+    "client-android/core/src/main/java/com/aidotvpn/client/core/TokenSource.kt": {
+      "sha256": "50350dc1f41392423f5847b6469d4aed862c5661886f9a98b7e5707825297c3f",
+      "bytes": 3022
+    },
+    "client-android/core/src/test/java/com/aidotvpn/client/core/ProtectingSocketFactoryTest.kt": {
+      "sha256": "78a719b55e4cd0906b4fa7de84fbc202a4ed36e5eccce75cdd632a7b3903ce2d",
+      "bytes": 2715
+    },
+    "client-android/demo-app/build.gradle.kts": {
+      "sha256": "0c452f16d4e45ee7b10941765e57e4df252c3594e48e7149297aee960c07895f",
+      "bytes": 5281
+    },
+    "client-android/demo-app/proguard-rules.pro": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "client-android/demo-app/src/main/AndroidManifest.xml": {
+      "sha256": "2bc51549a679ebede76c257d2fb256cb7306c95d126d8240af49f8dfc59be62e",
+      "bytes": 1899
+    },
+    "client-android/demo-app/src/main/java/com/aidotvpn/demo/DemoViewModel.kt": {
+      "sha256": "c95b23835c9758737a5bdf0ac7cfe1433ce6118b94607c8a8e563b76a54c02c9",
+      "bytes": 45948
+    },
+    "client-android/demo-app/src/main/java/com/aidotvpn/demo/MainActivity.kt": {
+      "sha256": "50fd5b20ff7ec38801a9b043352723485c36177fb1ea8211bdc121bf975273be",
+      "bytes": 48711
+    },
+    "client-android/demo-app/src/main/java/com/aidotvpn/demo/Reachability.kt": {
+      "sha256": "f1c7fe3842fb8455d84918b26280ddc94dda0420105976b85f3b3a01327e3d0b",
+      "bytes": 9500
+    },
+    "client-android/demo-app/src/main/java/com/aidotvpn/demo/Theme.kt": {
+      "sha256": "24f7d9e8b2c570dad842d275ede608378c4c818cc4eea3ca7eff9d3872d484cc",
+      "bytes": 4454
+    },
+    "client-android/demo-app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml": {
+      "sha256": "d03d20b2e161527e98cc63433fceead6b4f748e3c4952c2af9bcfcf555fbf7c3",
+      "bytes": 266
+    },
+    "client-android/demo-app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml": {
+      "sha256": "d03d20b2e161527e98cc63433fceead6b4f748e3c4952c2af9bcfcf555fbf7c3",
+      "bytes": 266
+    },
+    "client-android/demo-app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png": {
+      "sha256": "b4eee4e2e8dc2634962504d2be5573442d3ac4d1893ebaec9373b327c5aa4544",
+      "bytes": 3669
+    },
+    "client-android/demo-app/src/main/res/mipmap-hdpi/ic_launcher_round.png": {
+      "sha256": "2ba26816c3023a3cc6695a428f3cc6c4d7ec9d42c819f84a738df30ebb1f183e",
+      "bytes": 5769
+    },
+    "client-android/demo-app/src/main/res/mipmap-hdpi/ic_launcher.png": {
+      "sha256": "2ba26816c3023a3cc6695a428f3cc6c4d7ec9d42c819f84a738df30ebb1f183e",
+      "bytes": 5769
+    },
+    "client-android/demo-app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png": {
+      "sha256": "f889cd2077160d6042eaf26695a72d9f76f80c64cbec50b94bbde901635ee9b4",
+      "bytes": 2431
+    },
+    "client-android/demo-app/src/main/res/mipmap-mdpi/ic_launcher_round.png": {
+      "sha256": "3cf5192ed1e7b5e4aa1ad38830265da8c9c0679c2020ebf168bf1cdc4e1c4d7a",
+      "bytes": 3406
+    },
+    "client-android/demo-app/src/main/res/mipmap-mdpi/ic_launcher.png": {
+      "sha256": "3cf5192ed1e7b5e4aa1ad38830265da8c9c0679c2020ebf168bf1cdc4e1c4d7a",
+      "bytes": 3406
+    },
+    "client-android/demo-app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png": {
+      "sha256": "637df8ed1690090ab6b79e20c9a2daf0f74cd3dbae40ac0fa7d449b46bd88f59",
+      "bytes": 4856
+    },
+    "client-android/demo-app/src/main/res/mipmap-xhdpi/ic_launcher_round.png": {
+      "sha256": "12732b628a955243b85684b1e54efc87591810d87df94eaceee64df1cb2dd1d3",
+      "bytes": 8405
+    },
+    "client-android/demo-app/src/main/res/mipmap-xhdpi/ic_launcher.png": {
+      "sha256": "12732b628a955243b85684b1e54efc87591810d87df94eaceee64df1cb2dd1d3",
+      "bytes": 8405
+    },
+    "client-android/demo-app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png": {
+      "sha256": "ec675a30ac6d7cb3dadec2093667756fe54101a662886ea90017f9dafa7ee3c9",
+      "bytes": 7508
+    },
+    "client-android/demo-app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png": {
+      "sha256": "2c11c7f3b369d04a57793df7b7e2aeccb790e068534223cc406587506ab8cd4a",
+      "bytes": 14669
+    },
+    "client-android/demo-app/src/main/res/mipmap-xxhdpi/ic_launcher.png": {
+      "sha256": "2c11c7f3b369d04a57793df7b7e2aeccb790e068534223cc406587506ab8cd4a",
+      "bytes": 14669
+    },
+    "client-android/demo-app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png": {
+      "sha256": "69f4ae39513dfe582d22057590e7ed154dd35273820b13523403d839efc4b7da",
+      "bytes": 10360
+    },
+    "client-android/demo-app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png": {
+      "sha256": "05d9bdf8ac35632cff794ace7c774b2ef9e35c3a154e629040b4e4ea636ee69c",
+      "bytes": 20674
+    },
+    "client-android/demo-app/src/main/res/mipmap-xxxhdpi/ic_launcher.png": {
+      "sha256": "05d9bdf8ac35632cff794ace7c774b2ef9e35c3a154e629040b4e4ea636ee69c",
+      "bytes": 20674
+    },
+    "client-android/demo-app/src/main/res/values/ic_launcher_background.xml": {
+      "sha256": "c178aaadf5abd6f91369a77ae193e0f3371b8aa52cbe539beeae783366a19985",
+      "bytes": 206
+    },
+    "client-android/demo-app/src/main/res/values/strings.xml": {
+      "sha256": "d9547e2f779a51d19ee21444815b0154b8739e45272fdc5e02bdf86fcc676623",
+      "bytes": 82
+    },
+    "client-android/demo-app/src/main/res/xml/network_security_config.xml": {
+      "sha256": "71aed7aa018803e3e30035619e23d8d11a63e5e84c9e73cbf08d7093d6a63afb",
+      "bytes": 1324
+    },
+    "client-android/demo-app/src/test/java/com/aidotvpn/demo/DeviceStateClientTest.kt": {
+      "sha256": "65439d43fe4791e4a32a3c5f945c631fa9e0575d08bd4952373b1b2f1a671071",
+      "bytes": 2795
+    },
+    "client-android/demo-app/src/test/java/com/aidotvpn/demo/ReachabilityTest.kt": {
+      "sha256": "1de9ae4bd7abe825ac9db82d6276d1ff4f8c93a884a5932f94ef00c6b491d9ee",
+      "bytes": 3112
+    },
+    "client-android/gradle/gradle-daemon-jvm.properties": {
+      "sha256": "04054c316eb0ae991fe85cacedb47e9f8d69b4447f5bd10124aaab3655d1c049",
+      "bytes": 1110
+    },
+    "client-android/gradle/libs.versions.toml": {
+      "sha256": "7ff1919942b5b7be2c7c3251cdfc91b9aeba56fde701193f373d3697d07711db",
+      "bytes": 5650
+    },
+    "client-android/gradle/wrapper/gradle-wrapper.jar": {
+      "sha256": "7d3a4ac4de1c32b59bc6a4eb8ecb8e612ccd0cf1ae1e99f66902da64df296172",
+      "bytes": 43764
+    },
+    "client-android/gradle/wrapper/gradle-wrapper.properties": {
+      "sha256": "7e0821d895908883350587c74476b717016ab416320c44dc82a10def916c6fb5",
+      "bytes": 253
+    },
+    "client-android/gradle.properties": {
+      "sha256": "fe6536beb3f5f28983fa9bfaf4a0b3730fc40eba6cf97fc4c325e2d3e98df16b",
+      "bytes": 1375
+    },
+    "client-android/gradlew": {
+      "sha256": "b187b4c52e749f5760afdd6fadc31b2a98ad35fb249bf0dff03b72650f320409",
+      "bytes": 8733
+    },
+    "client-android/gradlew.bat": {
+      "sha256": "1d297e00bd21de3ace22b4d7f2de1f9dfa858883d66bbf7c1ccbecccec8f4f3b",
+      "bytes": 2937
+    },
+    "client-android/local.properties.example": {
+      "sha256": "d51a6515c5f4d26a8a539c6391a5d51d15308a4265bd6a9046324d8c3f135226",
+      "bytes": 372
+    },
+    "client-android/README.md": {
+      "sha256": "ab2e4a3daae684b4ebe83192f3519a30c9172a329569a4f8d5edb628b336a2f5",
+      "bytes": 250
+    },
+    "client-android/sample-app/build.gradle.kts": {
+      "sha256": "63e907e5b976d2301e305e068ef51b6e52c572d0b4fe65b02b7063648ec46097",
+      "bytes": 2675
+    },
+    "client-android/sample-app/src/debug/res/xml/network_security_config.xml": {
+      "sha256": "83516f703eac4ca4ad63bb9cf5013eb8820b2ccfe727d09907c6188c25790350",
+      "bytes": 145
+    },
+    "client-android/sample-app/src/main/AndroidManifest.xml": {
+      "sha256": "a3ea775d3546bf7154fffc9c5f9f1851431ccce286e4828ec4c27787e7064eb4",
+      "bytes": 748
+    },
+    "client-android/sample-app/src/main/java/com/aidotvpn/client/sampleapp/MainActivity.kt": {
+      "sha256": "e5d6955ea01226f88478e0ebc8a758013b7238dd0594a9fd164c93cf44848f88",
+      "bytes": 3857
+    },
+    "client-android/sample-app/src/main/java/com/aidotvpn/client/sampleapp/PolicyProbe.kt": {
+      "sha256": "18f2822865c09d2e7214b6ea0cc2d72f81b8b90c5fcf7742e58ed1ca80fb2198",
+      "bytes": 3523
+    },
+    "client-android/sample-app/src/main/java/com/aidotvpn/client/sampleapp/SampleScreen.kt": {
+      "sha256": "2a406e3945282828208ded82a33d45c2a65a98aacea19ee2b708c5f2b8eb059a",
+      "bytes": 12405
+    },
+    "client-android/sample-app/src/main/java/com/aidotvpn/client/sampleapp/SampleStage.kt": {
+      "sha256": "563772985349efe5bd0f4dfe11ad656e006d6c77b38580f0289462c76b1054cf",
+      "bytes": 1669
+    },
+    "client-android/sample-app/src/main/java/com/aidotvpn/client/sampleapp/SampleViewModel.kt": {
+      "sha256": "39579592299ac5c1a6516e407715c1ee11e37d219aa05eb24749e28051d61abf",
+      "bytes": 11431
+    },
+    "client-android/sample-app/src/main/java/com/aidotvpn/client/sampleapp/ServerAddress.kt": {
+      "sha256": "86861d6a1259f6df13ae06802b329a3eea01f9451c373c364abea0e8f94c0ce9",
+      "bytes": 788
+    },
+    "client-android/sample-app/src/main/res/drawable/ic_close.xml": {
+      "sha256": "abf6145c95dc95fee9db11c022713c5e6c6faa135e8c58dee50e19cea34ca20e",
+      "bytes": 345
+    },
+    "client-android/sample-app/src/main/res/drawable/ic_sample_mark.xml": {
+      "sha256": "a79fab98c308ca4ba121cfd2884f31d05e823d3784e9550e153f178b3af8f571",
+      "bytes": 910
+    },
+    "client-android/sample-app/src/main/res/drawable/ic_sample_monochrome.xml": {
+      "sha256": "b077453793d0a48a96eb3cd4065a3c26f82a68e533a44478b5ed7bd7be60b9f0",
+      "bytes": 966
+    },
+    "client-android/sample-app/src/main/res/drawable/ic_settings.xml": {
+      "sha256": "877a4ee2023b207abb58bfd9e0738e8a5b1eeca0ab0039f0fc34d4365f81fc1d",
+      "bytes": 467
+    },
+    "client-android/sample-app/src/main/res/drawable/ic_visibility_off.xml": {
+      "sha256": "a119b3f4a0bc046ee05eef8de1d1cab50d06887c218d6bcd1aa6132a8de31183",
+      "bytes": 435
+    },
+    "client-android/sample-app/src/main/res/drawable/ic_visibility.xml": {
+      "sha256": "0c8239b27433334eb0b1115256ffbe2384e9bc7a590efbb90e4ccfcdc3921ac6",
+      "bytes": 393
+    },
+    "client-android/sample-app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml": {
+      "sha256": "2e4b675cdcbc8e4ab8d80cce825616f95d196eaf76652ab895ae38ce28526919",
+      "bytes": 221
+    },
+    "client-android/sample-app/src/main/res/mipmap-anydpi-v33/ic_launcher.xml": {
+      "sha256": "20986ce7266280acad22652d6917c5e89bfe9da6252cdd61deaf1673d7ce654d",
+      "bytes": 289
+    },
+    "client-android/sample-app/src/main/res/values/colors.xml": {
+      "sha256": "074662fe2f8893eb29071ea7ecf31196172c05b66a34af415e27fd8d1a8b5a47",
+      "bytes": 76
+    },
+    "client-android/sample-app/src/main/res/values/strings.xml": {
+      "sha256": "fa5fa3c21b364f2ef803b8d9f46ef0718e18dd1e9fc217def3cd0a33814c6cd6",
+      "bytes": 117
+    },
+    "client-android/sample-app/src/main/res/xml/network_security_config.xml": {
+      "sha256": "dea35ebed76536c24c13f74036f02dc874f944147cb3a49c2ad0550f71e3e0c7",
+      "bytes": 146
+    },
+    "client-android/sample-app/src/test/java/com/aidotvpn/client/sampleapp/PolicyProbeTest.kt": {
+      "sha256": "bb582b57f45d250d5d23b1631afa10ec8c372dea4638abe903b4bfc8ecd6bbf6",
+      "bytes": 1373
+    },
+    "client-android/sample-app/src/test/java/com/aidotvpn/client/sampleapp/SampleStageTest.kt": {
+      "sha256": "a7815e6f558c83b7d90a2ffe20cb808aab1c01e15a854c427c23f205e6a2cc8a",
+      "bytes": 1012
+    },
+    "client-android/sample-app/src/test/java/com/aidotvpn/client/sampleapp/ServerAddressTest.kt": {
+      "sha256": "7cf8fa5950cd0a0fde173380b674f84cdd810d7481c9b9e73b50d8c030d3b20c",
+      "bytes": 1285
+    },
+    "client-android/settings.gradle.kts": {
+      "sha256": "cade698cc63b2737c6c3766a3724a88ec3ec7ad16cc05aad5e29553d2c333c99",
+      "bytes": 416
+    },
+    "client-android/vpnlib/build.gradle.kts": {
+      "sha256": "0c7e4438ede8a555b36f25e5b96e27b141d4a365009def952f59c01d9eb23290",
+      "bytes": 3506
+    },
+    "client-android/vpnlib/consumer-rules.pro": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "client-android/vpnlib/proguard-rules.pro": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "client-android/vpnlib/src/main/AndroidManifest.xml": {
+      "sha256": "b724504c1a933bf34ce0c669e9ecbda4d6345bdd2405d9451fddb51f404767fe",
+      "bytes": 5143
+    },
+    "client-android/vpnlib/src/main/java/com/aidotvpn/client/vpnlib/AidotVpnEngine.kt": {
+      "sha256": "8ae9db5e22425d5535d2d10861d7a630411ee262d19576c46651250195ab88ac",
+      "bytes": 20026
+    },
+    "client-android/vpnlib/src/main/java/com/aidotvpn/client/vpnlib/AidotVpnService.kt": {
+      "sha256": "11668054f6c8bc0ed7873de14dd469c2df51af155a187d7ca2d24450879a26c9",
+      "bytes": 28931
+    },
+    "client-android/vpnlib/src/main/java/com/aidotvpn/client/vpnlib/KeyRotationWorker.kt": {
+      "sha256": "1dd0bb9fe9fb873d628cebdf13dd8f3ac2ddb8b6c72dbac6e6b6b45bcd6330cb",
+      "bytes": 4811
+    },
+    "client-android/vpnlib/src/main/java/com/aidotvpn/client/vpnlib/NetworkMonitor.kt": {
+      "sha256": "6e945e132ce3334e7bd4f70540c396fb87233e250106df9fbcec1f1c9bdb5ba3",
+      "bytes": 10553
+    },
+    "client-android/vpnlib/src/main/java/com/aidotvpn/client/vpnlib/TunnelManager.kt": {
+      "sha256": "8f4387f5da5c9e4643e6666484c2cc0b1aa00d65c4acde050a4a673d6603cba7",
+      "bytes": 44585
+    },
+    "client-android/vpnlib/src/main/res/values/strings.xml": {
+      "sha256": "503a8498b763f2f64ddb60d466fc6c17065d04136d1dc3b48f6f442816633f55",
+      "bytes": 2395
+    },
+    "client-node/aidot-client.mjs": {
+      "sha256": "169f5d8f83a57a698ba66608b1670e36fc311fa0f28c1399627778608aec33ae",
+      "bytes": 14086
+    },
+    "client-node/aidot-gui.mjs": {
+      "sha256": "dc45e9c740964c5dc8688fda80430c478e17fda460374adaec80e2e9bf03ec8d",
+      "bytes": 12488
+    },
+    "client-node/test/state-auth.test.mjs": {
+      "sha256": "b6e006a792ccea107a7a5b613eab66f1fc21e728d23c2ca640b019470f227668",
+      "bytes": 2499
+    },
+    "console/.env.example": {
+      "sha256": "54f34633c85104442f60a91ce98284d0e88bebcffb3c2c1c1986bb2f63c0e9f8",
+      "bytes": 1086
+    },
+    "console/app.js": {
+      "sha256": "5ac83fbdc3d5934319b9360aefb292b7d10cc156b503dc8212e86e78d913cd8b",
+      "bytes": 5781
+    },
+    "console/index.html": {
+      "sha256": "43246018f7476caf37bad67a276246f7cc9bde2b9036b439dbd6d18bb526b62d",
+      "bytes": 511
+    },
+    "console/listener-config.js": {
+      "sha256": "903dc15a8f2dec03cdd0efcfdbbc65367e1351c3568bfb6829cc41865696c824",
+      "bytes": 4672
+    },
+    "console/listener.js": {
+      "sha256": "e26eb5b2d0ae771dcb9ff23bcf796d36b0716ddb4b54e9b53881ca76fb4eb385",
+      "bytes": 4322
+    },
+    "console/package-lock.json": {
+      "sha256": "60833d1bc36f34d10366e96383a310a4b8678423249f1129f3fd0c85e2dde283",
+      "bytes": 92873
+    },
+    "console/package.json": {
+      "sha256": "55fa057c99f8e9be65f411c0b7d3a81dd2083dac78ca2094d63476f6cc7af7d9",
+      "bytes": 839
+    },
+    "console/public/favicon.svg": {
+      "sha256": "4fe39b6d1302bc8683118ba540e33c1c2601f72cb04eb993a969d2044dc16230",
+      "bytes": 2561
+    },
+    "console/server.js": {
+      "sha256": "c060f6b709fb304b565b07c5cd794654ba3c805eb6653e4eeedfe6eee7aa51d8",
+      "bytes": 536
+    },
+    "console/source-config.js": {
+      "sha256": "5ae383ce58234e2eb347868df2829824a15c5b5a2c09c3250221638e29c6258c",
+      "bytes": 1330
+    },
+    "console/src/api/client.js": {
+      "sha256": "950fa790901d666d1d1ea1c261487a4805179c5d33c0bf8959e481833a0b8be1",
+      "bytes": 10286
+    },
+    "console/src/App.vue": {
+      "sha256": "2b39f94b0f0f4ca2a6dbcbeae5e827ccc27c67c9a4cf3ca6c5b2d5e0d66812ea",
+      "bytes": 949
+    },
+    "console/src/components/AidotDialog.vue": {
+      "sha256": "0202f4accafe2b22e3497e27cb2cb1a37768874f0ae1e6531d1f6ad156d7df4d",
+      "bytes": 7425
+    },
+    "console/src/components/AidotIcon.vue": {
+      "sha256": "94e8f9e87ae504d01ae4560320555743da3e2de20dd08778b40c272907292544",
+      "bytes": 6414
+    },
+    "console/src/components/AppLayout.vue": {
+      "sha256": "e25de0681b0b3149e3f616b1ce31b3a9e0626b31d1cebd77d0fb9d3b9c8b7adc",
+      "bytes": 21891
+    },
+    "console/src/components/ConsoleConnection.vue": {
+      "sha256": "56fc0d4685495222c245c0c3a33c7481a4c015012fd9a3a978b188743fa35ae8",
+      "bytes": 4462
+    },
+    "console/src/components/LanguageSelect.vue": {
+      "sha256": "9b8ddecfb01ba6119130717a5fb0c6d823a5cd9545da41e3d375631c9001b0ab",
+      "bytes": 752
+    },
+    "console/src/components/SettingsPanel.vue": {
+      "sha256": "7d79a38d1a2c6134e189d6a0e838bae6127016ed4c270be6729f7d4fcdc54e8c",
+      "bytes": 14808
+    },
+    "console/src/i18n/en.json": {
+      "sha256": "019681c1e5c58f3e0bd3bb69624b8f6f596db70c319a062b0de189ec925d49d6",
+      "bytes": 49513
+    },
+    "console/src/i18n/index.js": {
+      "sha256": "379dfc9a92132cbb61dc4a21f42561330845a712e61f0c2c06b7be3724555acd",
+      "bytes": 4422
+    },
+    "console/src/lib/actions.js": {
+      "sha256": "5b11945143b546b4defaa35407486b44c9f85d4b5256db4aea80d942c7912b83",
+      "bytes": 1957
+    },
+    "console/src/main.js": {
+      "sha256": "4aed507d0a4ba970ac88a8e5470704f7ad707c87af3eaca4ca0dc41a5d8e4c14",
+      "bytes": 907
+    },
+    "console/src/router/index.js": {
+      "sha256": "86bcc7cdbc5c1e4cd5c6b1ee9a2526a232de514555249b5e5ce699c581b85379",
+      "bytes": 3152
+    },
+    "console/src/stores/auth.js": {
+      "sha256": "28d5b148e7a369248dbe79897039401c64bce5574d9382f7b55626c60b502e9b",
+      "bytes": 3903
+    },
+    "console/src/styles/console.css": {
+      "sha256": "7bbea0f595bec74875a5248406c10e2416079d7d7f250f3511e3b2811c7c2145",
+      "bytes": 6444
+    },
+    "console/src/views/AuditView.vue": {
+      "sha256": "e3e1af928149e9cb45de5d5f34141c415208fda2880c617f8dde7d80a873a836",
+      "bytes": 17114
+    },
+    "console/src/views/DevicesView.vue": {
+      "sha256": "ff55506125bbbc7bc2a315cd6723031a42f48880fd72273ebfaf97219bff998a",
+      "bytes": 41727
+    },
+    "console/src/views/EnrollmentRequestsView.vue": {
+      "sha256": "52ee6d59dd995f5df936aec562259bffa2909a79909fa6f2de01aa282e80d953",
+      "bytes": 18210
+    },
+    "console/src/views/GroupsView.vue": {
+      "sha256": "8b70cc8fc8dafd4e99ecb13033505e5c17bd2527d62e0219aa7c176d4511d381",
+      "bytes": 7402
+    },
+    "console/src/views/HAView.vue": {
+      "sha256": "8a64e019bb75cf04ac1737be50ef573d24147e91a5ef82ce653d08ac1be6240a",
+      "bytes": 2097
+    },
+    "console/src/views/LoginView.vue": {
+      "sha256": "fdde31529efd30ce9f4e953f41888e2e31c3a0a132407e04dd25901627e66821",
+      "bytes": 8662
+    },
+    "console/src/views/NodesView.vue": {
+      "sha256": "f74610d48027cb5ad0108c62a29d80c994c193c4836101ec7f2a763689566a83",
+      "bytes": 6941
+    },
+    "console/src/views/OverviewView.vue": {
+      "sha256": "ec0f436dd237bb244128a389f333f3863005a31f82b102f6f4617257d4a2862d",
+      "bytes": 22957
+    },
+    "console/src/views/PoliciesView.vue": {
+      "sha256": "de7ceb3c3442b12374754797f0c071c6e6bba1165890ff7dbe26c05e15a94e3f",
+      "bytes": 39386
+    },
+    "console/src/views/ReachView.vue": {
+      "sha256": "17d868a595f0a1a7d0a94e425f8ed3bd7f19da53951ebf9e2f355c74a9e6eb0d",
+      "bytes": 7266
+    },
+    "console/src/views/TraceView.vue": {
+      "sha256": "54cfa17adabc800cf6259eee4f0c825ac06faad269af469122af059dfcea10cd",
+      "bytes": 10476
+    },
+    "console/tests/browser.mjs": {
+      "sha256": "9c3de4d17cb8f95fae3a0fe010e39f86668db19548f0f1bfdeca36503a37ecfa",
+      "bytes": 7287
+    },
+    "console/tests/i18n.test.mjs": {
+      "sha256": "00d1490d0be46914e57b6e642a40a4661ced50ba9c99739510a7a1a741fb05f1",
+      "bytes": 2233
+    },
+    "console/tests/listener.test.mjs": {
+      "sha256": "60018d15aadff89c8849f0242b41d8f56f8b244030c3cfbf811feb547c9aed40",
+      "bytes": 5990
+    },
+    "console/vite.config.js": {
+      "sha256": "bd905183ddc3f12204b541eb1c32124da53b33dbbf70ed0335ea4c04c2301fa6",
+      "bytes": 2982
+    },
+    "design/aidot-vpn-mark-fg.svg": {
+      "sha256": "3033fac9587f0be9ec59157b2c9acc6bd8d4f8815e58334e8a75694356423e85",
+      "bytes": 2449
+    },
+    "design/aidot-vpn-mark.svg": {
+      "sha256": "4fe39b6d1302bc8683118ba540e33c1c2601f72cb04eb993a969d2044dc16230",
+      "bytes": 2561
+    },
+    "docker-compose.yml": {
+      "sha256": "02e3fd100f6c060915dcbf910dbc777ad63c7b395b249ba9fe234dd48f818b6b",
+      "bytes": 3540
+    },
+    "docs/android.md": {
+      "sha256": "9f6a0657cecbe9811b34eb93cca6fda556e05f7e3aad7d3bb57434014ff440bd",
+      "bytes": 1411
+    },
+    "docs/client-api.md": {
+      "sha256": "7803230ea25a8d1d3780556b15f197e1264c437726798375a29fa1d228c8d89b",
+      "bytes": 1750
+    },
+    "docs/editions.md": {
+      "sha256": "284b27f24840d9ccf2a21426466d4d8a150a7bebeec31ed50e29399430e1e4b1",
+      "bytes": 2182
+    },
+    "docs/getting-started.md": {
+      "sha256": "01870464b4497927a42a8ee4980d86b91bf3d6ec5c4c593365d9a458880b9ad4",
+      "bytes": 3325
+    },
+    "docs/https.md": {
+      "sha256": "7960f9f16a2a557f4ba7dfaf66bd95a04746e0ab5e5d6ee16e75f5631baa4dc0",
+      "bytes": 5622
+    },
+    "docs/installation.md": {
+      "sha256": "7ecfb4858cfec205f352cfc040688fc26844a456871cb36c67148d9d530a99ee",
+      "bytes": 1731
+    },
+    "infra/mariadb/conf.d/aidotvpn.cnf": {
+      "sha256": "81b1a50a559597f6da2f07e70368a1f520b2df670acc5643fa189a528da83908",
+      "bytes": 1433
+    },
+    "infra/mariadb/Dockerfile": {
+      "sha256": "d3cdfe7483a42952a55cc67c9c7d6094e666bcf308b4656438f8fefa5fcc79d7",
+      "bytes": 980
+    },
+    "infra/mariadb/init/01-init-databases.sql": {
+      "sha256": "e945c7f1b446a5596505d2699fe92cb4a8656b7b28fb54013b12c6029955ea3b",
+      "bytes": 964
+    },
+    "infra/wireguard/Dockerfile.data-node": {
+      "sha256": "8e153d72ad889bce8bf34f7ad02597106e51d96087fdf1eb7a62ca3d42ec2e52",
+      "bytes": 1750
+    },
+    "infra/wireguard/Dockerfile.reconcile": {
+      "sha256": "37637dd6babc32e80aa8d5fbbfe6229ddebb1423b9a7722a9d5f3605025ca1c3",
+      "bytes": 365
+    },
+    "infra/wireguard/entrypoint.sh": {
+      "sha256": "67dcc510ea41ca2f41060bb136f131a3828a598eca5a4015c0d8d2e169710328",
+      "bytes": 2780
+    },
+    "infra/wireguard/probe.py": {
+      "sha256": "2d12ba3e7680982edbfa085ea846df06eeced61feb8061c72e24a72d93fd2ee2",
+      "bytes": 672
+    },
+    "infra/wireguard/reachability-target.py": {
+      "sha256": "61511e98b9039f8f2ae9af49731bb631003a55ccdc4dd19884a5ac55947a4292",
+      "bytes": 5258
+    },
+    "infra/wireguard/reconcile-peers.sh": {
+      "sha256": "87fca36dc9f69dbeb412cd4c58979d43e070aaae6139a74fbb3422da16991081",
+      "bytes": 3679
+    },
+    "infra/wireguard/wg0.conf": {
+      "sha256": "26d8ad67c03ca28cdbf1f2b8385ab5a64c36b0a1fdb03e3f8bd91d96ba961ac2",
+      "bytes": 2354
+    },
+    "LICENSE": {
+      "sha256": "e9dfd368b39b17e716d113dae33a05f42c6c19b344fe59ba7814e94af234f114",
+      "bytes": 11351
+    },
+    "LICENSE-SCOPE.md": {
+      "sha256": "020290da789016a3bae597a5235db2cedccec8ae1205c6524558d8ab9f7ba1ce",
+      "bytes": 792
+    },
+    "NOTICE": {
+      "sha256": "d7c89df4a87c7c43dfea132f387eb1821ec4975151361a5c433dff3f3ee128fa",
+      "bytes": 264
+    },
+    "package.json": {
+      "sha256": "6decb6b4559c715871a6c7c32a3953b482ace9285751873be7581f5c9d2461a6",
+      "bytes": 1930
+    },
+    "packaging/build.mjs": {
+      "sha256": "d3a16f3f20b25cb093aa984eaf19fe9f8e803ebab56d49de02fe2d8089761ca0",
+      "bytes": 8143
+    },
+    "packaging/console.env.example": {
+      "sha256": "b5df82f4eed681bfbcd29577ce817c57b0ba7f936c3b388948c52bbf21496f3c",
+      "bytes": 753
+    },
+    "packaging/controller.env.example": {
+      "sha256": "ca54b6ac519dec4ce38033881662d4328d9954acc5196f81088ed7d2022d7347",
+      "bytes": 660
+    },
+    "packaging/electron/builder.cjs": {
+      "sha256": "9187c2e45df7ab346a2b33202d6180eb6d8e4c16520e05853e1d5d381ea5092b",
+      "bytes": 3504
+    },
+    "packaging/electron/main.cjs": {
+      "sha256": "335a187857c42cac9bd339a45311fb193dcdcd7c6a7eca11d364fe4de330e395",
+      "bytes": 11948
+    },
+    "packaging/electron/package-lock.json": {
+      "sha256": "7b3014c27a333f463320537011b189c54587896fdea78efbfc3b2cb0756f1799",
+      "bytes": 133750
+    },
+    "packaging/electron/package.json": {
+      "sha256": "7472424d757017051b586b7520fd1ab90307a3080b382fef7d6fe5211f362f9e",
+      "bytes": 401
+    },
+    "packaging/electron/preload.cjs": {
+      "sha256": "71fc34a1d342723d832717eb09bdb6c79bc5f5e60c1b5d8555fd2bef819871b0",
+      "bytes": 426
+    },
+    "packaging/electron/runtime.cjs": {
+      "sha256": "e09f1530a4263a131025f9c9c3f1ac63bf6876877e9610ee79d414dd3f6d5233",
+      "bytes": 9027
+    },
+    "packaging/electron/security.cjs": {
+      "sha256": "9344e76936aa931a86f85c9a13f0622c4666179163f9c5abcb5a7aa62e3856a7",
+      "bytes": 3733
+    },
+    "packaging/electron/tests/security.test.cjs": {
+      "sha256": "cb2aa8c496d1250816adc4e636a5c105d290a09010841daf1a94686c32509ba1",
+      "bytes": 6134
+    },
+    "packaging/electron/tests/windows-live.py": {
+      "sha256": "12daec46c0941361ae88c7e9f0c96d855052babf633f94fd4d2fcbd494ce85d1",
+      "bytes": 16310
+    },
+    "packaging/electron/tests/windows-smoke.mjs": {
+      "sha256": "e52df98d94379b987423b1c05d3b5ea4da3c16c34b9b6c2c655bf5f02b379691",
+      "bytes": 3574
+    },
+    "packaging/electron/ui/icon.svg": {
+      "sha256": "4fe39b6d1302bc8683118ba540e33c1c2601f72cb04eb993a969d2044dc16230",
+      "bytes": 2561
+    },
+    "packaging/electron/ui/settings.css": {
+      "sha256": "923c7323242e193b7974bdc1607907c9b68679a33dd172f1545f94400e27edbf",
+      "bytes": 3051
+    },
+    "packaging/electron/ui/settings.html": {
+      "sha256": "e861f637e5a866a3bed71d7484ce4803826ffc2470d6893cf3ef29522c8923ae",
+      "bytes": 3647
+    },
+    "packaging/electron/ui/settings.js": {
+      "sha256": "9fcc8055aa9f6be2797d56003b4784857af5aa0612e55db08b62c4c71ef7c3d9",
+      "bytes": 4126
+    },
+    "packaging/linux/aidotvpn-console.service": {
+      "sha256": "cebc486d0102ade7e1770851dbb4ba3c13c2d94c66405dfee10a9a7fc98af871",
+      "bytes": 581
+    },
+    "packaging/linux/aidotvpn-controller.service": {
+      "sha256": "b6d3896dd180af66e341c11f52c1a0a637187665feca54f0447812d0b1a2a3f7",
+      "bytes": 539
+    },
+    "packaging/linux/aidotvpn-gateway.service": {
+      "sha256": "dcfa35a66dae4812256f37fb2e0b2344f6a6621d3d00fa2cd3fb26ddb5c970ec",
+      "bytes": 561
+    },
+    "packaging/linux/package.py": {
+      "sha256": "c3ec763055e52e362f172cdd40f16140c25107d787a520c703a71260d9bc3c55",
+      "bytes": 2963
+    },
+    "packaging/node-LICENSE.txt": {
+      "sha256": "05f4451e79572a51b395ad7aaf424c38d5243a14dc36afd433b97f048fbec7f9",
+      "bytes": 157607
+    },
+    "packaging/package-lock.json": {
+      "sha256": "20892b06b9469add2041e6b07e914ca0a3da862cc88e8ae9ce2c6bfc98638707",
+      "bytes": 15963
+    },
+    "packaging/package.json": {
+      "sha256": "b7512fa302647fb9485559183d4d16c9e7edc9c4071a8b9d2b9691e6e369a954",
+      "bytes": 436
+    },
+    "packaging/README-ko.md": {
+      "sha256": "e6c1dea5b0230c5ea12824bf7fc278b582d437c28e3cb4b34a3aef277c04fcb8",
+      "bytes": 838
+    },
+    "packaging/runtime/entry.mjs": {
+      "sha256": "c8d1a29bb43bab0df461cd44ff8359575dc07b22bf5cabefc2ebf8241bfaa13f",
+      "bytes": 147
+    },
+    "packaging/runtime/main.mjs": {
+      "sha256": "99f560577a92ca184516e7302d2ac492d3b30292a2ebe12b20cfa2b0e0bfee86",
+      "bytes": 1799
+    },
+    "packaging/runtime/paths.mjs": {
+      "sha256": "99d64fa9760c6a8290af69442ce322343ad823072c9349d9f04ed1198058cdb8",
+      "bytes": 1193
+    },
+    "packaging/tests/https-smoke.mjs": {
+      "sha256": "5beda54bb2cc6fd96c75e87d42d9b3b838c28819e8b3be823fd5f45d895d63d0",
+      "bytes": 2976
+    },
+    "packaging/tests/paths.test.mjs": {
+      "sha256": "43a2dc2e1e906ccfab2bfd155bee6459733bb4e2c973e38fbbd1e1ac4336c712",
+      "bytes": 1331
+    },
+    "packaging/tests/ServiceControlTests.cs": {
+      "sha256": "c1ef9d218aca6134229395b2de4c415dafc4fafe8fc5972f1a6a99b59b154e0a",
+      "bytes": 3737
+    },
+    "packaging/tests/smoke.mjs": {
+      "sha256": "8f889ae5ead0f4062a7ef667a366b6f0d81f302e01454601728504942f6ff0c1",
+      "bytes": 4237
+    },
+    "packaging/tests/tray-no-service.ps1": {
+      "sha256": "61c4317faedd65c18c24ff39bd605687f85b0cd5a6adb401c7e8c8dadac044b4",
+      "bytes": 1843
+    },
+    "packaging/tests/tray-smoke.ps1": {
+      "sha256": "d3c8a8e54939b70432157db6344f04ae9b80c8828f68a14e11c223e4c14ad354",
+      "bytes": 2197
+    },
+    "packaging/tests/windows-install.ps1": {
+      "sha256": "6b73f47bf67f987005c077d5b7c6d2d11ef8a2ecbc5d5e04a9b49c6af3d969bc",
+      "bytes": 4813
+    },
+    "packaging/tests/windows-live.py": {
+      "sha256": "52888fd8bd8aa270ea3f7864e55a8776ba586c78025d46b599c7b0bfa483575a",
+      "bytes": 6223
+    },
+    "packaging/tests/windows-packaging.ps1": {
+      "sha256": "58fb474e65c4e071358a0623604f0349fdbc6a58bbdd55b19c9147ec028e7eb7",
+      "bytes": 1841
+    },
+    "packaging/tests/windows-tray-repair.ps1": {
+      "sha256": "2e3e7d6e52aebd5e2b22a2ee0671e905998a1da6e9e2afc1ec6f904222ea4508",
+      "bytes": 4664
+    },
+    "packaging/windows/aidotvpn.ico": {
+      "sha256": "a93cbde126fce8d84c6ac8b761ad23bb352754e77f702434cb663bd93d383e73",
+      "bytes": 43464
+    },
+    "packaging/windows/aidotvpn.iss": {
+      "sha256": "497c71f551b222a9e9e05a7a1d2713bb7a8a6b1b82e1afa95544004275354d44",
+      "bytes": 3552
+    },
+    "packaging/windows/app.manifest": {
+      "sha256": "f4b809f4e540ff16674594e494adc4ad56aa85b9858043d7ab79210481736574",
+      "bytes": 588
+    },
+    "packaging/windows/build.ps1": {
+      "sha256": "4a413ad8f45c652321e8da118ef03fb58492f04f7185f6299c4874c05457338a",
+      "bytes": 1788
+    },
+    "packaging/windows/install-services.ps1": {
+      "sha256": "c3931c79052a8aded3ddd6825466355ae82bc6537fdd6539d666cd4697afd6aa",
+      "bytes": 4880
+    },
+    "packaging/windows/ServiceControl.cs": {
+      "sha256": "5260a0ebb2810ea752343713faa0b82cf4fea64eeb11884a7174bb88944e12e2",
+      "bytes": 5026
+    },
+    "packaging/windows/ServiceHost.cs": {
+      "sha256": "6c588270c9f78a6ee11077da08c59ba40d1c5ff8ee0ca2910cf73f2b6cb7bc15",
+      "bytes": 5087
+    },
+    "packaging/windows/start-controller.cmd": {
+      "sha256": "6d3e8d31e86035244afa48e54d205c90f81003b3ca441530547dbbf754d306f0",
+      "bytes": 349
+    },
+    "packaging/windows/Tray.cs": {
+      "sha256": "ab45d13035817f876fdc073b322d2cc11e98af2c7fcb91fac39cf884aaa1c08a",
+      "bytes": 9323
+    },
+    "proto/aidotvpn/controller/v1/device.proto": {
+      "sha256": "aa28c7418b4642b7154a4265c144d4b3e95f79b963379035560fccf82087742c",
+      "bytes": 6059
+    },
+    "proto/aidotvpn/controller/v1/health.proto": {
+      "sha256": "f6dd4c497061fe1071a33186b7b05bf404c9025109e2032d57b41b20a08c2b55",
+      "bytes": 728
+    },
+    "proto/aidotvpn/controller/v1/node.proto": {
+      "sha256": "a0fdd110f001be7bda0a8ff475ad48715781b78029acd738d5b53e0666f57628",
+      "bytes": 4574
+    },
+    "proto/aidotvpn/controller/v1/types.proto": {
+      "sha256": "a48c8f17b74acb9b699a3f34781cf6210dab7af78cb1d058cede09bb7254548a",
+      "bytes": 2381
+    },
+    "proto/buf.gen.yaml": {
+      "sha256": "52c3aecdd3696d847a5fa05bd5037ecdf1248ef675c62c5a4b24018adeb12faf",
+      "bytes": 1108
+    },
+    "proto/buf.yaml": {
+      "sha256": "45e0becaf67d873e2be0da46f2ce60bcbc98c319b3edc0bf4add8050df79bcb9",
+      "bytes": 565
+    },
+    "README.md": {
+      "sha256": "c0b3afee7556b91904a439a458c815988bd351016bd46df6348637688575d8df",
+      "bytes": 5822
+    },
+    "RELEASE_NOTES.md": {
+      "sha256": "563ac1b255faee693c951aebf355efa6b689e22faa0d243c4ef8a01a3f909134",
+      "bytes": 821
+    },
+    "scripts/build-edition.mjs": {
+      "sha256": "6676e9352c224f0fec67cb3e89f3b11ad2b75a2780dfcff0f97ae41d7580a59f",
+      "bytes": 3379
+    },
+    "scripts/certs/main.go": {
+      "sha256": "c06398d6fb02ff080db354403ef40e195e4c31f19127a29d2beec7fb9fbe44a7",
+      "bytes": 4948
+    },
+    "scripts/dist.mjs": {
+      "sha256": "5de1b52722c54c7bfa1882cd7a9273503fc1243c20313b359a690c64b6b38cba",
+      "bytes": 1881
+    },
+    "scripts/electron.mjs": {
+      "sha256": "9e269bf3cbd04020710f07790ba78537d87dec652f14675caba6245d634f7739",
+      "bytes": 3264
+    },
+    "scripts/https-cert.mjs": {
+      "sha256": "f633d8a5d6943867df512ed206d6808bbfebdb413672c86a0a854994069a706a",
+      "bytes": 9596
+    },
+    "scripts/start-https.mjs": {
+      "sha256": "f7c9e53aea699cd9e035f94f0bbdf4f9fea011164edd2b9de61ffbe234055e68",
+      "bytes": 2017
+    },
+    "scripts/start.mjs": {
+      "sha256": "b4734f67fcf45ea63f5f046b58b74c9672360bf41fb1fc7a6cc59550d20d5cf6",
+      "bytes": 71029
+    },
+    "scripts/tests/https-cert.test.mjs": {
+      "sha256": "25588f27bc97417efd21f8e01e30c93a1194fc8ea9fd2dbf9e18feae73d51548",
+      "bytes": 6249
+    },
+    "SECURITY.md": {
+      "sha256": "8daf6e54d3ffa929bedc5b7f156d44efb48aaa8abd84bab0a780f0a348e4f84d",
+      "bytes": 736
+    },
+    "server/cmd/controller/main.go": {
+      "sha256": "7a684cbf48b07ffcf15da44a8a6d9defbd2ae59cc964ce8cc9524f467962febd",
+      "bytes": 22428
+    },
+    "server/cmd/data-node/main.go": {
+      "sha256": "c8545ea4cd484a9e767d015b3e670ea0406247d1e51fd492fd75ca7dedb4050b",
+      "bytes": 8935
+    },
+    "server/cmd/gateway-agent/endpoint_privacy.go": {
+      "sha256": "76a348a9aed21bb8c08e8582c4fa42e8088ae4dfd51fbc35a16ab15173ee1154",
+      "bytes": 3945
+    },
+    "server/cmd/gateway-agent/main.go": {
+      "sha256": "69ed20730d3eff2446475587743f1a95ed5bcbced8da66096e66fabef3bbcca4",
+      "bytes": 9976
+    },
+    "server/cmd/gateway-agent/parse_test.go": {
+      "sha256": "88f02ee930464c0b7950f86bbc2ffa9f881e627d3854ad72336380b0076a0aaa",
+      "bytes": 2032
+    },
+    "server/cmd/gateway-agent/report.go": {
+      "sha256": "e2686c33342e7583ac94e9ea5a6ae358234ebd8ff514bcd6787ec210d0ad01a7",
+      "bytes": 8456
+    },
+    "server/cmd/migrate/main.go": {
+      "sha256": "0d5ea451caa9b445a3f7e51d79df655b47ee51cb31304c6e44ecc6f90573f4eb",
+      "bytes": 6226
+    },
+    "server/cmd/relay/main.go": {
+      "sha256": "6789eb34d0ecca0e866354251d04356036e00f14ddc39e9f55b87adf171bf4b8",
+      "bytes": 2474
+    },
+    "server/Dockerfile.gateway-agent": {
+      "sha256": "3cb6a8acbdd0c85995b2a2521322f0d04e08401ece931c0ce8ecb5765d27f4a7",
+      "bytes": 1383
+    },
+    "server/go.mod": {
+      "sha256": "7febc53458e3e7fb65489fbfd3ea65fd7e51a7dffde49ba6e17405ecba8aa7d5",
+      "bytes": 242
+    },
+    "server/go.sum": {
+      "sha256": "d60831a78c4145a20563bd42e7221d2fdcb066acb74c4a1d79b83caf87fc6f30",
+      "bytes": 1149
+    },
+    "server/internal/adminauth/adminauth_test.go": {
+      "sha256": "e920fbd1db3217843817d345e7c5fc8aafd9230ba43b94abbc4ee3ea8f007862",
+      "bytes": 1894
+    },
+    "server/internal/adminauth/adminauth.go": {
+      "sha256": "ebed25547c339b727475d24c5cca1d4adfb74cce809dbbc032fa6d291414c51f",
+      "bytes": 13981
+    },
+    "server/internal/adminauth/totp_test.go": {
+      "sha256": "fccbf34dc48931f175500307d7c6eff949ef453dea7119cff897e58b9f98a7ac",
+      "bytes": 2151
+    },
+    "server/internal/adminauth/totp.go": {
+      "sha256": "f7273dc18257cfa5f0f055d8423230b0cee2a2aefc43038a99889e0a51a4204f",
+      "bytes": 2864
+    },
+    "server/internal/allowlist/allowlist_test.go": {
+      "sha256": "d7417e29cb1b19cdfa80d770a14cbedd42f0b6dd45b79b3516d9689b3aae8080",
+      "bytes": 11381
+    },
+    "server/internal/allowlist/allowlist.go": {
+      "sha256": "a28a1f587e10d982d8cbc6005d58adaf16e50aea3d227ec73752789d4370919f",
+      "bytes": 10223
+    },
+    "server/internal/attestation/extension.go": {
+      "sha256": "6805c7c1e60b9317fdab2f8f5e5f6c669b7671a289d6760a1854569fac13c4b6",
+      "bytes": 8922
+    },
+    "server/internal/attestation/revocation_test.go": {
+      "sha256": "d5ccc1718a1cb8d79477d04be86ab2646b3b2ce79ca00415ee81209f92ec3281",
+      "bytes": 2553
+    },
+    "server/internal/attestation/revocation.go": {
+      "sha256": "c836f4eff5a1d169b00187bf8d13668886b03a01c790406e5437487ee83643fb",
+      "bytes": 6288
+    },
+    "server/internal/attestation/verifier_test.go": {
+      "sha256": "e28a6e2779703b11635d70c8d28e25a446406b67fdf9f4400a2c9993cf06fd2d",
+      "bytes": 7338
+    },
+    "server/internal/attestation/verifier.go": {
+      "sha256": "5d9cb4f6d5a0cc65f8d417200680bbe44b94e8c3ae9841128d29cb9b3548d8b4",
+      "bytes": 11926
+    },
+    "server/internal/audit/audit_test.go": {
+      "sha256": "c09eaf8706f08bf22f42b5b1f17b776a5a996457dba257b15f53394fe2c52eaa",
+      "bytes": 4490
+    },
+    "server/internal/audit/audit.go": {
+      "sha256": "6d5434d70932b6be2ba08d0f5d4f773fd79413eb8aa65ea48506745a05bcf57e",
+      "bytes": 14603
+    },
+    "server/internal/auth/configured_ca_test.go": {
+      "sha256": "15d4fa4291f55cb7563921f7ac07cb7a5aea316f3afeb64cf163c55e7572ce6e",
+      "bytes": 1479
+    },
+    "server/internal/auth/configured_ca.go": {
+      "sha256": "b1589e78d2d3ee2354d144580a518eb4f465e6bf34e11c5ac1d26b02d7246ae0",
+      "bytes": 581
+    },
+    "server/internal/auth/csr_test.go": {
+      "sha256": "1dfefce8c568205ebff5c5267ddeef327c62f32274ed8931eec329e2e14e05de",
+      "bytes": 5180
+    },
+    "server/internal/auth/mtls_test.go": {
+      "sha256": "7ff77e253248f31de4e61ac7aa69d21f59f5e5524176147fe4339f2ac99399ae",
+      "bytes": 5857
+    },
+    "server/internal/auth/mtls.go": {
+      "sha256": "7f1b3afe40bb97d8abd7a2dec580582c0af60bf28bd3da27d31ba89745ff8947",
+      "bytes": 13665
+    },
+    "server/internal/config/attestation_test.go": {
+      "sha256": "8cf8f16aaeca0598aa45881a2a53a5b5c3fd415be9ba77a0e01939401ff3e273",
+      "bytes": 3711
+    },
+    "server/internal/config/attestation.go": {
+      "sha256": "4e1fbfa3dd7538de60d2ee20c36f77ededf6dcfc3ff513cc33a908588b3b9cf7",
+      "bytes": 8167
+    },
+    "server/internal/config/config_test.go": {
+      "sha256": "9016de5c153d051f1ef94b6880e22a155ed46c9b5ecf75911864bf846d125c4f",
+      "bytes": 2666
+    },
+    "server/internal/config/config.go": {
+      "sha256": "df8b21a322a14f83007d2e213d0867d9ec8a55e86a656772d4a0bb9083a77c5a",
+      "bytes": 6906
+    },
+    "server/internal/config/dotenv_test.go": {
+      "sha256": "a8a03cf4cd4964f7f523a4dd6d3a21126906d50cd00b28436e42e9debe847c3c",
+      "bytes": 4806
+    },
+    "server/internal/config/dotenv.go": {
+      "sha256": "406ce02e93691eb337713e04297f9306f0a3fbd6ed09d2ba5f193b7affc6cbeb",
+      "bytes": 5568
+    },
+    "server/internal/dataplane/dataplane_test.go": {
+      "sha256": "6bfdb765d712afb99983210c5d8839267edd71e0b12d05b44aec91e36b29e29f",
+      "bytes": 8948
+    },
+    "server/internal/dataplane/engine.go": {
+      "sha256": "f48c88419e347a24dfdea91bd19ebd1d50b986c11116a5e4dca80419cacf3891",
+      "bytes": 6435
+    },
+    "server/internal/dataplane/sync.go": {
+      "sha256": "8a8566da43bb6bd63102d62896d95dcb55feba6d02d2f2133bd33f5513546772",
+      "bytes": 6403
+    },
+    "server/internal/db/conn.go": {
+      "sha256": "f79ee0adf85f9eae4c717add8c716d3954fd7bf126a342c5774e8c1bec8cc44e",
+      "bytes": 3968
+    },
+    "server/internal/db/migrate_test.go": {
+      "sha256": "0519ef26a2b267079a35cfe8e8e7de52ccd331d1e373214d5f92bd87b31f1e73",
+      "bytes": 1696
+    },
+    "server/internal/db/migrate.go": {
+      "sha256": "83f39d9783f673064cce5577ee542d08abd6e3fd22523d304cf8e581d2ac5268",
+      "bytes": 9651
+    },
+    "server/internal/db/migrations/0001_init.down.sql": {
+      "sha256": "7aaf01ad25ed3eee526cb9ea1498c5cd41b6a25d3ce4c5fc30887ffa480c3354",
+      "bytes": 695
+    },
+    "server/internal/db/migrations/0001_init.up.sql": {
+      "sha256": "76861ef704823d775d79c2b88e3c4a994ff1e1eb0c5a11e0ec7e91e6dbcf4e28",
+      "bytes": 21646
+    },
+    "server/internal/db/migrations/0002_attestation.down.sql": {
+      "sha256": "cbb5b883fd830967444db2498940f82e4a6cdb3ce3f9e26c84add1dab22f26f3",
+      "bytes": 388
+    },
+    "server/internal/db/migrations/0002_attestation.up.sql": {
+      "sha256": "30a27ce33aa008dbd6a8242750c23c77a451e2d12106bd52d833b0c0ef28783a",
+      "bytes": 3843
+    },
+    "server/internal/db/migrations/0003_phase8_policies.down.sql": {
+      "sha256": "82b336a3e8408948f2fca8809ca55dcef27483a5ad372ff144b347a6bc9f060f",
+      "bytes": 238
+    },
+    "server/internal/db/migrations/0003_phase8_policies.up.sql": {
+      "sha256": "6c64d198ea91afd9db81823ed16b7a83f349e34281839d2e173c176d8dc5ad2b",
+      "bytes": 1910
+    },
+    "server/internal/db/migrations/0004_seed_dev_node.down.sql": {
+      "sha256": "6d94f97ce84325dac2ece3a469ca5fd9b47e6ce236d76629b7a3a904651f945d",
+      "bytes": 353
+    },
+    "server/internal/db/migrations/0004_seed_dev_node.up.sql": {
+      "sha256": "990e9068762ff28c7169d8f84e7113b3689eb6db70f4b52d4bdca69a11cfd48f",
+      "bytes": 3025
+    },
+    "server/internal/db/migrations/0005_dev_node_real_key.down.sql": {
+      "sha256": "467a8ec67d0a2167739f307cc094c1e86de0d4e5bb6bf7cedc88fd9bc6b43552",
+      "bytes": 514
+    },
+    "server/internal/db/migrations/0005_dev_node_real_key.up.sql": {
+      "sha256": "0dc62c01715a1e9f60854a169cb5070c8d75293bc26c66464e213fc4b9f3e4c6",
+      "bytes": 1905
+    },
+    "server/internal/db/migrations/0006_fix_dev_node_pubkey.down.sql": {
+      "sha256": "ae94d9a3504d4a37cfbff5d815c41d6e4dbda6f98b6bfe8330220cdd51dff04e",
+      "bytes": 322
+    },
+    "server/internal/db/migrations/0006_fix_dev_node_pubkey.up.sql": {
+      "sha256": "cdf1acd614921b3760bc77a202549c6d1b7218b3e788c36a0e65e64c86cfcc00",
+      "bytes": 1205
+    },
+    "server/internal/db/migrations/0007_relay_endpoint_mode.down.sql": {
+      "sha256": "da9bd0239f8b0563b7440b0eab21dd78ca49b09e5e18322dc9b0dc6e7eca240c",
+      "bytes": 385
+    },
+    "server/internal/db/migrations/0007_relay_endpoint_mode.up.sql": {
+      "sha256": "a1aff727be70e9dfa41f78615caa41926bd8a8851deb35a3706e700a547e1481",
+      "bytes": 1241
+    },
+    "server/internal/db/migrations/0008_per_app_split.down.sql": {
+      "sha256": "a8c6452baba4cbd0e7934220766e353a73f956a4a726c521ed5c3191cff58ccc",
+      "bytes": 168
+    },
+    "server/internal/db/migrations/0008_per_app_split.up.sql": {
+      "sha256": "4535a99fc707d1cd6c02e87dcc538145c26412ce63ca92aabc13a10ed3934a03",
+      "bytes": 1994
+    },
+    "server/internal/db/migrations/0009_node_agent_auth.down.sql": {
+      "sha256": "ef67e64cd931742ca2580a1899da38db0a4131ce13a1931529693f110868507a",
+      "bytes": 646
+    },
+    "server/internal/db/migrations/0009_node_agent_auth.up.sql": {
+      "sha256": "214a9a34664d77110ab8e0c260116415c797b0b8caa83e71dbc7a8d721ed5ce3",
+      "bytes": 2138
+    },
+    "server/internal/db/migrations/0010_device_mode.down.sql": {
+      "sha256": "3049b817fd5b725fc8351a497816579c554bada2db2eaced63abeb6d18b2a4e0",
+      "bytes": 429
+    },
+    "server/internal/db/migrations/0010_device_mode.up.sql": {
+      "sha256": "921c9792f768caab0d65a30e3badb29c9bf9a37bf9afabfcd4ef3acefbe40a5c",
+      "bytes": 1904
+    },
+    "server/internal/db/migrations/0011_route_scope.down.sql": {
+      "sha256": "7d0956afa822fe029e87dc9ed7a1bfc0ce59db3435314f3397a188c17d05b57a",
+      "bytes": 301
+    },
+    "server/internal/db/migrations/0011_route_scope.up.sql": {
+      "sha256": "d708837bc06652e886b451de6d22c8c3730de9d20698a4da82b298cc5bc185c2",
+      "bytes": 2244
+    },
+    "server/internal/db/migrations/0012_dns.down.sql": {
+      "sha256": "57bda5779ef6f8d7f0406560b24ef1d83606898fc6afd6e69eaa31be9de31c19",
+      "bytes": 626
+    },
+    "server/internal/db/migrations/0012_dns.up.sql": {
+      "sha256": "c17173168a544a1ef85c2baf77cad2620a58704096c22015fb4215eff1bfdcba",
+      "bytes": 5083
+    },
+    "server/internal/db/migrations/0013_drop_unused_columns.down.sql": {
+      "sha256": "28d42b15d833577a9e5ffa576afc2c344b4bf8e72bb529da9e07b5d148b60095",
+      "bytes": 789
+    },
+    "server/internal/db/migrations/0013_drop_unused_columns.up.sql": {
+      "sha256": "29f8d974aa803db401c5a56352a52bb23e9736fdb98562dc68ea9ada5db5c367",
+      "bytes": 3000
+    },
+    "server/internal/db/migrations/0014_enrollment_tokens.down.sql": {
+      "sha256": "e7f1c14e0038c87e155ed1c6837a42a5fdfdd9af5cb8ba529ac1ec9337b4176c",
+      "bytes": 40
+    },
+    "server/internal/db/migrations/0014_enrollment_tokens.up.sql": {
+      "sha256": "2174020ec82043a114f801ee98a50c818b5da7a5c742daa102d9e380dabd580a",
+      "bytes": 2548
+    },
+    "server/internal/db/migrations/0015_enrollment_requests.down.sql": {
+      "sha256": "fbd09415b49d2dd75571d2e6137c789b4882588208dc150986337fe486856d70",
+      "bytes": 42
+    },
+    "server/internal/db/migrations/0015_enrollment_requests.up.sql": {
+      "sha256": "329db895609ad5156cad88d307dede84b56b5e3c8d935f2f019a0a0188d894cc",
+      "bytes": 2805
+    },
+    "server/internal/db/migrations/0016_settings.down.sql": {
+      "sha256": "cf7c583f1eb87ad14a0df60f8bbad37aef6e9863bdf15c84750753122d31d962",
+      "bytes": 31
+    },
+    "server/internal/db/migrations/0016_settings.up.sql": {
+      "sha256": "70bfb63dd697d599dcfdfd0c95c1c326eb012597663d8375e0c5edd18ceb3abc",
+      "bytes": 1640
+    },
+    "server/internal/db/migrations/0017_enrollment_grant.down.sql": {
+      "sha256": "968c32c7eb488cd7398d9f0fad7f21a95868a7479335bc3cd4748018a5312d96",
+      "bytes": 57
+    },
+    "server/internal/db/migrations/0017_enrollment_grant.up.sql": {
+      "sha256": "8228056a040e3ec7f7d1897c44d3e6859b2b2348efa8c5a1e15b58c3a9441df3",
+      "bytes": 609
+    },
+    "server/internal/db/migrations/0018_policy_source_nat.down.sql": {
+      "sha256": "899bb8548e1e0335cf80eb6be3952773f88db75c918c8b4b9a5174300829c9bd",
+      "bytes": 45
+    },
+    "server/internal/db/migrations/0018_policy_source_nat.up.sql": {
+      "sha256": "8f9a01dcc9fda6c8c82711160833704d30eed387e6bc5a2f64253855f4a53b14",
+      "bytes": 1199
+    },
+    "server/internal/db/migrations/0019_node_runtime.down.sql": {
+      "sha256": "3ac9bb553e5d29f8294684918b8b6883c9e85e700f259b7b749a91b09d6f897a",
+      "bytes": 160
+    },
+    "server/internal/db/migrations/0019_node_runtime.up.sql": {
+      "sha256": "396edb07e8904c46e3c142fe92394c2097b027540501d94a2f29814bd061ed84",
+      "bytes": 1125
+    },
+    "server/internal/db/migrations/0020_device_handshake.down.sql": {
+      "sha256": "efdc6ea5d611c163cbed2af9107ea4ba448f7a37072b0670d581aecbd0ee5d11",
+      "bytes": 101
+    },
+    "server/internal/db/migrations/0020_device_handshake.up.sql": {
+      "sha256": "fae87bb70aa010458b92adba7a24aa2022009d1261f2c6fb191b9b22a14d1748",
+      "bytes": 905
+    },
+    "server/internal/db/migrations/0021_policy_endpoint_mode.down.sql": {
+      "sha256": "75bfa1786c06ff342bb2327823f6f38bab64b2bfb4fdf82898518b0bae64692c",
+      "bytes": 48
+    },
+    "server/internal/db/migrations/0021_policy_endpoint_mode.up.sql": {
+      "sha256": "2f9b975b22252aedc5532b0ff7108436d7cd26bcb7313bfc69578ace50c5c962",
+      "bytes": 1219
+    },
+    "server/internal/db/migrations/0022_device_via_relay.down.sql": {
+      "sha256": "c7edad1255b9e9b534afe77b037b4361ba3e1fe115a0052623f7a3faa2636a65",
+      "bytes": 43
+    },
+    "server/internal/db/migrations/0022_device_via_relay.up.sql": {
+      "sha256": "3a62272aeeb9c55a44608e630f8568ee7c46bd75fc2c20879513907bcf266c05",
+      "bytes": 412
+    },
+    "server/internal/db/migrations/0023_policy_control_channel.down.sql": {
+      "sha256": "1743041b38d4f6bfc1ddce9e289ffc0eacb1dea82f260cf31b9609171a694909",
+      "bytes": 50
+    },
+    "server/internal/db/migrations/0023_policy_control_channel.up.sql": {
+      "sha256": "65bfeea8169abc1cf1698690fa4e438a3f3829e5509237c07cdfaf2f1343f3fc",
+      "bytes": 1044
+    },
+    "server/internal/db/migrations/0024_policy_virtual_hosts.down.sql": {
+      "sha256": "9a4da22db28111af65ab152b0039372b91c19d300b5d65b7eb89e5c7d360f099",
+      "bytes": 33
+    },
+    "server/internal/db/migrations/0024_policy_virtual_hosts.up.sql": {
+      "sha256": "e0c942e2f0bc8679ea76534e3f94aad9c6d96b0762d6454dea9d1cb3ede8367d",
+      "bytes": 1453
+    },
+    "server/internal/db/migrations/0025_node_responder.down.sql": {
+      "sha256": "ec8b72733a101989a5809a926a336e5eed9075b7ecbbb5b66f2972b0a6ef76b2",
+      "bytes": 44
+    },
+    "server/internal/db/migrations/0025_node_responder.up.sql": {
+      "sha256": "e7abcc842afe0ffc58d7b5392f6d75f7d013073e5e2fd5d110294d6447ab3acd",
+      "bytes": 462
+    },
+    "server/internal/db/migrations/0026_device_endpoint.down.sql": {
+      "sha256": "2e2c84616dec8ce4e8e81e835de68aa459467abac0fd8256a392ac5880382815",
+      "bytes": 47
+    },
+    "server/internal/db/migrations/0026_device_endpoint.up.sql": {
+      "sha256": "7cd1dbd65c67c3ff06d723023efcc5f64d3ecd8827c3700a645e92caaff61d3f",
+      "bytes": 311
+    },
+    "server/internal/db/migrations/0027_admins.down.sql": {
+      "sha256": "a3d53051ae115941fc863c3941c10397428660a7baf1532e7775e7b31ee4f183",
+      "bytes": 46
+    },
+    "server/internal/db/migrations/0027_admins.up.sql": {
+      "sha256": "eb8dff55b7c13809c5a0bc83cbd6b72b2a651126aebb59f2709745835a686767",
+      "bytes": 1981
+    },
+    "server/internal/db/migrations/0028_device_model.down.sql": {
+      "sha256": "5651976c0d7a7720e606adc7ac8e88bcc60dc2022496dc381a178cb89a5fa91f",
+      "bytes": 39
+    },
+    "server/internal/db/migrations/0028_device_model.up.sql": {
+      "sha256": "7a3029ae15179862957d992bdd07d58edd96541c6fa7e91da96671117e2022fc",
+      "bytes": 615
+    },
+    "server/internal/db/migrations/0029_connection_samples.down.sql": {
+      "sha256": "8a8f471efc9569187c741c7bf0ee1b3f416f0c4397bffe8257e01dfbf8fc4c23",
+      "bytes": 41
+    },
+    "server/internal/db/migrations/0029_connection_samples.up.sql": {
+      "sha256": "9728bd29333ac09fb79ae728b291bc6698426ac41969c9141cfd13e779cb4860",
+      "bytes": 1254
+    },
+    "server/internal/db/migrations/0030_groups.down.sql": {
+      "sha256": "7c2e127fd755b2275b54d515128ee7e285e7c9d910535beaaf55a056a3339867",
+      "bytes": 132
+    },
+    "server/internal/db/migrations/0030_groups.up.sql": {
+      "sha256": "9ba7404b6b1d64b70bf14033445af818ce61a23d6890b55e90913bc9061ca1f5",
+      "bytes": 1578
+    },
+    "server/internal/db/migrations/0031_device_expiry.down.sql": {
+      "sha256": "deba750fed41aa963ecd5eaf6dbcb8aebd1f2f584cf067d3a553d127cee59ffe",
+      "bytes": 143
+    },
+    "server/internal/db/migrations/0031_device_expiry.up.sql": {
+      "sha256": "88a4c9175b5ecf9602faf06fdfa5d9275107c813ed80bba92edc2fb5cd5664d5",
+      "bytes": 987
+    },
+    "server/internal/db/migrations/0032_posture.down.sql": {
+      "sha256": "0b3c7bbf52329e9a561d622c8caf1d6ceae21ebbfede41ebda19508e961c4ea6",
+      "bytes": 84
+    },
+    "server/internal/db/migrations/0032_posture.up.sql": {
+      "sha256": "a649e3b6fcc990b93df778354d6673d52e1ad00e7f68939af7a001d8da249ca8",
+      "bytes": 988
+    },
+    "server/internal/db/migrations/0033_admin_last_login.down.sql": {
+      "sha256": "b333508121bfee9f998caf9657cb34e3c43334ce412f5a3fb8078661a754e9f2",
+      "bytes": 92
+    },
+    "server/internal/db/migrations/0033_admin_last_login.up.sql": {
+      "sha256": "97be8c448e082370c9a6a01be62bd2cbf0c9321cb9678ce1e576b4f77f8144b4",
+      "bytes": 440
+    },
+    "server/internal/db/migrations/0034_login_throttle.down.sql": {
+      "sha256": "fe4c20d2bd1bb44f6d08a6bb2c9170ce8dbad807b555d9134092eb40d3d50fe2",
+      "bytes": 37
+    },
+    "server/internal/db/migrations/0034_login_throttle.up.sql": {
+      "sha256": "65c7bd1b0f1c780fcbe97ab647dcc3ad1b3288e514a3b6c342dcdeb355be81a7",
+      "bytes": 744
+    },
+    "server/internal/db/migrations/0035_admin_totp.down.sql": {
+      "sha256": "5f10b1cd625a67aaaef21edf390af6f440b4d5b510efa845aff64183deaedc60",
+      "bytes": 135
+    },
+    "server/internal/db/migrations/0035_admin_totp.up.sql": {
+      "sha256": "2049f606456d847ca128ed57838bb73d68f8704e5d2a0bcb4152d6206a25e9fe",
+      "bytes": 1342
+    },
+    "server/internal/db/migrations/0036_device_state_tokens.down.sql": {
+      "sha256": "c424fda818257aac4365c7438713cec060e19f39d63ea90312d06aff28f3583a",
+      "bytes": 42
+    },
+    "server/internal/db/migrations/0036_device_state_tokens.up.sql": {
+      "sha256": "97eabdba08af8f4eb321573437fb42241b1e01e201ba1ef75566e2a3932190c4",
+      "bytes": 281
+    },
+    "server/internal/db/migrations/0037_unicode_defaults.down.sql": {
+      "sha256": "aeab8bb03fda35536cdbc70517903ab1e9061e63d1fb2a7cbc619cb01ac9426b",
+      "bytes": 91
+    },
+    "server/internal/db/migrations/0037_unicode_defaults.up.sql": {
+      "sha256": "01e3c1ef8ab7a65be035955c263ad1fbde3358c94e2ef9caf9380be8dfd8ce2d",
+      "bytes": 928
+    },
+    "server/internal/db/wiring_test.go": {
+      "sha256": "8d4e5430a70fa50a461f7da87ea8743479847291c2d832fd5ff0698fe309a369",
+      "bytes": 8026
+    },
+    "server/internal/devices/attestation_gate_test.go": {
+      "sha256": "90d1a2e3f78267249faa930cca4d1c56d566844d4d459b1d5419ef5097fa2e44",
+      "bytes": 4680
+    },
+    "server/internal/devices/attestation_gate.go": {
+      "sha256": "b3c56d795678387fe2ebd41af212e6f0f255b1c928d7e5e804deb1e959354ef4",
+      "bytes": 10450
+    },
+    "server/internal/devices/certs_test.go": {
+      "sha256": "7d19fc7e11635e0a33788e63e14aa268acfc83f3eae1d02c5e6d5da510757829",
+      "bytes": 2813
+    },
+    "server/internal/devices/certs.go": {
+      "sha256": "d98996b93a25ff11d1089ef8f91387f672886ac01abc53957cde2704c08aca8d",
+      "bytes": 4807
+    },
+    "server/internal/devices/csr_integration_test.go": {
+      "sha256": "9af18089d0729867eeb835b404b82e02c4ebcc02bcc92abe21a39f6b603496f0",
+      "bytes": 4878
+    },
+    "server/internal/devices/deployment_mode_test.go": {
+      "sha256": "e550e04f7d92a6eb05926f3378ef011eb1418f3662171ca6fd85db79e7e81b7e",
+      "bytes": 2170
+    },
+    "server/internal/devices/enrollment_request.go": {
+      "sha256": "6aa68383d632de6958782b5068a2ae583a4cd4c8b0fdbb44ca073b21500f9476",
+      "bytes": 10791
+    },
+    "server/internal/devices/enrollment_token.go": {
+      "sha256": "c3391724c95bc36a636859392452c471d95d762bb3b01c453db042e911ebdf8e",
+      "bytes": 8968
+    },
+    "server/internal/devices/install_id_test.go": {
+      "sha256": "9894c5295ed6d819f909f4e6d0ad4fc874795c88368df8e5594249d530085224",
+      "bytes": 418
+    },
+    "server/internal/devices/install_id.go": {
+      "sha256": "a50683f5fa9dc1ff7f3d4d1596b0e37a4d58d4c6bc849a68053e7d3f9b89911f",
+      "bytes": 333
+    },
+    "server/internal/devices/inventory.go": {
+      "sha256": "c2ecfac30aac5438d8710ab4281448a085e9183b142801de6cf62cf5890b04c5",
+      "bytes": 8453
+    },
+    "server/internal/devices/ipalloc.go": {
+      "sha256": "51e1726edc2962852cfe86f6b173407757e270d8fd07484123ab84fe350f318b",
+      "bytes": 4926
+    },
+    "server/internal/devices/notify.go": {
+      "sha256": "f2d714b245d0211d1f73d890cd34c31014b3c2c9bfb42c2fa1595c61eb03be08",
+      "bytes": 2416
+    },
+    "server/internal/devices/playintegrity_gate_test.go": {
+      "sha256": "dc79d319be95bcf3c53996e862002eb7c98fac0d6b39c07711b68ede89bee032",
+      "bytes": 6260
+    },
+    "server/internal/devices/playintegrity_gate.go": {
+      "sha256": "ac7b9c292e02fdd951d72a836a4ee7168272d58a10a25647ad82a59ac55be876",
+      "bytes": 9332
+    },
+    "server/internal/devices/repo.go": {
+      "sha256": "62d16d0589919e85faa71cbae59a1929f91355c837b70e716b43038019562a71",
+      "bytes": 16703
+    },
+    "server/internal/devices/secretbox.go": {
+      "sha256": "986e973bec7418694c3ed33e88fd3834e8278768b4c52436eb2427e13164dcd7",
+      "bytes": 4123
+    },
+    "server/internal/devices/service_test.go": {
+      "sha256": "25dc6198381d27d064247b76f2686a2d0919ffe42db24a0cabac59f783f726cd",
+      "bytes": 18185
+    },
+    "server/internal/devices/service.go": {
+      "sha256": "dfb1fc0cfd09dbd6a460060c275a4b40a7ea4f10822c2a34fc7f2536bf33596e",
+      "bytes": 26874
+    },
+    "server/internal/devices/settings.go": {
+      "sha256": "7997d501ca49d9b0c62618607720c50619a1494b6ca631407627f682342d62c9",
+      "bytes": 3678
+    },
+    "server/internal/devices/state_token.go": {
+      "sha256": "4d91c81791175c18681df3d0d571c50059e4dbc3c60db483369280781949c715",
+      "bytes": 913
+    },
+    "server/internal/devices/types.go": {
+      "sha256": "378aebce3c9fc7b8eb51023ceef626b4f0af7842d02d2a0a46dd9c71a411b797",
+      "bytes": 8162
+    },
+    "server/internal/domain/id_test.go": {
+      "sha256": "22061da23b2a9dc4b59550c8dd10dae7d6c22c90587706809a7d143bd18e8553",
+      "bytes": 4356
+    },
+    "server/internal/domain/id.go": {
+      "sha256": "208dee235c0fce46d5857b64a716dc4b579a300362642020b774dac6604b94a3",
+      "bytes": 6909
+    },
+    "server/internal/gateway/nat_test.go": {
+      "sha256": "695d45b7faadb165194eaa9a96497aee05a9b51a7be6c64b5c0e373c4f07edb1",
+      "bytes": 1991
+    },
+    "server/internal/gateway/nftables_syntax_test.go": {
+      "sha256": "23cd3ec0eae1341a1e5b14e674efae568fbe4a744be8bc66913c7a32f5f00770",
+      "bytes": 2504
+    },
+    "server/internal/gateway/nftables_test.go": {
+      "sha256": "b0add2c84bfe50ad1765e841f4c0432852f5d29bee4e6aa2deefb309e96df6ec",
+      "bytes": 9428
+    },
+    "server/internal/gateway/nftables.go": {
+      "sha256": "fe4e59a5a489346768d34819ddf561a25e3fdd2b29127865213ba8d34b378a18",
+      "bytes": 13025
+    },
+    "server/internal/gateway/psk_test.go": {
+      "sha256": "23b0c3414fdc0761240737755fd437575f074f1ce344c69eb73c20c655e13bb8",
+      "bytes": 3572
+    },
+    "server/internal/gateway/readiness_test.go": {
+      "sha256": "57d15afca2d96238f8346d218d34288cc2eac08b12eb403e52939e5bb6bf04c8",
+      "bytes": 469
+    },
+    "server/internal/gateway/relayclient_test.go": {
+      "sha256": "afc35512f7c2fda07bc0a426f9272e3af2958101d554780cbeb6314d2d8f5e97",
+      "bytes": 6219
+    },
+    "server/internal/gateway/relayclient.go": {
+      "sha256": "109a147ba29205683652ddb272c70bc4366355a3e46d08f3b9ac548d149acfce",
+      "bytes": 15169
+    },
+    "server/internal/gateway/sync_test.go": {
+      "sha256": "07eb61beb21536f15a32f28e0341c05ed25b98bef95ffef2869869d997062a19",
+      "bytes": 7446
+    },
+    "server/internal/gateway/sync.go": {
+      "sha256": "b3a646897d5c682ebcaae07b16d0b359747308bfb02a7e330916bd260f80f7a0",
+      "bytes": 12740
+    },
+    "server/internal/ha/guard_test.go": {
+      "sha256": "1ba0f6caf92f8f4221e6e4e0d115488311713ffec804b3123b966f4ebd67b269",
+      "bytes": 829
+    },
+    "server/internal/ha/guard.go": {
+      "sha256": "59a0d67785243047c401c9c14b0b4380787f500e84bbd77647d8bde9be505fd9",
+      "bytes": 1314
+    },
+    "server/internal/httpapi/adminauth_routes.go": {
+      "sha256": "e5bbf532a305f03056e938ba6e7364e689eefc12d9824f63dbbd5332d75c3fcd",
+      "bytes": 13960
+    },
+    "server/internal/httpapi/app_filter_auth_test.go": {
+      "sha256": "47a6e18ca1c586423bf3b3df6acf987b6e2bc1d6a3ff618ca784df7da6b09299",
+      "bytes": 5191
+    },
+    "server/internal/httpapi/constraint_test.go": {
+      "sha256": "73d3c4e0e9457f3ef7fc183612cdea11b725ebd1a98b517a3a2221cbf556faff",
+      "bytes": 1880
+    },
+    "server/internal/httpapi/debug.go": {
+      "sha256": "28c8aade9ad9e347c2c92568a9d3b990ced17cc12bf13162298f18199b177203",
+      "bytes": 8820
+    },
+    "server/internal/httpapi/device_state_auth_test.go": {
+      "sha256": "381658e30b13f1feded763caedefac4b49f1d75a59670f3250598ca1c6bc1a4f",
+      "bytes": 6560
+    },
+    "server/internal/httpapi/device_state_auth.go": {
+      "sha256": "224d3e80bb13c696c6e660a606145606c75203674bb777a8f5c1bc38bc53e2f5",
+      "bytes": 1463
+    },
+    "server/internal/httpapi/device_state.go": {
+      "sha256": "104155026aed87ef9333da731773aeb927303a63640a47c59274216a50a7b152",
+      "bytes": 3299
+    },
+    "server/internal/httpapi/enrollment_request.go": {
+      "sha256": "5fbf3850e47eb6cb3935202b1ddfb924eaf62ce53c44136d66f86a33ebcd1721",
+      "bytes": 13215
+    },
+    "server/internal/httpapi/enrollment.go": {
+      "sha256": "47183764647c085debb195be0201bb0383905d0692194df1c946ae04a0742695",
+      "bytes": 1561
+    },
+    "server/internal/httpapi/groups.go": {
+      "sha256": "2a62a222d9909fbc1e4f441217dd64fc1b39839aac6da9f4c57b71a197c9f47d",
+      "bytes": 12631
+    },
+    "server/internal/httpapi/handlers_test.go": {
+      "sha256": "9db1ae629d7ba3b040ed7b1861f67be3c2c115abf1558693986810401d4be221",
+      "bytes": 2957
+    },
+    "server/internal/httpapi/handlers.go": {
+      "sha256": "ac3673ee69aa73c362f7a2301c7cb930e032ab6c7e918e0e48f942d7b915b15f",
+      "bytes": 72614
+    },
+    "server/internal/httpapi/middleware_test.go": {
+      "sha256": "b109ab451e6206e60eed74a2692411d128448b50d0eca9b8cb1ec87a034621c3",
+      "bytes": 796
+    },
+    "server/internal/httpapi/middleware.go": {
+      "sha256": "098e3279cdf87d1799a518fb2b92000c71f24c4d788b12fe49e4179256a07e01",
+      "bytes": 6403
+    },
+    "server/internal/httpapi/node_report.go": {
+      "sha256": "e7df0050fe6c8654405d1225f55bc796e15b3883dc7a25ea4f8585590db9bf92",
+      "bytes": 3493
+    },
+    "server/internal/httpapi/nodeapi.go": {
+      "sha256": "762bd6b304e538d1e67a80b9f319bd952ec876c42a0403473c46bda5193572ba",
+      "bytes": 14980
+    },
+    "server/internal/httpapi/policyadmin.go": {
+      "sha256": "b3d6e26bd1ead62b146093c713ccfec133c61c44a5c173be4b0578d73bad0915",
+      "bytes": 9638
+    },
+    "server/internal/httpapi/ports.go": {
+      "sha256": "eaf5196f450171a23b3fb2cfd2940981e39b3099145da45c18ed72082cd9335c",
+      "bytes": 2297
+    },
+    "server/internal/httpapi/rbac_test.go": {
+      "sha256": "743a7259b18ff975353f6b3e9b99f19ce43c381c30e9a940beb90353513e523d",
+      "bytes": 2901
+    },
+    "server/internal/httpapi/rbac.go": {
+      "sha256": "73983b2036f63be22c58cb5e39e684fe46f15226e06b526aa589ffe42fcbfab0",
+      "bytes": 4581
+    },
+    "server/internal/httpapi/reachability.go": {
+      "sha256": "d05959e079ea4a00e9bb0b0d197e3dddca90e6cb7a4ad0138409168ce868976f",
+      "bytes": 4460
+    },
+    "server/internal/httpapi/stats.go": {
+      "sha256": "0d4f36d57725328e209c07debcce82125a69ca24eacdc2c1c9da548a06d84822",
+      "bytes": 5499
+    },
+    "server/internal/httpapi/trace.go": {
+      "sha256": "c9d4e7d3635c8bbb87299df04ac4d3427eb4c73150c7ce7a30da98c97210aabf",
+      "bytes": 9093
+    },
+    "server/internal/nodes/nodes_test.go": {
+      "sha256": "8d03660fa6eabcbd07f180840cf2f62021119b70a4f8bf38ada2415ea5e1251e",
+      "bytes": 10694
+    },
+    "server/internal/nodes/nodes.go": {
+      "sha256": "b0176ef0d27efc3cadfaf7c51bfb9c50fae4da3ef95b5394067851554bb61726",
+      "bytes": 15508
+    },
+    "server/internal/playintegrity/google.go": {
+      "sha256": "810fa9cfd52902cb82f343adf031d85d88a2c6ee71c21bca3f5688c98c008892",
+      "bytes": 7775
+    },
+    "server/internal/playintegrity/playintegrity_test.go": {
+      "sha256": "59a9b33890fd6b00e7fd9b7a98ae8bb12ccfbd4933f8ec422579ca7795b28b54",
+      "bytes": 3757
+    },
+    "server/internal/playintegrity/playintegrity.go": {
+      "sha256": "dabcb2b31d4684e5e031b8a26bf8b2634955d93c66ae7626f6ccab8cc5c3fa78",
+      "bytes": 6818
+    },
+    "server/internal/policies/admin.go": {
+      "sha256": "1048760eb437bc079161771b8eff9600b5cb1913798304f806fa9cc3977b2f5c",
+      "bytes": 9080
+    },
+    "server/internal/policies/dot_test.go": {
+      "sha256": "faf9595c3b1d56db3312efd655460397831085bba317b33c200556d5a50ca72d",
+      "bytes": 7506
+    },
+    "server/internal/policies/dot.go": {
+      "sha256": "4b7d065e8d86eba67f89934d5c1a0380b5f983ba887b6f43afa2677dc69c45d3",
+      "bytes": 5631
+    },
+    "server/internal/policies/group_inheritance_test.go": {
+      "sha256": "5caae66748b9b19846ba8995b2a61462701385f255889b5f117d979f7f1688c7",
+      "bytes": 3611
+    },
+    "server/internal/policies/policies_test.go": {
+      "sha256": "414886767a8d930f8f6194ef9edbb1d9b16fc217f7552e768641c7f8d7a725a9",
+      "bytes": 1818
+    },
+    "server/internal/policies/policies.go": {
+      "sha256": "5ce545a23bbfa2c8ba095eb14d43a5a6203036bb456861bfc6de0b59d4f83c72",
+      "bytes": 31681
+    },
+    "server/internal/policies/resolver_test.go": {
+      "sha256": "9460d67b68235cbbc3c12e73f300da88286138cc0be5b551b3ba18281f1d61f7",
+      "bytes": 3780
+    },
+    "server/internal/policies/resolver.go": {
+      "sha256": "60c8ab8c490617574a20567ef670aebaa1fc88c584a22502cc90348123f08fac",
+      "bytes": 7329
+    },
+    "server/internal/policies/routescope_test.go": {
+      "sha256": "7a6b9a41aa787f839ccce38653a44a0b1e1b6a14198f9e31e1832b91fa45ea60",
+      "bytes": 1234
+    },
+    "server/internal/policies/rules.go": {
+      "sha256": "9d09a8238e4d6035b663cb7431d68c190462f5441fbb42e813ece2b9fe7721ab",
+      "bytes": 4413
+    },
+    "server/internal/pqc/pqc_test.go": {
+      "sha256": "fa64fefed787bffe3e32cddb7ce806e6013d77030d0fc72d8d2217f9633e1ea6",
+      "bytes": 3034
+    },
+    "server/internal/pqc/pqc.go": {
+      "sha256": "8bed7e7a1696274799134a237b28bf24270d4684e1cdb537ece913e7e7f2d904",
+      "bytes": 5087
+    },
+    "server/internal/pqc/roundtrip_test.go": {
+      "sha256": "7d789f12a6fd8e40f37f2b8c03dc3c56f8c3b0ee00ae0b3aaff5ff80f77dd87c",
+      "bytes": 3776
+    },
+    "server/internal/pqc/store.go": {
+      "sha256": "01342abda31eeb1de5ec7e43c45f14375242b219c7f02bc7edd14edee0307b85",
+      "bytes": 5736
+    },
+    "server/internal/pqc/wire_test.go": {
+      "sha256": "b7dfb38026b137001026fd67b308286151e6b574d89ad7260571498e163e9ac6",
+      "bytes": 2918
+    },
+    "server/internal/relay/auth_http.go": {
+      "sha256": "a2f58428d2f6879426251c024c6ad65c1939807497761eed143b26a40298b9bf",
+      "bytes": 3130
+    },
+    "server/internal/relay/conn.go": {
+      "sha256": "0cac50593f75739664ac82e36e583446e1b5718b69e1fccd71cbd3fa7df6f21d",
+      "bytes": 6831
+    },
+    "server/internal/relay/handlers.go": {
+      "sha256": "466c3ede5c3d9c895b58e4ce7c204f94eeed05ab684894a5947cec8046bc857a",
+      "bytes": 4681
+    },
+    "server/internal/relay/hub.go": {
+      "sha256": "b26068cdcebae3f21beba6ee0e7b07a439651cabf1df512a1190c6e413c49714",
+      "bytes": 7812
+    },
+    "server/internal/users/users.go": {
+      "sha256": "41025c79dcd9287656d30e3373f7fca44a1bb502b250049023a0fc123657064b",
+      "bytes": 4119
+    },
+    "THIRD-PARTY.md": {
+      "sha256": "b0def3789a7e45cb7aa296582507c40fd37b1feaae4d7fc3252794e9892fc7e0",
+      "bytes": 1438
+    },
+    "VERSION": {
+      "sha256": "5d61572af383d9294076b4e2850f85e404eeddf40caf790d940c036c82ab0b2c",
+      "bytes": 7
+    }
+  }
+}

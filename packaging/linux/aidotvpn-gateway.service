@@ -1,0 +1,22 @@
+[Unit]
+Description=AidotVPN Linux WireGuard policy agent
+After=network-online.target
+Wants=network-online.target
+ConditionPathExists=/etc/aidotvpn/gateway.env
+[Service]
+Type=simple
+Environment=AIDOTVPN_ENV_FILE=/etc/aidotvpn/gateway.env
+WorkingDirectory=/var/lib/aidotvpn
+ExecStart=/opt/aidotvpn/aidotvpn-gateway-agent
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+UMask=0077
+NoNewPrivileges=true
+CapabilityBoundingSet=CAP_NET_ADMIN
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/var/lib/aidotvpn
+[Install]
+WantedBy=multi-user.target

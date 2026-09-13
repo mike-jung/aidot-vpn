@@ -1,0 +1,27 @@
+-- Per-policy source NAT.
+--
+-- Reaching a server behind the gateway needs that server's network to
+-- route 10.78.0.0/16 back. In a hospital that is a line on an L3 switch
+-- and someone who owns it. In a clinic with a consumer router, or a lab
+-- on someone's desk, it is not available at all — and without it the
+-- request arrives and the reply is discarded, which on the phone looks
+-- exactly like the policy refusing it.
+--
+-- So: an admin can turn NAT on for one policy.
+--
+-- ## What it costs, and why it is off by default
+--
+-- With NAT the destination sees the gateway's address instead of the
+-- device's. Every phone looks identical in the EMR's access log, and
+--
+--   "10.78.0.2 read a chart at 03:00 — whose handset is that?"
+--
+-- stops having an answer. The VPN 주소 column in the device list stops
+-- meaning anything. That correlation is the reason this product records
+-- an address per device at all.
+--
+-- Default FALSE: the deployment that can route gets the audit trail,
+-- and the one that cannot makes the trade knowingly rather than
+-- discovering it in an incident review.
+ALTER TABLE policies
+  ADD COLUMN source_nat BOOLEAN NOT NULL DEFAULT FALSE AFTER enabled;

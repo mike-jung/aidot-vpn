@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+        :core has no manifest entries beyond what the AGP merges from
+        consumer modules. Network access is declared at the consumer
+        level (:app, :sample-app) so we don't force every embedder to
+        accept that permission.
+    -->
+</manifest>

@@ -1,0 +1,21 @@
+-- Where devices under this policy reach the controller.
+--
+--   direct  the address compiled into the app
+--   tunnel  10.78.0.1 — the gateway proxies it
+--
+-- The app has to reach the controller after registering: to refresh its
+-- policy, and to learn it has been revoked. Doing that at the compiled
+-- address means an unpacked APK carries the hospital's internal host.
+--
+-- Routing it through the tunnel hides that, the way an OpenVPN
+-- deployment speaks to internal services over the tunnel and never
+-- names them in the client. What cannot be hidden is the tunnel
+-- endpoint itself — WireGuard needs somewhere to send a handshake, as
+-- `remote` in every .ovpn file does.
+--
+-- 'direct' is the default. The tunnel route depends on the gateway
+-- proxy being up, so a deployment that has not set that up must not
+-- silently start relying on it: a device that cannot reach the
+-- controller cannot be told it was revoked.
+ALTER TABLE policies
+  ADD COLUMN control_channel VARCHAR(8) NOT NULL DEFAULT 'direct' AFTER endpoint_mode;

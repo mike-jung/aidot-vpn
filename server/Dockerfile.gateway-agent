@@ -1,0 +1,34 @@
+# Gateway enforcement agent.
+#
+# Needs `wg` (wireguard-tools) and `nft` (nftables) at runtime — the agent
+# shells out to both rather than linking wgctrl/netlink bindings. That
+# keeps the Go dependency set at exactly one module and means the agent
+# behaves identically to what an operator would type by hand, which
+# matters a great deal when debugging a firewall at 3am.
+
+FROM golang:1.27.1-alpine AS build
+WORKDIR /src
+
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+# CGO off so the binary runs on the Alpine runtime image unchanged.
+# Stamp the version into the binary. The agent reports it with every
+# node report, and the console shows it under 노드 — so a container
+# left on an old image is visible as a version that does not match the
+# project's, instead of as a fix that mysteriously has no effect.
+ARG AGENT_VERSION=dev
+RUN CGO_ENABLED=0 go build -trimpath \
+      -ldflags="-s -w -X main.agentVersion=${AGENT_VERSION}" \
+      -o /out/gateway-agent ./cmd/gateway-agent
+
+FROM alpine:3.20
+RUN apk add --no-cache wireguard-tools nftables iproute2 ca-certificates
+
+COPY --from=build /out/gateway-agent /usr/local/bin/gateway-agent
+
+# Runs as root: CAP_NET_ADMIN is required for both `wg set` and `nft -f`,
+# and dropping to a non-root user with file capabilities would not survive
+# the shell-out to those binaries.
+ENTRYPOINT ["/usr/local/bin/gateway-agent"]

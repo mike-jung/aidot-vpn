@@ -1,0 +1,37 @@
+# Code generation for AidotVpn protobuf.
+#
+# Generated outputs:
+#   - server/internal/gen/...        (Go: protobuf messages + Connect handlers)
+#   - client-android/.../gen/...     (Kotlin/Java: gRPC stubs)
+#
+# Prerequisites (one-time setup on the dev machine):
+#   go install github.com/bufbuild/buf/cmd/buf@latest
+#   go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+#   go install connectrpc.com/connect/cmd/protoc-gen-connect-go@latest
+#
+# Usage:
+#   cd proto && buf generate
+version: v2
+
+managed:
+  enabled: true
+  override:
+    - file_option: go_package_prefix
+      value: github.com/aidotvpn/server/internal/gen
+  disable:
+    # protovalidate provides its own go_package; don't override it.
+    - file_option: go_package
+      module: buf.build/bufbuild/protovalidate
+
+plugins:
+  # Standard Go message types.
+  - local: protoc-gen-go
+    out: ../server/internal/gen
+    opt:
+      - paths=source_relative
+
+  # Connect-go server/client handlers (gRPC + Connect protocol compatible).
+  - local: protoc-gen-connect-go
+    out: ../server/internal/gen
+    opt:
+      - paths=source_relative

@@ -1,0 +1,25 @@
+# buf v2 module configuration for AidotVpn protobuf schemas.
+#
+# Generate code with:
+#   cd proto && buf dep update && buf generate
+#
+# The Buf Schema Registry hosts protovalidate. We pin a specific minor
+# version so generated validation rules don't drift between machines.
+version: v2
+
+modules:
+  - path: aidotvpn
+
+deps:
+  - buf.build/bufbuild/protovalidate
+
+lint:
+  use:
+    - STANDARD
+  except:
+    # We use snake_case for Go-friendly field names; buf's STANDARD lint
+    # is fine with this so we don't need to relax anything yet.
+
+breaking:
+  use:
+    - FILE

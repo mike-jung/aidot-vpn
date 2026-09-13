@@ -1,0 +1,26 @@
+// HealthService implements the standard gRPC health checking protocol
+// (https://github.com/grpc/grpc/blob/master/doc/health-checking.md). We
+// declare it here directly rather than importing grpc.health.v1 so the
+// Connect adapter has a self-contained file to generate from.
+syntax = "proto3";
+
+package aidotvpn.controller.v1;
+
+service HealthService {
+  rpc Check(HealthCheckRequest) returns (HealthCheckResponse) {}
+}
+
+message HealthCheckRequest {
+  // Optional: when empty, returns overall server health.
+  string service = 1;
+}
+
+message HealthCheckResponse {
+  enum Status {
+    STATUS_UNSPECIFIED  = 0;
+    STATUS_SERVING      = 1;
+    STATUS_NOT_SERVING  = 2;
+    STATUS_SERVICE_UNKNOWN = 3;
+  }
+  Status status = 1;
+}

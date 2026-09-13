@@ -1,0 +1,111 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+        This manifest is what makes embedded mode work.
+
+        Everything the VPN engine needs — permissions and the VpnService
+        declaration — is declared HERE rather than in :app. Android's
+        manifest merger folds it into whatever application module depends
+        on :vpnlib, so a business app gets a working VpnService by adding
+        one Gradle line. Previously these lived in :app's manifest, so an
+        embedding app would have had to hand-copy them and keep them in
+        sync across upgrades.
+
+        Consumers should be aware of what they are inheriting:
+
+          - BIND_VPN_SERVICE puts the host app into Play's VPN policy
+            category. Irrelevant for MDM/internal distribution (the
+            hospital case), significant for Play Store distribution.
+
+          - The VpnService captures ALL device traffic, not just the host
+            app's. This surprises people. If you want only your app's
+            traffic in the tunnel, set the device's app filter to
+            `include` with your own package — hosting the service does
+            not scope it for you.
+    -->
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission
+        android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"
+        tools:targetApi="34" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!--
+        Needed by the per-app split tunnel: applyAppFilter resolves
+        package names against PackageManager before handing them to
+        VpnService.Builder, because addAllowedApplication throws on a
+        package that isn't installed.
+
+        An embedding app that never uses per-app filtering can strip this
+        with `tools:node="remove"` in its own manifest to avoid the Play
+        sensitive-permission declaration.
+    -->
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+
+    <application>
+        <!--
+            The tunnel holder. Declared in the library so both shells get
+            it identically.
+
+            Always-on VPN: SUPPORTS_ALWAYS_ON advertises that we handle
+            the system's auto-launch path (intent == null) — see
+            AidotVpnService.onStartCommand, which falls back to
+            ACTION_CONNECT in that case.
+
+            Note for embedded consumers: Always-on VPN is configured
+            against the app that hosts the service. In embedded mode that
+            is the business app, so MDM policy must target the business
+            app's package, not com.aidotvpn.client.app.
+        -->
+        <service
+            android:name="com.aidotvpn.client.vpnlib.AidotVpnService"
+            android:exported="false"
+            android:permission="android.permission.BIND_VPN_SERVICE"
+            android:foregroundServiceType="specialUse">
+            <intent-filter>
+                <action android:name="android.net.VpnService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.net.VpnService.SUPPORTS_ALWAYS_ON"
+                android:value="true" />
+            <!--
+                specialUse, with the property Android 14 requires.
+
+                0.12.0 changed this to systemExempted, citing the line in
+                Google's table that lists "VPN apps". The parenthesis
+                matters: "VPN apps (configured using Settings > Network &
+                Internet > VPN)" — that is an always-on VPN registered in
+                Settings, not any app calling VpnService. An app the user
+                connects by tapping a button does not qualify, and the
+                docs are explicit about the consequence:
+
+                  "Otherwise, declaring this type causes the system to
+                   throw a ForegroundServiceTypeNotAllowedException."
+
+                The permission was wrong too. systemExempted requires
+                FOREGROUND_SERVICE_SYSTEM_EXEMPTED; the manifest declared
+                FOREGROUND_SERVICE_SPECIAL_USE, and:
+
+                  "If you call startForeground() without declaring the
+                   appropriate foreground service type permission, the
+                   system throws a SecurityException."
+
+                Two throws on the same call, either of which kills the
+                process the moment the service starts — which is what a
+                user saw after approving and pressing 연결.
+
+                specialUse is the type whose permission we already hold
+                and whose only requirement is the declaration below.
+            -->
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="vpn"
+                tools:targetApi="34" />
+        </service>
+    </application>
+</manifest>
