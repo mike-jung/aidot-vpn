@@ -19,6 +19,6 @@ jobs:
           cache-dependency-path: server/go.sum
       - run: npm --prefix console ci
       - run: node --test scripts/tests/https-cert.test.mjs
-      - run: npm run build:console
+      - run: npm run test:login
       - run: go test ./...
         working-directory: server

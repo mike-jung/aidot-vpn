@@ -18,6 +18,7 @@ import { ref } from 'vue'
 import LanguageSelect from '../components/LanguageSelect.vue'
 import { useRoute, useRouter } from 'vue-router'
 import { login, mustChangePassword } from '@/stores/auth.js'
+import { loginDestination, navigateAfterLogin } from '@/router/login-navigation.js'
 
 const router = useRouter()
 const route = useRoute()
@@ -29,13 +30,13 @@ const busy = ref(false)
 const err = ref('')
 
 async function go () {
+  if (busy.value) return
   busy.value = true; err.value = ''
   try {
     await login(email.value, password.value, code.value)
     // A seeded password is used once: straight to the settings dialog.
-    const next = mustChangePassword.value ? { name: 'overview', query: { changePassword: '1' } }
-      : (route.query.next ? (String(route.query.next).startsWith('/') && !String(route.query.next).startsWith('//') ? String(route.query.next) : '/') : { name: 'overview' })
-    router.replace(next)
+    const next = loginDestination(router, route.query.next, mustChangePassword.value)
+    await navigateAfterLogin(router, next)
   } catch (e) {
     // 428 means the password was right and a second factor is owed.
     // Showing "wrong password" here would send the operator to reset a
@@ -71,8 +72,8 @@ async function go () {
         itself now, so the login is one request from this card.
       -->
       <form class="form" @submit.prevent="go">
-        <label class="lbl" for="email"> {{ tr("이메일") }} </label>
-        <input id="email" v-model="email" class="inp" type="email" autocomplete="username" required autofocus />
+        <label class="lbl" for="email"> {{ tr("아이디 또는 이메일") }} </label>
+        <input id="email" v-model="email" class="inp" type="text" autocomplete="username" autocapitalize="none" :spellcheck="false" required autofocus />
         <label class="lbl" for="password"> {{ tr("비밀번호") }} </label>
         <input id="password" v-model="password" class="inp" type="password" autocomplete="current-password" required />
       <div v-if="needCode" class="mb-3">

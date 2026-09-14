@@ -103,7 +103,12 @@ if (cfg.readAsset) {
   })
 } else if (fs.existsSync(cfg.distDir)) {
   app.use('/assets', express.static(path.join(cfg.distDir, 'assets'), {maxAge: '1y', immutable: true}))
-  app.use(express.static(cfg.distDir, {maxAge: '5m', index: false}))
+  app.use(express.static(cfg.distDir, {
+    maxAge: '5m', index: false,
+    setHeaders(res, file) {
+      if (path.extname(file) === '.html') res.setHeader('Cache-Control', 'no-cache')
+    },
+  }))
   app.use((req, res, next) => {
     if (!['GET', 'HEAD'].includes(req.method)) return next()
     if (req.path === '/api' || req.path.startsWith('/api/') || path.extname(req.path)) return res.sendStatus(404)

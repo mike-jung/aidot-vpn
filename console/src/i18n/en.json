@@ -611,5 +611,7 @@
   "저장됐을 수 있지만 복제 확인이 끝나지 않았습니다. 현재 내용을 새로 확인한 뒤 다시 시도하세요.": "The change may have been saved, but replication was not confirmed. Reload its current state before retrying.",
   "인증서와 개인키를 설정하거나 npm run https:cert를 실행하세요.": "Configure the certificate and private key, or run npm run https:cert.",
   "인증서 또는 개인키 파일이 없습니다. 설정 경로를 확인하세요.": "The certificate or private key file was not found. Check the configured paths.",
-  "콘솔 실행 계정이 인증서와 개인키 파일을 읽을 수 있어야 합니다.": "The console account must be able to read the certificate and private key files."
+  "콘솔 실행 계정이 인증서와 개인키 파일을 읽을 수 있어야 합니다.": "The console account must be able to read the certificate and private key files.",
+  "아이디 또는 이메일": "Username or email",
+  "로그인 후 화면을 열지 못했습니다. 다시 시도하세요.": "Could not open the console after sign-in. Please try again."
 }

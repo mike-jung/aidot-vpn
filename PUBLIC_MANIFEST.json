@@ -1,7 +1,7 @@
 {
   "format": "aidotvpn-public-v2",
   "edition": "public",
-  "version": "1.20.2",
+  "version": "1.20.3",
   "files": {
     ".env.example": {
       "sha256": "a49c29a2fde0b1145a5010fc767196185a84f3bf7d29816c64aae6e9276a54d0",
@@ -12,8 +12,8 @@
       "bytes": 127
     },
     ".github/workflows/ci.yml": {
-      "sha256": "67d7fdc3b75fe45f2d231677aed72c1b78c6fccaf092bf2ea7d5e8639864fd10",
-      "bytes": 642
+      "sha256": "c3e9b541c6ee5ad0e91ab6f8273dd5dd445f70115e49cd077d4147337b29ede8",
+      "bytes": 639
     },
     ".gitignore": {
       "sha256": "15e811672786b1297de3dccaa1aaa38b0b5b91d8bc9842b7f8adef56541f4dcc",
@@ -400,8 +400,8 @@
       "bytes": 1086
     },
     "console/app.js": {
-      "sha256": "5ac83fbdc3d5934319b9360aefb292b7d10cc156b503dc8212e86e78d913cd8b",
-      "bytes": 5781
+      "sha256": "11d29f860c0d90367591c77615620bb3050253bb7507afed5765976d34a1c5ac",
+      "bytes": 5910
     },
     "console/index.html": {
       "sha256": "43246018f7476caf37bad67a276246f7cc9bde2b9036b439dbd6d18bb526b62d",
@@ -416,12 +416,12 @@
       "bytes": 4322
     },
     "console/package-lock.json": {
-      "sha256": "60833d1bc36f34d10366e96383a310a4b8678423249f1129f3fd0c85e2dde283",
-      "bytes": 92873
+      "sha256": "7d6973d2d5066e16b85f2752eaf3ce23fe13d77c7c4e3e70bdeaf5b743f83a84",
+      "bytes": 111894
     },
     "console/package.json": {
-      "sha256": "55fa057c99f8e9be65f411c0b7d3a81dd2083dac78ca2094d63476f6cc7af7d9",
-      "bytes": 839
+      "sha256": "e959156e25091daff5fa2d124144080292016fd50e5330b5f8f67bfabe4da8da",
+      "bytes": 955
     },
     "console/public/favicon.svg": {
       "sha256": "4fe39b6d1302bc8683118ba540e33c1c2601f72cb04eb993a969d2044dc16230",
@@ -468,8 +468,8 @@
       "bytes": 14808
     },
     "console/src/i18n/en.json": {
-      "sha256": "019681c1e5c58f3e0bd3bb69624b8f6f596db70c319a062b0de189ec925d49d6",
-      "bytes": 49513
+      "sha256": "fbf09fe6d4f40a7da5d7a2cbaf6bb7a4c167d80d524743b5cdf626fa94a31698",
+      "bytes": 49706
     },
     "console/src/i18n/index.js": {
       "sha256": "379dfc9a92132cbb61dc4a21f42561330845a712e61f0c2c06b7be3724555acd",
@@ -484,12 +484,16 @@
       "bytes": 907
     },
     "console/src/router/index.js": {
-      "sha256": "86bcc7cdbc5c1e4cd5c6b1ee9a2526a232de514555249b5e5ce699c581b85379",
-      "bytes": 3152
+      "sha256": "9edc57641b3f54e90d75f8f98797e785a6d77665872ab8eca4db6cc68e11ad4d",
+      "bytes": 3269
+    },
+    "console/src/router/login-navigation.js": {
+      "sha256": "58d2e1366f5f204761ae357c83a30e605c7328b3c39ad19fd4cf1515d357298d",
+      "bytes": 2029
     },
     "console/src/stores/auth.js": {
-      "sha256": "28d5b148e7a369248dbe79897039401c64bce5574d9382f7b55626c60b502e9b",
-      "bytes": 3903
+      "sha256": "8be7215209ed8b412ceac4eb986e9418d8f40003bfb7353d2c38b4614b632477",
+      "bytes": 3927
     },
     "console/src/styles/console.css": {
       "sha256": "7bbea0f595bec74875a5248406c10e2416079d7d7f250f3511e3b2811c7c2145",
@@ -516,7 +520,7 @@
       "bytes": 2097
     },
     "console/src/views/LoginView.vue": {
-      "sha256": "fdde31529efd30ce9f4e953f41888e2e31c3a0a132407e04dd25901627e66821",
+      "sha256": "c14beb439492b8c554c5f15a72c9c629c245ffe4cc0516024d902cbfc7ad5a0c",
       "bytes": 8662
     },
     "console/src/views/NodesView.vue": {
@@ -543,6 +547,10 @@
       "sha256": "9c3de4d17cb8f95fae3a0fe010e39f86668db19548f0f1bfdeca36503a37ecfa",
       "bytes": 7287
     },
+    "console/tests/fixtures/login-dom.mjs": {
+      "sha256": "02ff92dae6a087cf1a354dbdb0e686e072ca4a9523691a8e0980cdc1962ea0ae",
+      "bytes": 5710
+    },
     "console/tests/i18n.test.mjs": {
       "sha256": "00d1490d0be46914e57b6e642a40a4661ced50ba9c99739510a7a1a741fb05f1",
       "bytes": 2233
@@ -550,6 +558,10 @@
     "console/tests/listener.test.mjs": {
       "sha256": "60018d15aadff89c8849f0242b41d8f56f8b244030c3cfbf811feb547c9aed40",
       "bytes": 5990
+    },
+    "console/tests/login-flow.test.mjs": {
+      "sha256": "0ad7cf7e27a2bd562492458d568b16341083a8be08b37dead23bcdf3b84ae084",
+      "bytes": 5658
     },
     "console/vite.config.js": {
       "sha256": "bd905183ddc3f12204b541eb1c32124da53b33dbbf70ed0335ea4c04c2301fa6",
@@ -644,8 +656,8 @@
       "bytes": 264
     },
     "package.json": {
-      "sha256": "6decb6b4559c715871a6c7c32a3953b482ace9285751873be7581f5c9d2461a6",
-      "bytes": 1930
+      "sha256": "97a8b394200cf6ab0e579a0c7c65216b66ea359f7d28e16f7bb88ab7b587a635",
+      "bytes": 1987
     },
     "packaging/build.mjs": {
       "sha256": "d3a16f3f20b25cb093aa984eaf19fe9f8e803ebab56d49de02fe2d8089761ca0",
@@ -668,11 +680,11 @@
       "bytes": 11948
     },
     "packaging/electron/package-lock.json": {
-      "sha256": "7b3014c27a333f463320537011b189c54587896fdea78efbfc3b2cb0756f1799",
+      "sha256": "ac15d1d86096041eebdde73627bcb517ae952f80cd49610198d359c88ff50911",
       "bytes": 133750
     },
     "packaging/electron/package.json": {
-      "sha256": "7472424d757017051b586b7520fd1ab90307a3080b382fef7d6fe5211f362f9e",
+      "sha256": "ea337bcf7b9d3fdff1c0381bab46c367de854efecaa60909de09ce45c5c57cac",
       "bytes": 401
     },
     "packaging/electron/preload.cjs": {
@@ -736,11 +748,11 @@
       "bytes": 157607
     },
     "packaging/package-lock.json": {
-      "sha256": "20892b06b9469add2041e6b07e914ca0a3da862cc88e8ae9ce2c6bfc98638707",
+      "sha256": "4e5d17f0523d8fd48d96b29d08c476fa24e128f78efcf1ade24976387533b285",
       "bytes": 15963
     },
     "packaging/package.json": {
-      "sha256": "b7512fa302647fb9485559183d4d16c9e7edc9c4071a8b9d2b9691e6e369a954",
+      "sha256": "ca06d7bd9ff84f5294c599b205527ed0a0a763c8fba10f430b34e7047081f92b",
       "bytes": 436
     },
     "packaging/README-ko.md": {
@@ -864,8 +876,8 @@
       "bytes": 5826
     },
     "RELEASE_NOTES.md": {
-      "sha256": "563ac1b255faee693c951aebf355efa6b689e22faa0d243c4ef8a01a3f909134",
-      "bytes": 821
+      "sha256": "d4c1aea19bd14c0e8c7df5cc8af73598b8c61f2d6b8bdc6de3ab05b0dd7bacef",
+      "bytes": 1043
     },
     "scripts/build-edition.mjs": {
       "sha256": "6676e9352c224f0fec67cb3e89f3b11ad2b75a2780dfcff0f97ae41d7580a59f",
@@ -1708,7 +1720,7 @@
       "bytes": 1438
     },
     "VERSION": {
-      "sha256": "5d61572af383d9294076b4e2850f85e404eeddf40caf790d940c036c82ab0b2c",
+      "sha256": "46109a455156b5fd93791088ad5f99494ac7debd718686cfcefe58ffbfdc740b",
       "bytes": 7
     }
   }

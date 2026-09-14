@@ -58,6 +58,7 @@ export async function login (email, password, code = '') {
   const r = await call('POST', '/auth/login', { email, password, code })
   if (!r.ok) throw Object.assign(new Error(apiMessage(r.data?.error, r.status)), {status: r.status})
   _admin.value = r.data.admin
+  _checked.value = true
   return _admin.value
 }
 

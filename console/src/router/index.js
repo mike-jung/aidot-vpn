@@ -3,6 +3,8 @@
 // for an admin console where every route is a security boundary.
 import { createRouter, createWebHistory } from 'vue-router'
 import { isAuthenticated, loadSession, sessionChecked } from '@/stores/auth.js'
+import LoginView from '@/views/LoginView.vue'
+import OverviewView from '@/views/OverviewView.vue'
 
 const routes = [
  { path: '/ha', name: 'ha', component: () => import('@/views/HAView.vue'), meta: { requiresAuth: true } },
@@ -14,13 +16,14 @@ const routes = [
     // up, is anything stuck — took three screens and counting by eye.
     path: '/',
     name: 'overview',
-    component: () => import('../views/OverviewView.vue'),
+    // The sign-in landing page is in the entry bundle, ready before login.
+    component: OverviewView,
     meta: { requiresAuth: true },
   },
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/LoginView.vue'),
+    component: LoginView,
   },
   {
     path: '/devices',

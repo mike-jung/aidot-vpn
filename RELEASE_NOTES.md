@@ -1,5 +1,10 @@
 # Release notes
 
+## 1.20.3
+
+- Open the dashboard immediately after sign-in and accept both usernames and email addresses.
+- Keep the sign-in button busy until navigation finishes and handle outdated screen files without repeated reloads.
+
 ## v1.20.2 — Console HTTPS and Public edition
 
 - Generate a local HTTPS certificate and configure the console with `npm run https:cert`.
