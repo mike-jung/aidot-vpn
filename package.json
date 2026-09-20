@@ -1,6 +1,6 @@
 {
   "name": "aidot-vpn",
-  "version": "1.20.3",
+  "version": "1.20.4",
   "private": true,
   "description": "Mobile device enrollment, managed network access and VPN connectivity for Android fleets",
   "scripts": {
@@ -29,7 +29,8 @@
     "https:cert": "node scripts/https-cert.mjs",
     "cert:https": "node scripts/https-cert.mjs",
     "https:check": "node scripts/start-https.mjs --check",
-    "test:login": "npm --prefix console run test:login"
+    "test:login": "npm --prefix console run test:login",
+    "status:windows": "powershell.exe -NoProfile -File packaging/windows/status.ps1"
   },
   "engines": {
     "node": ">=22.19.0"

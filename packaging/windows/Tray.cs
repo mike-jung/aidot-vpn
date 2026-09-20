@@ -17,9 +17,11 @@ internal sealed class Tray : ApplicationContext {
   readonly string prefs=Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"AidotVPN","tray.json");
   bool korean=CultureInfo.CurrentUICulture.Name.StartsWith("ko");
   bool controlling;
+  bool exiting;
   readonly System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
   string Text(string ko,string en){return korean?ko:en;}
   static string InstallDir {get{return AppDomain.CurrentDomain.BaseDirectory;}}
+  static string BuildVersion {get{return FileVersionInfo.GetVersionInfo(typeof(Tray).Assembly.Location).ProductVersion;}}
   [STAThread] static int Main(string[] args) {
     if(args.Length==1 && (args[0]=="--stop-server" || args[0]=="--start-server")) {
       return ApplyControl(args[0]=="--stop-server");
@@ -41,6 +43,7 @@ internal sealed class Tray : ApplicationContext {
   }
   void Rebuild() {
     menu.Items.Clear();
+    menu.Items.Add("aidot-vpn "+BuildVersion,null,(s,e)=>ShowInformation());
     menu.Items.Add(Text("콘솔 열기","Open console"),null,(s,e)=>Open(false));
     menu.Items.Add(Text("설정","Settings"),null,(s,e)=>Open(true));
     menu.Items.Add(Text("서버 시작","Start server"),null,async(s,e)=>await ControlServer(false));
@@ -48,9 +51,25 @@ internal sealed class Tray : ApplicationContext {
     language.DropDownItems.Add("English",null,(s,e)=>Language(false));language.DropDownItems.Add("한국어",null,(s,e)=>Language(true));menu.Items.Add(language);
     menu.Items.Add(new ToolStripSeparator());
     menu.Items.Add(Text("아이콘만 닫기 (서버 유지)","Close tray (keep server running)"),null,(s,e)=>ExitThread());
-    menu.Items.Add(Text("종료 (서버 중지)","Exit (stop server)"),null,async(s,e)=> {
-      if(MessageBox.Show(Text("VPN 제어 서버와 콘솔을 중지하고 종료할까요? 서버는 다음 부팅 때 다시 시작합니다.","Stop the VPN controller and console, then exit? Services start again at the next boot."),"AidotVPN",MessageBoxButtons.OKCancel,MessageBoxIcon.Question)==DialogResult.OK && await ControlServer(true))ExitThread();
-    });
+    menu.Items.Add(Text("종료 (서버 중지)","Exit (stop server)"),null,async(s,e)=>await ExitServer());
+  }
+  async Task ExitServer() {
+    if(controlling || exiting)return;
+    exiting=true;
+    try {
+      var idle=await Task.Run(()=>AidotServiceControl.NothingToStop(n=>new WindowsAidotService(n)));
+      if(!idle && MessageBox.Show(Text("등록된 aidot-vpn 제어 서버와 콘솔 서비스를 중지하고 종료할까요?","Stop the registered aidot-vpn controller and console services, then exit?"),"aidot-vpn",MessageBoxButtons.OKCancel,MessageBoxIcon.Question)!=DialogResult.OK)return;
+      if(await ControlServer(true))ExitThread();
+    }finally{exiting=false;}
+  }
+  void ShowInformation() {
+    var lines=new List<string>{"aidot-vpn "+BuildVersion,Text("Windows 서비스용 트레이","Windows service tray"),Application.ExecutablePath,""};
+    foreach(var name in AidotServiceControl.Names){
+      try {using(var service=new WindowsAidotService(name)){lines.Add(name+": "+service.Read());}}
+      catch(Exception e){var code=AidotServiceControl.NativeError(e);lines.Add(name+": "+(code==1060?Text("미설치","Not installed"):Text("조회 실패, Windows 오류 ","Query failed, Windows error ")+code));}
+    }
+    lines.Add("");lines.Add(Text("소스 ZIP을 바꿔도 설치된 프로그램은 갱신되지 않습니다. Windows 서비스 설치 파일로 업데이트하세요.","Replacing the source ZIP does not update the installed program. Update with the Windows service installer."));
+    MessageBox.Show(String.Join(Environment.NewLine,lines),"aidot-vpn",MessageBoxButtons.OK,MessageBoxIcon.Information);
   }
   void Language(bool value) {korean=value;Directory.CreateDirectory(Path.GetDirectoryName(prefs));File.WriteAllText(prefs,new JavaScriptSerializer().Serialize(new {language=korean?"ko":"en"}));Rebuild();UpdateStatus();}
   void Open(bool settings) {
@@ -68,13 +87,11 @@ internal sealed class Tray : ApplicationContext {
     return AidotServiceControl.Apply(stop,n=>new WindowsAidotService(n),()=>File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),"AidotVPN","controller","controller.env")));
   }
   static int RequestControl(bool stop) {
-    try {
-      if(stop && AidotServiceControl.NothingToStop(n=>new WindowsAidotService(n)))return 0;
-      if(new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator))return ApplyControl(stop);
+    return AidotServiceControl.Request(stop,n=>new WindowsAidotService(n),()=>File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),"AidotVPN","controller","controller.env")),()=>new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator),()=>{
       using(var p=Process.Start(new ProcessStartInfo(Path.Combine(InstallDir,"aidotvpn-tray.exe"),stop?"--stop-server":"--start-server"){UseShellExecute=true,Verb="runas"})){
         if(p==null)return 1;p.WaitForExit();return p.ExitCode;
       }
-    }catch(Exception e){return AidotServiceControl.NativeError(e);}
+    });
   }
   async Task<bool> ControlServer(bool stop) {
     if(controlling)return false;
@@ -100,7 +117,7 @@ internal sealed class Tray : ApplicationContext {
     return false;
   }
   void LogControl(bool stop,int result) {
-    try {var dir=Path.Combine(Path.GetDirectoryName(prefs),"logs");Directory.CreateDirectory(dir);var file=Path.Combine(dir,"tray.log");if(File.Exists(file) && new FileInfo(file).Length>1024*1024){if(File.Exists(file+".1"))File.Delete(file+".1");File.Move(file,file+".1");}File.AppendAllText(file,DateTime.UtcNow.ToString("o")+" action="+(stop?"stop":"start")+" result="+result+" service="+AidotServiceControl.ServiceName(result)+Environment.NewLine);}
+    try {var dir=Path.Combine(Path.GetDirectoryName(prefs),"logs");Directory.CreateDirectory(dir);var file=Path.Combine(dir,"tray.log");if(File.Exists(file) && new FileInfo(file).Length>1024*1024){if(File.Exists(file+".1"))File.Delete(file+".1");File.Move(file,file+".1");}File.AppendAllText(file,DateTime.UtcNow.ToString("o")+" version="+BuildVersion+" executable="+Application.ExecutablePath+" action="+(stop?"stop":"start")+" result="+result+" service="+AidotServiceControl.ServiceName(result)+Environment.NewLine);}
     catch { }
   }
   void UpdateStatus() {if(controlling)return;try {using(var s=new ServiceController("AidotVpnConsole"))icon.Text="AidotVPN · "+(s.Status==ServiceControllerStatus.Running?Text("콘솔 실행 중","Console running"):Text("콘솔 중지됨","Console stopped"));}catch{icon.Text="AidotVPN · "+Text("서비스 미설치","Service not installed");}}

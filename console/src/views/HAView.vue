@@ -2,17 +2,20 @@
 <script setup>
 import { locale } from '../i18n/index.js'
 const contact = 'mailto:mike.jung.global@gmail.com?subject=AidotVPN%20Enterprise%20inquiry'
+const features = [
+  ['Active–Standby 고가용성 구성', 'Active–Standby high availability'],
+  ['복제 확인을 통한 등록·정책 변경 보호', 'Replication acknowledgement for enrollment and policy changes'],
+  ['펜싱과 제한 시간 기반 게이트웨이 보호', 'Fencing integration and expiring gateway forwarding leases'],
+  ['클러스터 서비스 시작·중지·상태 점검 자동화', 'Coordinated cluster service startup, shutdown and health checks'],
+]
 </script>
 <template>
   <section class="enterprise-page">
     <p class="edition">AidotVPN Enterprise</p>
     <h1>{{ locale === 'ko' ? '모바일 단말 관리의 서비스 연속성' : 'Service continuity for your mobile fleet' }}</h1>
     <p>{{ locale === 'ko' ? 'Public은 단일 서버에서 단말 등록, 접속 정책, VPN과 감사 로그를 제공합니다. 여러 서버의 장애 전환이 필요하면 Enterprise를 문의하세요.' : 'Public provides device enrollment, access policies, VPN connectivity and audit logs on a standalone server. Contact us for Enterprise deployment across redundant servers.' }}</p>
-    <ul v-if="locale === 'ko'">
-      <li>Active–Standby 고가용성 구성</li><li>복제 확인을 통한 등록·정책 변경 보호</li><li>펜싱과 제한 시간 기반 게이트웨이 보호</li><li>클러스터 서비스 시작·중지·상태 점검 자동화</li>
-    </ul>
-    <ul v-else>
-      <li>Active–Standby high availability</li><li>Replication acknowledgement for enrollment and policy changes</li><li>Fencing integration and expiring gateway forwarding leases</li><li>Coordinated cluster service startup, shutdown and health checks</li>
+    <ul>
+      <li v-for="feature in features" :key="feature[1]">{{ feature[locale === 'ko' ? 0 : 1] }}</li>
     </ul>
     <a :href="contact">{{ locale === 'ko' ? 'Enterprise 문의' : 'Contact us about Enterprise' }}</a>
     <p class="contact">mike.jung.global@gmail.com</p>

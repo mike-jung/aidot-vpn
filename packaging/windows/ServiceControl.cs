@@ -50,6 +50,16 @@ internal static class AidotServiceControl {
   }
   internal static int Encode(string service,int code){return ((service==Names[0]?1:2)<<16)|(code>0 && code<65536?code:1);}
   internal static string ServiceName(int result){var index=result>>16;return index==1?Names[0]:index==2?Names[1]:"AidotVPN";}
+  internal static int Request(bool stop,Func<string,IAidotService> open,Func<bool> controllerConfigured,Func<bool> administrator,Func<int> elevate) {
+    // Try with the caller's existing rights first. Missing/stopped services are
+    // successful stops, and missing services on start are not permission errors.
+    try {
+      var result=Apply(stop,open,controllerConfigured);
+      var code=result&65535;
+      if((code==5 || code==740 || code==1314) && !administrator())return elevate();
+      return result;
+    }catch(Exception e){return NativeError(e);}
+  }
   internal static bool NothingToStop(Func<string,IAidotService> open) {
     foreach(var name in Names){
       try {using(var service=open(name)){if(service.Read()!=ServiceControllerStatus.Stopped)return false;}}

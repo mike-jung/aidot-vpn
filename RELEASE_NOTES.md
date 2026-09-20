@@ -1,5 +1,11 @@
 # Release notes
 
+## v1.20.4 — Windows service tray repair
+
+- Update the installed Windows service tray separately from source or Electron Desktop.
+- Exit immediately when services are absent/stopped and request administrator approval only when Windows denies service control.
+- View the running tray version from its menu and compare the installation with `npm run status:windows`.
+
 ## 1.20.3
 
 - Open the dashboard immediately after sign-in and accept both usernames and email addresses.

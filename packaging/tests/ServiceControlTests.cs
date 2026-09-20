@@ -43,6 +43,20 @@ internal static class ServiceControlTests {
     a=new FakeAidotService(ServiceControllerStatus.Running){stopError=new Win32Exception(1062),stoppedBeforeError=true};
     Check(AidotServiceControl.Apply(true,n=>a,()=>false)==0,"concurrent stop completion is successful");
     Check(AidotServiceControl.NativeError(new Win32Exception(1223))==1223,"Windows UAC cancellation retains its own error code");
+    var approvals=0;
+    Func<int> elevate=()=>{approvals++;return 0;};
+    Check(AidotServiceControl.Request(true,absent,()=>false,()=>false,elevate)==0 && approvals==0,"request stop with no services never asks for UAC");
+    Check((AidotServiceControl.Request(false,absent,()=>false,()=>false,elevate)&65535)==1060 && approvals==0,"request start with no services reports missing service without UAC");
+    a=new FakeAidotService(ServiceControllerStatus.Stopped);
+    Check(AidotServiceControl.Request(true,n=>a,()=>false,()=>false,elevate)==0 && approvals==0,"stopped services exit without UAC");
+    a=new FakeAidotService(ServiceControllerStatus.Running);
+    Check(AidotServiceControl.Request(true,n=>a,()=>false,()=>false,elevate)==0 && a.stops==1 && approvals==0,"existing delegated stop rights do not trigger UAC");
+    a=new FakeAidotService(ServiceControllerStatus.Running){stopError=new Win32Exception(5)};
+    Check(AidotServiceControl.Request(true,n=>a,()=>false,()=>false,elevate)==0 && approvals==1,"access denied requests one elevated retry");
+    Check(AidotServiceControl.Request(true,n=>a,()=>false,()=>false,()=>{throw new Win32Exception(1223);})==1223,"UAC cancellation is returned by the real request flow");
+    Check((AidotServiceControl.Request(true,n=>a,()=>false,()=>true,elevate)&65535)==5 && approvals==1,"an elevated denial does not loop elevation");
+    a=new FakeAidotService(ServiceControllerStatus.StopPending){waitError=new System.ServiceProcess.TimeoutException()};
+    Check((AidotServiceControl.Request(true,n=>a,()=>false,()=>false,elevate)&65535)==1460 && approvals==1,"service timeouts do not request elevation");
     Console.WriteLine("{\"passed\":"+checks.Count+",\"checks\":[\""+String.Join("\",\"",checks)+"\"]}");return 0;
   }catch(Exception e){Console.Error.WriteLine(e);return 1;}}
 }

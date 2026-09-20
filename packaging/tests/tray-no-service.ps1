@@ -14,7 +14,10 @@ try {
  while(-not $operation.IsCompleted -and $watch.Elapsed.TotalSeconds -lt 10){[Windows.Forms.Application]::DoEvents();Start-Sleep -Milliseconds 20}
  if(-not $operation.IsCompleted -or -not $operation.GetAwaiter().GetResult()){throw 'Tray stop failed or requested elevation despite absent services'}
  if(-not $menu.Enabled){throw 'Tray menu was left disabled after the operation'}
- $context.ExitThread();[Windows.Forms.Application]::DoEvents()
- if($icon.Visible){throw 'Tray icon remains visible after successful exit'}
- [IO.File]::WriteAllText($ResultFile,(@{passed=3;checks=@('Actual WinForms async stop completes without UAC when services are absent','Menu is re-enabled after asynchronous control','Successful exit removes the notification icon');seconds=$watch.Elapsed.TotalSeconds;scope='Real compiled Tray.ControlServer and Windows SCM query; no registered services; no UAC automation'}|ConvertTo-Json -Depth 5))
+ # Execute the actual menu handler as well: it must not open a confirmation or UAC dialog.
+ $menu.Items[$menu.Items.Count-1].PerformClick()
+ $watch.Restart()
+ while($icon.Visible -and $watch.Elapsed.TotalSeconds -lt 10){[Windows.Forms.Application]::DoEvents();Start-Sleep -Milliseconds 20}
+ if($icon.Visible){throw 'Exit menu did not remove the notification icon'}
+ [IO.File]::WriteAllText($ResultFile,(@{passed=3;checks=@('Actual WinForms async stop completes without UAC when services are absent','Menu is re-enabled after asynchronous control','Actual Exit menu handler closes the notification icon without confirmation or UAC');seconds=$watch.Elapsed.TotalSeconds;scope='Real compiled Tray.ControlServer and Exit menu handler with Windows SCM; no registered services; no UAC automation'}|ConvertTo-Json -Depth 5))
 }finally {$context.Dispose()}

@@ -1,11 +1,11 @@
 #ifndef BuildVersion
- #define BuildVersion "1.18.2"
+ #error BuildVersion must be supplied from VERSION
 #endif
 [Setup]
 AppId={{B48157B2-3B58-4E84-AEB3-96DFBB162DB5}
-AppName=AidotVPN Server
+AppName=aidot-vpn Server
 AppVersion={#BuildVersion}
-AppPublisher=AidotVPN
+AppPublisher=Aidot Link Co., Ltd.
 DefaultDirName={autopf}\AidotVPN
 UsePreviousAppDir=no
 DisableDirPage=yes

@@ -65,8 +65,11 @@ for (const name of ['controller', 'migrate', 'relay', ...(process.platform === '
 }
 if (process.platform === 'win32') {
   const csc = process.env.AIDOT_BUILD_CSC || path.join(process.env.WINDIR, 'Microsoft.NET/Framework64/v4.0.30319/csc.exe')
-  run(csc, ['/nologo', '/target:exe', '/platform:x64', '/optimize+', '/r:System.ServiceProcess.dll', `/out:${path.join(out, 'aidotvpn-service.exe')}`, path.join(here, 'windows/ServiceHost.cs')])
-  run(csc, ['/nologo', '/target:winexe', '/platform:x64', '/optimize+', '/r:System.Windows.Forms.dll', '/r:System.Drawing.dll', '/r:System.ServiceProcess.dll', '/r:System.Web.Extensions.dll', `/win32icon:${path.join(here, 'windows/aidotvpn.ico')}`, `/win32manifest:${path.join(here, 'windows/app.manifest')}`, `/out:${path.join(out, 'aidotvpn-tray.exe')}`, path.join(here, 'windows/Tray.cs'), path.join(here, 'windows/ServiceControl.cs')])
+  if (!/^\d+\.\d+\.\d+$/.test(version)) throw Error('Invalid Windows assembly version')
+  const assemblyInfo = path.join(work, 'AssemblyInfo.cs')
+  fs.writeFileSync(assemblyInfo, `using System.Reflection;\n[assembly: AssemblyProduct("aidot-vpn")]\n[assembly: AssemblyVersion("${version}.0")]\n[assembly: AssemblyFileVersion("${version}.0")]\n[assembly: AssemblyInformationalVersion("${version}")]\n`)
+  run(csc, ['/nologo', '/target:exe', '/platform:x64', '/optimize+', '/r:System.ServiceProcess.dll', `/out:${path.join(out, 'aidotvpn-service.exe')}`, path.join(here, 'windows/ServiceHost.cs'), assemblyInfo])
+  run(csc, ['/nologo', '/target:winexe', '/platform:x64', '/optimize+', '/r:System.Windows.Forms.dll', '/r:System.Drawing.dll', '/r:System.ServiceProcess.dll', '/r:System.Web.Extensions.dll', `/win32icon:${path.join(here, 'windows/aidotvpn.ico')}`, `/win32manifest:${path.join(here, 'windows/app.manifest')}`, `/out:${path.join(out, 'aidotvpn-tray.exe')}`, path.join(here, 'windows/Tray.cs'), path.join(here, 'windows/ServiceControl.cs'), assemblyInfo])
 }
 // Preserve redistribution notices for every bundled third-party component.
 let notices = 'AidotVPN distribution notices\n\n'

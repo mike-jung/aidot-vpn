@@ -1,7 +1,7 @@
 {
   "format": "aidotvpn-public-v2",
   "edition": "public",
-  "version": "1.20.3",
+  "version": "1.20.4",
   "files": {
     ".env.example": {
       "sha256": "a49c29a2fde0b1145a5010fc767196185a84f3bf7d29816c64aae6e9276a54d0",
@@ -416,11 +416,11 @@
       "bytes": 4322
     },
     "console/package-lock.json": {
-      "sha256": "7d6973d2d5066e16b85f2752eaf3ce23fe13d77c7c4e3e70bdeaf5b743f83a84",
+      "sha256": "76d0eae130975d7bab31a1ec8fee20214e26965498e83aa017f248b7c84cadc7",
       "bytes": 111894
     },
     "console/package.json": {
-      "sha256": "e959156e25091daff5fa2d124144080292016fd50e5330b5f8f67bfabe4da8da",
+      "sha256": "2dd554a7fdc281e40b8a9c0e10cf9d669fbc80ebe80c133f9b085551d332bf99",
       "bytes": 955
     },
     "console/public/favicon.svg": {
@@ -516,8 +516,8 @@
       "bytes": 7402
     },
     "console/src/views/HAView.vue": {
-      "sha256": "8a64e019bb75cf04ac1737be50ef573d24147e91a5ef82ce653d08ac1be6240a",
-      "bytes": 2097
+      "sha256": "c679d53e5e7d48f010d6718924c14083a073ee90b999626b9f159856cd71d542",
+      "bytes": 2131
     },
     "console/src/views/LoginView.vue": {
       "sha256": "c14beb439492b8c554c5f15a72c9c629c245ffe4cc0516024d902cbfc7ad5a0c",
@@ -656,12 +656,12 @@
       "bytes": 264
     },
     "package.json": {
-      "sha256": "97a8b394200cf6ab0e579a0c7c65216b66ea359f7d28e16f7bb88ab7b587a635",
-      "bytes": 1987
+      "sha256": "5a5701a29250d56d7d36a0fec8ed9979c6f618b19f234123f74cb759c4841aa3",
+      "bytes": 2073
     },
     "packaging/build.mjs": {
-      "sha256": "d3a16f3f20b25cb093aa984eaf19fe9f8e803ebab56d49de02fe2d8089761ca0",
-      "bytes": 8143
+      "sha256": "914da79448f8792fb3541ac4310951041e193c473ed1a0074a20c0a77b82bcdf",
+      "bytes": 8572
     },
     "packaging/console.env.example": {
       "sha256": "b5df82f4eed681bfbcd29577ce817c57b0ba7f936c3b388948c52bbf21496f3c",
@@ -680,11 +680,11 @@
       "bytes": 11948
     },
     "packaging/electron/package-lock.json": {
-      "sha256": "ac15d1d86096041eebdde73627bcb517ae952f80cd49610198d359c88ff50911",
+      "sha256": "91b739594b07f15d1ae61b987e989428749e341171f57a4ecd91175cb71799bd",
       "bytes": 133750
     },
     "packaging/electron/package.json": {
-      "sha256": "ea337bcf7b9d3fdff1c0381bab46c367de854efecaa60909de09ce45c5c57cac",
+      "sha256": "62b162950a5aa9e04ac2ca0518334d7503f0f39cc34f5297c4d641f09877914a",
       "bytes": 401
     },
     "packaging/electron/preload.cjs": {
@@ -748,16 +748,16 @@
       "bytes": 157607
     },
     "packaging/package-lock.json": {
-      "sha256": "4e5d17f0523d8fd48d96b29d08c476fa24e128f78efcf1ade24976387533b285",
+      "sha256": "b0b4b2e604d7cfa27d9e7ea61eface3ffcaf20f34c290cee365511447d2d5ddf",
       "bytes": 15963
     },
     "packaging/package.json": {
-      "sha256": "ca06d7bd9ff84f5294c599b205527ed0a0a763c8fba10f430b34e7047081f92b",
+      "sha256": "4528c4da2fda32ca02815fd0cb0162c95006fe7bb93fc1352fafe61f257180ad",
       "bytes": 436
     },
     "packaging/README-ko.md": {
-      "sha256": "e6c1dea5b0230c5ea12824bf7fc278b582d437c28e3cb4b34a3aef277c04fcb8",
-      "bytes": 838
+      "sha256": "0462343841984feed62e35dc3485802d57110768e85fff00d3a0b6c16ec7c35e",
+      "bytes": 1367
     },
     "packaging/runtime/entry.mjs": {
       "sha256": "c8d1a29bb43bab0df461cd44ff8359575dc07b22bf5cabefc2ebf8241bfaa13f",
@@ -780,20 +780,20 @@
       "bytes": 1331
     },
     "packaging/tests/ServiceControlTests.cs": {
-      "sha256": "c1ef9d218aca6134229395b2de4c415dafc4fafe8fc5972f1a6a99b59b154e0a",
-      "bytes": 3737
+      "sha256": "9674053b44810a08acce4d52dcde8c9469578d7ba71f97bfdcd33fa769a29826",
+      "bytes": 5392
     },
     "packaging/tests/smoke.mjs": {
       "sha256": "8f889ae5ead0f4062a7ef667a366b6f0d81f302e01454601728504942f6ff0c1",
       "bytes": 4237
     },
     "packaging/tests/tray-no-service.ps1": {
-      "sha256": "61c4317faedd65c18c24ff39bd605687f85b0cd5a6adb401c7e8c8dadac044b4",
-      "bytes": 1843
+      "sha256": "5e1dc42c9add8049a9e5a612b04d0847f8e60d76cdb0582021455599f0d1cd59",
+      "bytes": 2122
     },
     "packaging/tests/tray-smoke.ps1": {
-      "sha256": "d3c8a8e54939b70432157db6344f04ae9b80c8828f68a14e11c223e4c14ad354",
-      "bytes": 2197
+      "sha256": "2f54d322da9b9a7171fc4880505432bca9d98aa89f9b318b6e1459e1f58b42a5",
+      "bytes": 2431
     },
     "packaging/tests/windows-install.ps1": {
       "sha256": "6b73f47bf67f987005c077d5b7c6d2d11ef8a2ecbc5d5e04a9b49c6af3d969bc",
@@ -816,8 +816,8 @@
       "bytes": 43464
     },
     "packaging/windows/aidotvpn.iss": {
-      "sha256": "497c71f551b222a9e9e05a7a1d2713bb7a8a6b1b82e1afa95544004275354d44",
-      "bytes": 3552
+      "sha256": "fa5e1d69b75fa20297d3e3deb9f17c9d4c9a078f8575db6ee851c90c20a3976e",
+      "bytes": 3585
     },
     "packaging/windows/app.manifest": {
       "sha256": "f4b809f4e540ff16674594e494adc4ad56aa85b9858043d7ab79210481736574",
@@ -832,8 +832,8 @@
       "bytes": 4880
     },
     "packaging/windows/ServiceControl.cs": {
-      "sha256": "5260a0ebb2810ea752343713faa0b82cf4fea64eeb11884a7174bb88944e12e2",
-      "bytes": 5026
+      "sha256": "ab86111e40800a2e26be9e4aff17c8187e5124bcc7b439ab64e88e3d7892e42d",
+      "bytes": 5591
     },
     "packaging/windows/ServiceHost.cs": {
       "sha256": "6c588270c9f78a6ee11077da08c59ba40d1c5ff8ee0ca2910cf73f2b6cb7bc15",
@@ -843,9 +843,13 @@
       "sha256": "6d3e8d31e86035244afa48e54d205c90f81003b3ca441530547dbbf754d306f0",
       "bytes": 349
     },
+    "packaging/windows/status.ps1": {
+      "sha256": "ddda0bf18c0a478645099ff88ba32beb4742b269f78016b5a9109b839fe37f42",
+      "bytes": 1874
+    },
     "packaging/windows/Tray.cs": {
-      "sha256": "ab45d13035817f876fdc073b322d2cc11e98af2c7fcb91fac39cf884aaa1c08a",
-      "bytes": 9323
+      "sha256": "d8ea79cd9f540950000f5f3ed5e4ad46d9b036dcb364e2992659325b07e624c3",
+      "bytes": 10817
     },
     "proto/aidotvpn/controller/v1/device.proto": {
       "sha256": "aa28c7418b4642b7154a4265c144d4b3e95f79b963379035560fccf82087742c",
@@ -876,8 +880,8 @@
       "bytes": 5826
     },
     "RELEASE_NOTES.md": {
-      "sha256": "d4c1aea19bd14c0e8c7df5cc8af73598b8c61f2d6b8bdc6de3ab05b0dd7bacef",
-      "bytes": 1043
+      "sha256": "a142b4f6ff517d51758abae4c0927866f08a952307b6fb099da4bee2ab59347c",
+      "bytes": 1411
     },
     "scripts/build-edition.mjs": {
       "sha256": "6676e9352c224f0fec67cb3e89f3b11ad2b75a2780dfcff0f97ae41d7580a59f",
@@ -1720,7 +1724,7 @@
       "bytes": 1438
     },
     "VERSION": {
-      "sha256": "46109a455156b5fd93791088ad5f99494ac7debd718686cfcefe58ffbfdc740b",
+      "sha256": "2c695e095cd2f2b53fc4c472996a88157a3bd9c7f4df3aebc2dd45aeb179d836",
       "bytes": 7
     }
   }

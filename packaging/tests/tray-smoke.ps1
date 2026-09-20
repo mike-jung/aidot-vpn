@@ -19,7 +19,9 @@ try {
  $type.GetField('korean',$flags).SetValue($context,$true)
  $type.GetMethod('Rebuild',$flags).Invoke($context,[object[]]@()) | Out-Null
  $korean=@($menu.Items | ForEach-Object {$_.Text})
- Check (($korean -contains ([string][char]0xC124+[char]0xC815)) -and $menu.Items.Count -eq 7) 'Korean menu rebuild retains all seven entries'
+ Check (($korean -contains ([string][char]0xC124+[char]0xC815)) -and $menu.Items.Count -eq 8) 'Korean menu rebuild retains all eight entries'
+ $version=[Diagnostics.FileVersionInfo]::GetVersionInfo($Executable).ProductVersion
+ Check ($version -match '^\d+\.\d+\.\d+$' -and $menu.Items[0].Text -eq ('aidot-vpn '+$version)) 'menu identifies the actual compiled product version'
  $menu.Show(100,100);[Windows.Forms.Application]::DoEvents()
  Check ($menu.Visible) 'native popup menu opens'
  $menu.Close();[Windows.Forms.Application]::DoEvents()
