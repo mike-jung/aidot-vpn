@@ -4,21 +4,49 @@ permissions:
   contents: read
 jobs:
   core:
+    name: core (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
     strategy:
+      # Keep every operating system reporting its own result. With the default
+      # fail-fast, one job's failure cancels the others mid-install, and the
+      # cancelled job reports an unrelated SIGINT plus Windows EPERM cleanup
+      # warnings instead of the failure that actually happened.
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Check out the Public snapshot
+        uses: actions/checkout@v4
+      - name: Set up Node from .node-version
+        uses: actions/setup-node@v4
         with:
-          node-version: '24.19.0'
-      - uses: actions/setup-go@v5
+          # The same file the build and packaging scripts read, so CI and the
+          # installer never disagree about the runtime.
+          node-version-file: .node-version
+          cache: npm
+          cache-dependency-path: console/package-lock.json
+      - name: Set up Go
+        uses: actions/setup-go@v5
         with:
+          # Matches the toolchain directive in server/go.mod.
           go-version: '1.27.1'
           cache-dependency-path: server/go.sum
-      - run: npm --prefix console ci
-      - run: node --test scripts/tests/https-cert.test.mjs
-      - run: npm run test:login
-      - run: go test ./...
+      - name: Report the resolved toolchain
+        run: |
+          node --version
+          npm --version
+          go version
+      - name: Install console dependencies
+        run: npm --prefix console ci
+        timeout-minutes: 10
+      - name: HTTPS certificate tests
+        run: node --test scripts/tests/https-cert.test.mjs
+        timeout-minutes: 10
+      - name: Console login tests
+        run: npm run test:login
+        timeout-minutes: 10
+      - name: Server tests
+        run: go test ./...
         working-directory: server
+        timeout-minutes: 15

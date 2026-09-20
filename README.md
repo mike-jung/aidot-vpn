@@ -39,7 +39,7 @@ Public does not impose an artificial device-count or expiry limit. Enterprise im
 
 ## Get started
 
-For a source-based evaluation, prepare **Node.js 24.19.0**, **Go 1.27.1** and **Docker with Linux containers**. Windows Docker Desktop uses WSL2. Android builds additionally require JDK 17 and Android SDK 36.
+For a source-based evaluation, prepare **Node.js 22.19.0 or newer**, **Go 1.27.1** and **Docker with Linux containers**. Installer builds pin their own Node runtime, Go toolchain and Inno Setup compiler, and download and checksum-verify each one, so a build machine needs nothing beyond a recent Node. Windows Docker Desktop uses WSL2. Android builds additionally require JDK 17 and Android SDK 36.
 
 ```bash
 git clone https://github.com/mike-jung/aidot-vpn.git

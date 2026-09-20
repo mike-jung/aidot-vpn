@@ -5,12 +5,14 @@ import { createRequire } from 'node:module'
 import { execFileSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
 import { build } from 'esbuild'
-import bytenode from 'bytenode'
 import { inject } from 'postject'
+import { assertBuildHost, requiredNodeVersion } from '../scripts/toolchain.mjs'
+import { ensureNodeRuntime } from './node-runtime.mjs'
+import { ensureGoToolchain } from './go-toolchain.mjs'
 const require = createRequire(import.meta.url)
 const here = path.dirname(fileURLToPath(import.meta.url))
 const root = path.dirname(here)
-if (process.versions.node !== '24.19.0') throw new Error('Build requires exactly Node 24.19.0; rebuild all bytecode when upgrading Node')
+assertBuildHost()
 if (!['linux', 'win32'].includes(process.platform) || process.arch !== 'x64') throw new Error('This release supports native Linux/Windows x64 builders')
 const version = fs.readFileSync(path.join(root, 'VERSION'), 'utf8').trim()
 const edition = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8')).aidotEdition
@@ -19,17 +21,20 @@ const out = path.join(here, 'out', `${process.platform}-x64`)
 const work = path.join(here, '.work', `${process.platform}-x64`)
 fs.rmSync(out, {recursive: true, force: true}); fs.mkdirSync(out, {recursive: true}); fs.mkdirSync(work, {recursive: true})
 const run = (exe, args, opts = {}) => execFileSync(exe, args, {stdio: 'inherit', ...opts})
+// The runtime the installer embeds is downloaded and checksum-verified, never taken from PATH.
+// Bytecode, the SEA blob and the base executable must all come from this one binary.
+const runtime = await ensureNodeRuntime({version: requiredNodeVersion(root), platform: process.platform, arch: process.arch})
 run(process.execPath, [path.join(root, 'console/node_modules/vite/bin/vite.js'), 'build'], {cwd: path.join(root, 'console')})
 const app = path.join(work, 'app.cjs')
 await build({entryPoints: [path.join(here, 'runtime/entry.mjs')], outfile: app, bundle: true, platform: 'node', format: 'cjs', target: 'node24', minify: true, sourcemap: false, legalComments: 'none', define: {AIDOT_BUILD_VERSION: JSON.stringify(version)}})
 const bytecode = path.join(work, 'app.jsc')
-await bytenode.compileFile({filename: app, output: bytecode, createLoader: false})
+run(runtime.execPath, [path.join(here, 'compile-bytecode.cjs'), app, bytecode])
 const loader = path.join(work, 'loader.cjs')
 const loaderText = `const {getAsset}=require('node:sea');
 const bytenode=require(${JSON.stringify(require.resolve('bytenode'))});
 const path=require('node:path');
 const {isBuiltin}=require('node:module');
-if(process.version!==${JSON.stringify(process.version)} || process.arch!==${JSON.stringify(process.arch)} || process.platform!==${JSON.stringify(process.platform)}) throw Error('Runtime mismatch');
+if(process.version!==${JSON.stringify('v' + runtime.version)} || process.arch!==${JSON.stringify(process.arch)} || process.platform!==${JSON.stringify(process.platform)}) throw Error('Runtime mismatch');
 const fn=bytenode.runBytecode(Buffer.from(getAsset('server-bytecode')));
 const mod={exports:{}};
 function builtinOnly(id){if(!isBuiltin(id))throw Error('External modules disabled: '+id);return require(id)}
@@ -53,13 +58,14 @@ const manifestPath = path.join(work, 'assets.json'); fs.writeFileSync(manifestPa
 const blob = path.join(work, 'sea.blob')
 const config = path.join(work, 'sea.json')
 fs.writeFileSync(config, JSON.stringify({main: loader, output: blob, disableExperimentalSEAWarning: true, useSnapshot: false, useCodeCache: false, execArgvExtension: 'none', assets}))
-run(process.execPath, ['--experimental-sea-config', config])
+run(runtime.execPath, ['--experimental-sea-config', config])
 const exe = path.join(out, process.platform === 'win32' ? 'aidotvpn-console.exe' : 'aidotvpn-console')
-fs.copyFileSync(process.execPath, exe)
+fs.copyFileSync(runtime.execPath, exe)
 await inject(exe, 'NODE_SEA_BLOB', fs.readFileSync(blob), {sentinelFuse: 'NODE_SEA_FUSE_fce680ab2cc467b6e072b8b5df1996b2'})
 fs.chmodSync(exe, 0o755)
-const go = process.env.AIDOT_BUILD_GO || 'go'
-if (!execFileSync(go, ['version'], {encoding:'utf8'}).startsWith('go version go1.27.1 ')) throw Error('Build requires Go 1.27.1')
+// Pinned by the toolchain directive in server/go.mod, downloaded and checksum-verified when the
+// build machine does not already have that exact compiler.
+const go = (await ensureGoToolchain()).execPath
 for (const name of ['controller', 'migrate', 'relay', ...(process.platform === 'linux' ? ['gateway-agent'] : [])]) {
   run(go, ['build', '-trimpath', '-buildvcs=false', '-ldflags', `-s -w -X main.agentVersion=${version}`, '-o', path.join(out, `aidotvpn-${name}${process.platform === 'win32' ? '.exe' : ''}`), `./cmd/${name}`], {cwd: path.join(root, 'server'), env: {...process.env, CGO_ENABLED: '0'}})
 }
@@ -82,7 +88,9 @@ function licenses(dir) {
  }
 }
 licenses(path.join(root, 'console/node_modules')); licenses(path.join(here, 'node_modules'))
-const nodeLicense = process.env.AIDOT_BUILD_NODE_LICENSE
+// Default to the LICENSE shipped inside the very distribution we embedded, so the notice cannot
+// drift from the binary. An explicit AIDOT_BUILD_NODE_LICENSE still wins.
+const nodeLicense = process.env.AIDOT_BUILD_NODE_LICENSE || runtime.licensePath
 if (!nodeLicense || !fs.existsSync(nodeLicense)) throw new Error('AIDOT_BUILD_NODE_LICENSE must point to the matching Node distribution LICENSE')
 notices += '\n--- Node.js ---\n' + fs.readFileSync(nodeLicense, 'utf8')
 const modules = execFileSync(go, ['list', '-buildvcs=false', '-deps', '-f', '{{if .Module}}{{.Module.Path}}|{{.Module.Version}}|{{.Module.Dir}}{{end}}', './cmd/...'], {cwd: path.join(root, 'server'), encoding: 'utf8'}).trim().split('\n')

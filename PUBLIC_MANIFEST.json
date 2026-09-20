@@ -1,7 +1,7 @@
 {
   "format": "aidotvpn-public-v2",
   "edition": "public",
-  "version": "1.20.4",
+  "version": "1.20.7",
   "files": {
     ".env.example": {
       "sha256": "a49c29a2fde0b1145a5010fc767196185a84f3bf7d29816c64aae6e9276a54d0",
@@ -12,12 +12,16 @@
       "bytes": 127
     },
     ".github/workflows/ci.yml": {
-      "sha256": "c3e9b541c6ee5ad0e91ab6f8273dd5dd445f70115e49cd077d4147337b29ede8",
-      "bytes": 639
+      "sha256": "461e428a2dee66d7d325fc280d84c10165a1bdd56f9d9985f924ca24f948b7c7",
+      "bytes": 1798
     },
     ".gitignore": {
-      "sha256": "15e811672786b1297de3dccaa1aaa38b0b5b91d8bc9842b7f8adef56541f4dcc",
-      "bytes": 468
+      "sha256": "89e961d30cbc04dd59c95a6e824e5b17615157d73f37f91a7507b10958ee7e55",
+      "bytes": 492
+    },
+    ".node-version": {
+      "sha256": "7e8a2fa94951112b894a3dbe3d05efef5e9263741fa49125f0a70f40fedab4cc",
+      "bytes": 8
     },
     "client-android/build.gradle.kts": {
       "sha256": "9245502ebd2f60d5475cfb56b89bb5d6b1449f0272c3e949e19342f050218801",
@@ -416,11 +420,11 @@
       "bytes": 4322
     },
     "console/package-lock.json": {
-      "sha256": "76d0eae130975d7bab31a1ec8fee20214e26965498e83aa017f248b7c84cadc7",
+      "sha256": "082356294a3ee86dcf9ac4b31f48d560de0f3c1603b0faf2c6cd2db5d2d8dc03",
       "bytes": 111894
     },
     "console/package.json": {
-      "sha256": "2dd554a7fdc281e40b8a9c0e10cf9d669fbc80ebe80c133f9b085551d332bf99",
+      "sha256": "0b3e89773ae66ccda1c25b61ac57969dee34d51c41e71179cccdab4adb3a2d08",
       "bytes": 955
     },
     "console/public/favicon.svg": {
@@ -592,16 +596,16 @@
       "bytes": 2182
     },
     "docs/getting-started.md": {
-      "sha256": "01870464b4497927a42a8ee4980d86b91bf3d6ec5c4c593365d9a458880b9ad4",
-      "bytes": 3325
+      "sha256": "2d5591c60754a518bbec790ead83fa30557cc61f812e609f1e88151f22e1990e",
+      "bytes": 3475
     },
     "docs/https.md": {
       "sha256": "7960f9f16a2a557f4ba7dfaf66bd95a04746e0ab5e5d6ee16e75f5631baa4dc0",
       "bytes": 5622
     },
     "docs/installation.md": {
-      "sha256": "7ecfb4858cfec205f352cfc040688fc26844a456871cb36c67148d9d530a99ee",
-      "bytes": 1731
+      "sha256": "a6b713cc3ccffb361bebd92d46799b975629aeab4093c4e65e16c656ac913b4a",
+      "bytes": 2850
     },
     "infra/mariadb/conf.d/aidotvpn.cnf": {
       "sha256": "81b1a50a559597f6da2f07e70368a1f520b2df670acc5643fa189a528da83908",
@@ -656,12 +660,20 @@
       "bytes": 264
     },
     "package.json": {
-      "sha256": "5a5701a29250d56d7d36a0fec8ed9979c6f618b19f234123f74cb759c4841aa3",
+      "sha256": "a7c588f5c642d526757606bc306e24f0f3b8177010c88f92656555c636a4fb6f",
       "bytes": 2073
     },
+    "packaging/build-tools.json": {
+      "sha256": "397aaf9edc24b0dc09755c9bb7455685b641425cb10de3f0a6dab08fc38fe809",
+      "bytes": 707
+    },
     "packaging/build.mjs": {
-      "sha256": "914da79448f8792fb3541ac4310951041e193c473ed1a0074a20c0a77b82bcdf",
-      "bytes": 8572
+      "sha256": "34d6be4893d5a57f6740e5df2e62eb57837394d50b4fd55d5bf3e0bc757b8b23",
+      "bytes": 9145
+    },
+    "packaging/compile-bytecode.cjs": {
+      "sha256": "d03a6e4389ae82c031f9486c89e6ebe1416d229112c4879aeb384238453950a1",
+      "bytes": 756
     },
     "packaging/console.env.example": {
       "sha256": "b5df82f4eed681bfbcd29577ce817c57b0ba7f936c3b388948c52bbf21496f3c",
@@ -680,11 +692,11 @@
       "bytes": 11948
     },
     "packaging/electron/package-lock.json": {
-      "sha256": "91b739594b07f15d1ae61b987e989428749e341171f57a4ecd91175cb71799bd",
+      "sha256": "5104c38e819178ad8f78a6e78751f97f0a1cb5cc2e0a948e4c27ab4487293441",
       "bytes": 133750
     },
     "packaging/electron/package.json": {
-      "sha256": "62b162950a5aa9e04ac2ca0518334d7503f0f39cc34f5297c4d641f09877914a",
+      "sha256": "7f1339f1271404e68cccf7f3b16fa47eafb7cdc92af2baf817f8cd7d26a04061",
       "bytes": 401
     },
     "packaging/electron/preload.cjs": {
@@ -727,6 +739,14 @@
       "sha256": "9fcc8055aa9f6be2797d56003b4784857af5aa0612e55db08b62c4c71ef7c3d9",
       "bytes": 4126
     },
+    "packaging/go-toolchain.mjs": {
+      "sha256": "727107e8afdd7fa63028a09fd717e316d87d183ae121de640be61f5862973ad8",
+      "bytes": 5901
+    },
+    "packaging/inno-setup.mjs": {
+      "sha256": "b14faf817012f0cd2547f4e7902ede836d2768a19e1f288b54027f8113c01381",
+      "bytes": 3391
+    },
     "packaging/linux/aidotvpn-console.service": {
       "sha256": "cebc486d0102ade7e1770851dbb4ba3c13c2d94c66405dfee10a9a7fc98af871",
       "bytes": 581
@@ -747,17 +767,25 @@
       "sha256": "05f4451e79572a51b395ad7aaf424c38d5243a14dc36afd433b97f048fbec7f9",
       "bytes": 157607
     },
+    "packaging/node-runtime.mjs": {
+      "sha256": "4c0e1ef4a68c8d4f3ba021e68b26a6d82444c5c6a3d551704eb4f7a7f2bbb64d",
+      "bytes": 5793
+    },
     "packaging/package-lock.json": {
-      "sha256": "b0b4b2e604d7cfa27d9e7ea61eface3ffcaf20f34c290cee365511447d2d5ddf",
-      "bytes": 15963
+      "sha256": "80c0b093e890aa4950862ea23e0deca2f5f53f09d7020bb993434cd26affc9be",
+      "bytes": 15965
     },
     "packaging/package.json": {
-      "sha256": "4528c4da2fda32ca02815fd0cb0162c95006fe7bb93fc1352fafe61f257180ad",
-      "bytes": 436
+      "sha256": "2e3e5a46849eafede12d6ba300af4f493f34da145a565bf4b6011cc2faaab9e9",
+      "bytes": 438
     },
     "packaging/README-ko.md": {
-      "sha256": "0462343841984feed62e35dc3485802d57110768e85fff00d3a0b6c16ec7c35e",
-      "bytes": 1367
+      "sha256": "c626eeca9ff89f55b95975fe74b2feae71e838131830f1d6e747b7a4f125c09e",
+      "bytes": 1373
+    },
+    "packaging/resolve-tool.mjs": {
+      "sha256": "b6985bbf500a0092a6d2ed4ff99b94385a0cb2236c3662cdfd783e83a7e01272",
+      "bytes": 1604
     },
     "packaging/runtime/entry.mjs": {
       "sha256": "c8d1a29bb43bab0df461cd44ff8359575dc07b22bf5cabefc2ebf8241bfaa13f",
@@ -771,9 +799,17 @@
       "sha256": "99d64fa9760c6a8290af69442ce322343ad823072c9349d9f04ed1198058cdb8",
       "bytes": 1193
     },
+    "packaging/tests/build-tools.test.mjs": {
+      "sha256": "95643b869f6567ad36831a2a55f4a860ccd8922cc6223ad9581e0e7a8deced1d",
+      "bytes": 8082
+    },
     "packaging/tests/https-smoke.mjs": {
       "sha256": "5beda54bb2cc6fd96c75e87d42d9b3b838c28819e8b3be823fd5f45d895d63d0",
       "bytes": 2976
+    },
+    "packaging/tests/node-runtime.test.mjs": {
+      "sha256": "88037c037bb6c9a622bac90db119c2e66c8991f742006199775a60e7cdc1a7d2",
+      "bytes": 7304
     },
     "packaging/tests/paths.test.mjs": {
       "sha256": "43a2dc2e1e906ccfab2bfd155bee6459733bb4e2c973e38fbbd1e1ac4336c712",
@@ -811,6 +847,10 @@
       "sha256": "2e3e7d6e52aebd5e2b22a2ee0671e905998a1da6e9e2afc1ec6f904222ea4508",
       "bytes": 4664
     },
+    "packaging/tool-cache.mjs": {
+      "sha256": "01f1b4a70e2167f22b24b397e536f2de0c7096416e9fd9a5927b820e12253003",
+      "bytes": 5479
+    },
     "packaging/windows/aidotvpn.ico": {
       "sha256": "a93cbde126fce8d84c6ac8b761ad23bb352754e77f702434cb663bd93d383e73",
       "bytes": 43464
@@ -824,8 +864,8 @@
       "bytes": 588
     },
     "packaging/windows/build.ps1": {
-      "sha256": "4a413ad8f45c652321e8da118ef03fb58492f04f7185f6299c4874c05457338a",
-      "bytes": 1788
+      "sha256": "6a2c353c83c02563e47f68a9675e88fd73d600acc461b06a77440d46f81b8bb6",
+      "bytes": 2924
     },
     "packaging/windows/install-services.ps1": {
       "sha256": "c3931c79052a8aded3ddd6825466355ae82bc6537fdd6539d666cd4697afd6aa",
@@ -876,28 +916,28 @@
       "bytes": 565
     },
     "README.md": {
-      "sha256": "a88d03ce7e8ee6e18b8b560fc638afa9c8906d3267f49129121a5cb2260aafbd",
-      "bytes": 5826
+      "sha256": "9dd216b05c8ab721c2eae1dad94ad9f498693145c8802d108c667a2b5fc8133e",
+      "bytes": 6016
     },
     "RELEASE_NOTES.md": {
-      "sha256": "a142b4f6ff517d51758abae4c0927866f08a952307b6fb099da4bee2ab59347c",
-      "bytes": 1411
+      "sha256": "462a029c73aaec8a844b7543880aeff1ec5df5656d3f8ece4f8f866468b7de06",
+      "bytes": 2413
     },
     "scripts/build-edition.mjs": {
-      "sha256": "6676e9352c224f0fec67cb3e89f3b11ad2b75a2780dfcff0f97ae41d7580a59f",
-      "bytes": 3379
+      "sha256": "c3c464d34aa1569f8f1780191d5875d3f3b4a5b2fc3322114885e644a47f70a7",
+      "bytes": 5375
     },
     "scripts/certs/main.go": {
       "sha256": "c06398d6fb02ff080db354403ef40e195e4c31f19127a29d2beec7fb9fbe44a7",
       "bytes": 4948
     },
     "scripts/dist.mjs": {
-      "sha256": "5de1b52722c54c7bfa1882cd7a9273503fc1243c20313b359a690c64b6b38cba",
-      "bytes": 1881
+      "sha256": "5198d0df8f666bbe327b3f00f62246c4aa839725dab29b02fe9b3fc58ed54dfb",
+      "bytes": 2253
     },
     "scripts/electron.mjs": {
-      "sha256": "9e269bf3cbd04020710f07790ba78537d87dec652f14675caba6245d634f7739",
-      "bytes": 3264
+      "sha256": "5d71bcba7fc083d5e1c8871358bb8f2184ce46d4afd94925651384fae6edbf0e",
+      "bytes": 3203
     },
     "scripts/https-cert.mjs": {
       "sha256": "f633d8a5d6943867df512ed206d6808bbfebdb413672c86a0a854994069a706a",
@@ -914,6 +954,10 @@
     "scripts/tests/https-cert.test.mjs": {
       "sha256": "25588f27bc97417efd21f8e01e30c93a1194fc8ea9fd2dbf9e18feae73d51548",
       "bytes": 6249
+    },
+    "scripts/toolchain.mjs": {
+      "sha256": "92513428fb7ab68587deed64062e8469449ccc8a71ee6d6f160677566f39e44c",
+      "bytes": 3597
     },
     "SECURITY.md": {
       "sha256": "8daf6e54d3ffa929bedc5b7f156d44efb48aaa8abd84bab0a780f0a348e4f84d",
@@ -1724,7 +1768,7 @@
       "bytes": 1438
     },
     "VERSION": {
-      "sha256": "2c695e095cd2f2b53fc4c472996a88157a3bd9c7f4df3aebc2dd45aeb179d836",
+      "sha256": "4bf5f60ad72034b7c05fa9a3b213cc475aa972dc35ee8a4d1b38cebcec8f7127",
       "bytes": 7
     }
   }

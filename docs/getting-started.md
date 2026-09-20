@@ -4,7 +4,7 @@ AidotVPN Public runs a standalone management controller and console with an auth
 
 ## Prerequisites
 
-- Node.js 24.19.0 and Go 1.27.1 on the source host.
+- Node.js 22.19.0 or newer and Go 1.27.1 on the source host. Installer builds fetch and verify their own pinned Node runtime, Go toolchain and Inno Setup compiler, so those do not have to be installed.
 - Docker with Linux containers; Docker Desktop with WSL2 on Windows.
 - A Linux gateway with WireGuard and nftables for real tunnel traffic.
 - JDK 17 and Android SDK 36 to build Android apps (minimum Android API 26).

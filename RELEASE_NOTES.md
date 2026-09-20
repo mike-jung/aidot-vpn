@@ -1,5 +1,21 @@
 # Release notes
 
+## v1.20.7 — Release before build
+
+- Running `npm run release:github` before building the current version's installer now names the build command to run first.
+
+## v1.20.6 — GitHub release without the CLI
+
+- Publishing a draft Release needs only the token already configured in `.env`; installing the GitHub CLI is optional.
+- When no credential is configured, the message says so and explains how to set the token.
+
+## v1.20.5 — Build toolchain provisioning
+
+- Building an installer no longer asks you to install a runtime or compiler first. The pinned Node, Go and Inno Setup are downloaded, checked against their published SHA-256 and cached under `packaging/.build-tools/`.
+- A build machine needs only a Node new enough to run the build scripts, stated in `package.json` `engines.node`.
+- Inno Setup is installed in portable mode and writes nothing machine-wide.
+- Public validation now reports each operating system separately, so a failure shows which job and which step actually failed.
+
 ## v1.20.4 — Windows service tray repair
 
 - Update the installed Windows service tray separately from source or Electron Desktop.

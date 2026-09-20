@@ -3,12 +3,14 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
+import { assertBuildHost } from './toolchain.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const electron = path.join(root, 'packaging/electron');
 const args = process.argv.slice(2);
 if (args.some(a => !['--dir', '--dev', '--reuse-backend'].includes(a))) throw Error('Supported options: --dir, --dev, --reuse-backend');
 if (process.platform !== 'win32' || process.arch !== 'x64') throw Error('Build the Windows Electron installer on Windows x64.');
-if (process.version !== 'v24.19.0') throw Error('Use Node 24.19.0 for the packaged SEA server build. Electron uses its own runtime.');
+// The bundled SEA server uses the downloaded pinned runtime; Electron ships its own runtime.
+assertBuildHost();
 const npm = path.join(path.dirname(process.execPath), 'node_modules/npm/bin/npm-cli.js');
 if (!fs.existsSync(npm)) throw Error('The matching npm CLI was not found next to Node.');
 function run(command, argv, cwd = root) {
@@ -20,7 +22,6 @@ function npmRun(argv, cwd) { run(process.execPath, [npm, ...argv], cwd); }
 if (!args.includes('--reuse-backend')) {
   npmRun(['ci'], path.join(root, 'console'));
   npmRun(['ci', '--ignore-scripts'], path.join(root, 'packaging'));
-  process.env.AIDOT_BUILD_NODE_LICENSE ||= path.join(root, 'packaging/node-LICENSE.txt');
   run(process.execPath, ['packaging/build.mjs']);
 }
 // Verify reused binaries too; an old or edited backend never enters an installer.

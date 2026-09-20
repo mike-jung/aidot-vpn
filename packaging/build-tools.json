@@ -1,0 +1,12 @@
+{
+  "innoSetup": {
+    "version": "6.5.3",
+    "file": "innosetup-6.5.3.exe",
+    "url": "https://github.com/jrsoftware/issrc/releases/download/is-6_5_3/innosetup-6.5.3.exe",
+    "sha256": "9345ee029faa0b7aed0818c3d5b227699ef9a496cce79e20c19eb9d6ef2e2c2d",
+    "digestSource": "microsoft/winget-pkgs manifests/j/JRSoftware/InnoSetup/6.5.3/JRSoftware.InnoSetup.installer.yaml (InstallerSha256)",
+    "directory": "Inno Setup 6",
+    "compiler": "ISCC.exe",
+    "note": "Installed with /PORTABLE=1, which sets Uninstallable=no and skips the Start Menu group, desktop icon and .iss file association (jrsoftware/issrc is-6_5_3: setup.iss, isportable.iss). Nothing is written outside the directory below."
+  }
+}

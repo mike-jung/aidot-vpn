@@ -3,10 +3,42 @@ import path from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
+import { assertBuildHost } from './toolchain.mjs'
 const projectRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const sha256=data=>createHash('sha256').update(data).digest('hex')
+function nativeOsMessage(target,root){
+ const wsl=root.replace(/^([A-Za-z]):/,(m,drive)=>`/mnt/${drive.toLowerCase()}`).replace(/\\/g,'/')
+ return [
+  `\`npm run dist:${target}\` builds on ${target==='windows'?'Windows':'Linux'}; this machine runs ${process.platform}.`,
+  '',
+  'This one cannot be cross-built. The console server is shipped as V8 bytecode inside a single-file',
+  'executable: the bytecode and the SEA blob have to be produced by a Node of the target platform, and',
+  'the Debian package is assembled by dpkg-deb. Go is the only part that cross-compiles.',
+  '',
+  ...(process.platform==='win32'&&target==='linux'?[
+   'On this Windows machine, run it inside WSL Ubuntu, which reaches the same folder:',
+   '',
+   '  wsl -d Ubuntu',
+   `  cd ${wsl}`,
+   '  npm run dist:linux',
+   '',
+   'WSL needs Node (the floor in package.json engines) and dpkg-deb; the pinned Node runtime, Go',
+   'toolchain and every other build tool are still downloaded and checksum-verified by the build.',
+   '',
+   `[ko] 리눅스 .deb 는 윈도우에서 만들 수 없습니다. 바이트코드와 SEA 블롭은 대상 OS 의 Node 가 만들어야 하고`,
+   '     dpkg-deb 도 리눅스 전용입니다. 위 명령처럼 WSL Ubuntu 안에서 같은 폴더로 들어가 실행하세요.',
+   '     윈도우 설치본은 이 PC 에서 `npm run dist:windows` 로 그대로 만들 수 있습니다.'
+  ]:[])
+ ].join('\n')
+}
 const args=process.argv.slice(2),target=args[0]
 if(!['electron','windows','linux'].includes(target)||args.slice(1).some(a=>!['--full','--dir','--dry-run'].includes(a)))throw Error('Use a documented dist command, optionally with -- --dry-run')
+// Check the build host before exporting a Public snapshot to a temporary directory, so an
+// unusable Node fails in under a second instead of after the copy.
+assertBuildHost()
+// A .deb cannot be produced from Windows: the console bytecode and the SEA blob must be made by a
+// Linux Node, and dpkg-deb is Linux-only. Say so here, before the Public export is copied anywhere.
+if(['windows','linux'].includes(target)&&process.platform!==(target==='windows'?'win32':'linux'))throw Error(nativeOsMessage(target,projectRoot))
 const pkg=JSON.parse(fs.readFileSync(path.join(projectRoot,'package.json'),'utf8'))
 const full=args.includes('--full')
 if(full&&pkg.aidotEdition!=='full')throw Error('Enterprise source is not present in the Public edition')

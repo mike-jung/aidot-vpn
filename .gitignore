@@ -23,6 +23,7 @@ tools/wg-harness/x-*/
 
 # Distribution intermediates and generated installers
 packaging/.work/
+packaging/.build-tools/
 packaging/.checks/
 packaging/out/
 packaging/installers/
