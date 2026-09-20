@@ -1,5 +1,11 @@
 # Release notes
 
+## v1.20.8 — Public validation and release notes
+
+- Public validation no longer fails on GitHub-hosted runners. The nftables syntax test skips when `nft -c` cannot reach the kernel — even a check-only run needs CAP_NET_ADMIN — and the Linux job now runs that test as root, so the generated ruleset is still validated by the real parser on every push.
+- A draft GitHub Release describes what is attached: the Public edition, what each installer is for, what is deliberately absent and how to verify a download, followed by the changes of the version. When a draft is completed from a second machine, the description and SHA256SUMS.txt cover every installer on it.
+- Verified on Linux with nftables 1.0.9: the gateway test package passes as root, skips the nft check as an unprivileged user, and fails it only when `AIDOTVPN_TEST_REQUIRE_NFT=1` demands the check. No installer, server or console code changed, and installers were not rebuilt for this entry.
+
 ## v1.20.7 — Release before build
 
 - Running `npm run release:github` before building the current version's installer now names the build command to run first.

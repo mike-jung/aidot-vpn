@@ -50,3 +50,18 @@ jobs:
         run: go test ./...
         working-directory: server
         timeout-minutes: 15
+      - name: nftables ruleset syntax, checked by the real parser
+        # `nft -c` never commits, but even a check-only run needs CAP_NET_ADMIN
+        # to read the kernel's nf_tables cache, and the job runs as an
+        # unprivileged user. The step above therefore skips
+        # TestRenderedRulesetParsesWithNft. Here the same test runs as root, so
+        # every push still validates the generated ruleset against nft itself,
+        # and AIDOTVPN_TEST_REQUIRE_NFT turns a skip into a failure should the
+        # runner ever lose nft or the privilege.
+        if: runner.os == 'Linux'
+        run: |
+          command -v nft >/dev/null 2>&1 || { sudo apt-get update -qq && sudo apt-get install -y -qq nftables; }
+          go test -c -o "$RUNNER_TEMP/gateway.test" ./internal/gateway
+          sudo env AIDOTVPN_TEST_REQUIRE_NFT=1 "$RUNNER_TEMP/gateway.test" -test.run '^TestRenderedRulesetParsesWithNft$' -test.v
+        working-directory: server
+        timeout-minutes: 5

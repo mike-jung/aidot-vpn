@@ -7,6 +7,12 @@ import (
 	"testing"
 )
 
+// requireNftEnv is set where the nft syntax check must actually run. A host
+// that cannot run it then fails the test instead of skipping it, so a CI
+// runner that quietly loses nft or its privileges is noticed. The Public
+// validation workflow sets it for the step that runs this test as root.
+const requireNftEnv = "AIDOTVPN_TEST_REQUIRE_NFT"
+
 // TestRenderedRulesetParsesWithNft runs the real nftables parser over our
 // generated ruleset.
 //
@@ -17,14 +23,12 @@ import (
 // actual parser is the only way to catch a syntax regression before it
 // reaches a hospital.
 //
-// Skips when nft is unavailable (CI containers, macOS dev machines) so
-// this never becomes a flaky gate. `nft -c` is check-only but still needs
-// CAP_NET_ADMIN to validate the transaction with the kernel.
+// Skips when nft cannot validate anything on this host (no nft binary, or
+// nft without CAP_NET_ADMIN) so this never becomes a flaky gate; see
+// nftForSyntaxCheck. Set AIDOTVPN_TEST_REQUIRE_NFT=1 where a skip must be
+// treated as a failure.
 func TestRenderedRulesetParsesWithNft(t *testing.T) {
-	nft, err := exec.LookPath("nft")
-	if err != nil {
-		t.Skip("nft not installed; skipping syntax validation")
-	}
+	nft := nftForSyntaxCheck(t)
 
 	cases := map[string][]Peer{
 		"empty": nil,
@@ -72,4 +76,47 @@ func TestRenderedRulesetParsesWithNft(t *testing.T) {
 			}
 		})
 	}
+}
+
+// nftForSyntaxCheck returns the nft binary to validate with, after proving
+// that it can validate a ruleset on this host at all.
+//
+// Having nft on PATH is not enough. `nft -c` never commits, but even a
+// check-only run opens an nf_tables netlink socket to load the kernel's
+// cache, and that needs CAP_NET_ADMIN. GitHub-hosted Ubuntu runners ship
+// nft and run jobs as an unprivileged user, so a PATH lookup said
+// "available" while every invocation failed with
+//
+//	netlink: Error: cache initialization failed: Operation not permitted
+//
+// which is a fact about the runner, not about our ruleset. The probe is a
+// trivially valid file in the same shape as the real ruleset's opening
+// lines; if nft rejects it, this host cannot tell a good ruleset from a bad
+// one and the test is skipped — or fails, when AIDOTVPN_TEST_REQUIRE_NFT
+// says a skip is not acceptable here.
+func nftForSyntaxCheck(t *testing.T) string {
+	t.Helper()
+	unavailable := func(format string, args ...any) {
+		t.Helper()
+		if os.Getenv(requireNftEnv) != "" {
+			t.Fatalf(requireNftEnv+" is set, but "+format, args...)
+		}
+		t.Skipf(format, args...)
+	}
+
+	nft, err := exec.LookPath("nft")
+	if err != nil {
+		unavailable("nft is not installed on this host, so the ruleset cannot be checked against the real parser")
+	}
+
+	probe := filepath.Join(t.TempDir(), "probe.nft")
+	script := "table inet aidotvpn_probe {}\ndelete table inet aidotvpn_probe\n"
+	if err := os.WriteFile(probe, []byte(script), 0o600); err != nil {
+		t.Fatalf("write probe ruleset: %v", err)
+	}
+	if out, err := exec.Command(nft, "-c", "-f", probe).CombinedOutput(); err != nil {
+		unavailable("nft cannot validate rulesets on this host; a check-only run still needs CAP_NET_ADMIN to read the nf_tables cache: %v\n%s",
+			err, out)
+	}
+	return nft
 }

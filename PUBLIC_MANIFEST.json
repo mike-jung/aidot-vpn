@@ -1,7 +1,7 @@
 {
   "format": "aidotvpn-public-v2",
   "edition": "public",
-  "version": "1.20.7",
+  "version": "1.20.8",
   "files": {
     ".env.example": {
       "sha256": "a49c29a2fde0b1145a5010fc767196185a84f3bf7d29816c64aae6e9276a54d0",
@@ -12,8 +12,8 @@
       "bytes": 127
     },
     ".github/workflows/ci.yml": {
-      "sha256": "461e428a2dee66d7d325fc280d84c10165a1bdd56f9d9985f924ca24f948b7c7",
-      "bytes": 1798
+      "sha256": "60c6f6b99a23b6f3f5c61c979594ce9f2f3a02ceef9f568a4d4298379ec87607",
+      "bytes": 2785
     },
     ".gitignore": {
       "sha256": "89e961d30cbc04dd59c95a6e824e5b17615157d73f37f91a7507b10958ee7e55",
@@ -420,11 +420,11 @@
       "bytes": 4322
     },
     "console/package-lock.json": {
-      "sha256": "082356294a3ee86dcf9ac4b31f48d560de0f3c1603b0faf2c6cd2db5d2d8dc03",
+      "sha256": "ddcdd3b75281b2d3716f9bdd2b221ca475c196359d9428adbb006448ae4d734f",
       "bytes": 111894
     },
     "console/package.json": {
-      "sha256": "0b3e89773ae66ccda1c25b61ac57969dee34d51c41e71179cccdab4adb3a2d08",
+      "sha256": "6b41618f422efb0e90f5aad95147df911c972371ff4196de16c557fc147f4334",
       "bytes": 955
     },
     "console/public/favicon.svg": {
@@ -660,7 +660,7 @@
       "bytes": 264
     },
     "package.json": {
-      "sha256": "a7c588f5c642d526757606bc306e24f0f3b8177010c88f92656555c636a4fb6f",
+      "sha256": "70f6fe9087f554035b36e7b83cfc49942249f57757056e7ce5f599919ec8833e",
       "bytes": 2073
     },
     "packaging/build-tools.json": {
@@ -692,11 +692,11 @@
       "bytes": 11948
     },
     "packaging/electron/package-lock.json": {
-      "sha256": "5104c38e819178ad8f78a6e78751f97f0a1cb5cc2e0a948e4c27ab4487293441",
+      "sha256": "0064b92a4977f72e73aa62d70d544c8b9d130e8e70ad9f14f514c185c059e937",
       "bytes": 133750
     },
     "packaging/electron/package.json": {
-      "sha256": "7f1339f1271404e68cccf7f3b16fa47eafb7cdc92af2baf817f8cd7d26a04061",
+      "sha256": "11996554458fb5b954a019953bda8dcd53cb8ae90d2b533280b3ec9777210623",
       "bytes": 401
     },
     "packaging/electron/preload.cjs": {
@@ -772,11 +772,11 @@
       "bytes": 5793
     },
     "packaging/package-lock.json": {
-      "sha256": "80c0b093e890aa4950862ea23e0deca2f5f53f09d7020bb993434cd26affc9be",
+      "sha256": "314c798cf00d0444b185941203fa2970c1cd623e61ec27e69e0e164f97bcf081",
       "bytes": 15965
     },
     "packaging/package.json": {
-      "sha256": "2e3e5a46849eafede12d6ba300af4f493f34da145a565bf4b6011cc2faaab9e9",
+      "sha256": "515fb71af214ca56862e2b3c78d302bafa92588a62b2fea836fcadf85b8008d3",
       "bytes": 438
     },
     "packaging/README-ko.md": {
@@ -920,8 +920,8 @@
       "bytes": 6016
     },
     "RELEASE_NOTES.md": {
-      "sha256": "462a029c73aaec8a844b7543880aeff1ec5df5656d3f8ece4f8f866468b7de06",
-      "bytes": 2413
+      "sha256": "da0fe4cdbd6d4a3f6a03f11d2c4e919916710415ac006e24d6e57314923ff7b2",
+      "bytes": 3376
     },
     "scripts/build-edition.mjs": {
       "sha256": "c3c464d34aa1569f8f1780191d5875d3f3b4a5b2fc3322114885e644a47f70a7",
@@ -1528,8 +1528,8 @@
       "bytes": 1991
     },
     "server/internal/gateway/nftables_syntax_test.go": {
-      "sha256": "23cd3ec0eae1341a1e5b14e674efae568fbe4a744be8bc66913c7a32f5f00770",
-      "bytes": 2504
+      "sha256": "d3b189be18d318e4340c6be0229f7797c45775d867346cab81cbceb27c77ae9d",
+      "bytes": 4607
     },
     "server/internal/gateway/nftables_test.go": {
       "sha256": "b0add2c84bfe50ad1765e841f4c0432852f5d29bee4e6aa2deefb309e96df6ec",
@@ -1768,7 +1768,7 @@
       "bytes": 1438
     },
     "VERSION": {
-      "sha256": "4bf5f60ad72034b7c05fa9a3b213cc475aa972dc35ee8a4d1b38cebcec8f7127",
+      "sha256": "2fcbe328f5b844f9e1e7c735e144d7a90abeaa61332f82c9e6c622f40e2e8bbe",
       "bytes": 7
     }
   }

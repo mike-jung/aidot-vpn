@@ -1,6 +1,6 @@
 {
   "name": "aidot-vpn",
-  "version": "1.20.7",
+  "version": "1.20.8",
   "private": true,
   "description": "Mobile device enrollment, managed network access and VPN connectivity for Android fleets",
   "scripts": {

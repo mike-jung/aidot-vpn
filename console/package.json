@@ -1,6 +1,6 @@
 {
   "name": "aidotvpn-console",
-  "version": "1.20.7",
+  "version": "1.20.8",
   "description": "AidotVpn admin console (Vue 3 SPA + Express proxy backend)",
   "private": true,
   "type": "module",
